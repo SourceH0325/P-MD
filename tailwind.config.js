@@ -9,6 +9,9 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: {
+      mobile: '1140px',
+    },
     extend: {},
   },
   plugins: [],

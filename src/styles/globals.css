@@ -21,8 +21,13 @@ html {
 
 body {
   background-color: #0d1117;
-  width: 1140px;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 1140px) {
+  body {
+    width: 1140px;
+  }
 }
 
 ::-webkit-scrollbar {
