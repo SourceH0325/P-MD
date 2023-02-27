@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { AiOutlineEnter } from 'react-icons/ai'
 
 export default function Home() {
   const Router = useRouter()
