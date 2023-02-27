@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 export default function Home() {
-  const Router = useRouter()
+  const router = useRouter()
 
   return (
     <>
@@ -12,7 +12,6 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
 
       <div className="mx-4 mobile:mx-0">
         <div className="flex justify-center items-center h-20 mb-8 w-auto">
@@ -40,7 +39,7 @@ export default function Home() {
               <div className="flex justify-end">
                 <button
                   className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all"
-                  onClick={() => Router.push('/docs/unknown_kr')}
+                  onClick={() => router.push('/docs/unknown_kr')}
                 >
                   더보기
                 </button>
@@ -60,7 +59,7 @@ export default function Home() {
               <div className="flex justify-end">
                 <button
                   className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all"
-                  onClick={() => Router.push('/docs/unknown_kr')}
+                  onClick={() => router.push('/docs/unknown_kr')}
                 >
                   더보기
                 </button>
@@ -80,7 +79,7 @@ export default function Home() {
               <div className="flex justify-end">
                 <button
                   className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all"
-                  onClick={() => Router.push('/docs/unknown_kr')}
+                  onClick={() => router.push('/docs/unknown_kr')}
                 >
                   더보기
                 </button>

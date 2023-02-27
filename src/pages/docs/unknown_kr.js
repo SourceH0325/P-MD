@@ -1,8 +1,15 @@
+import Head from 'next/head'
 import { FaDiscord } from 'react-icons/fa'
 
 export default function unknown_kr() {
   return (
     <>
+      <Head>
+        <title>스텔라 레전드</title>
+        <meta name="description" content="마인크래프트 서버의 플레이를 도와줍니다." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
       <div className="flex justify-center items-center h-20 w-auto mb-2 mx-4 mobile:mx-0">
         <div className="flex justify-center items-center w-full h-12 bg-[#141920] rounded-lg">
@@ -13,7 +20,7 @@ export default function unknown_kr() {
           />
         </div>
       </div>
- 
+
       <div className="mx-4 mobile:mx-0">
         <div className="flex justify-center items-center h-auto w-full mb-8">
           <div className="bg-[#141920] rounded-lg p-5 w-full">
