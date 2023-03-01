@@ -68,7 +68,7 @@ export default function Add_Docs() {
             <div className="bg-[#141920] rounded-lg p-5">
               <div className="flex justify-between">
                 <h1 className="text-2xl font-bold">이름을 설정해주세요!</h1>
-                <h1 className="text-1xl text-gray-500 font-bold">STEP 1</h1>
+                <h1 className="text-xl text-gray-500 font-bold">STEP 1</h1>
               </div>
               <p className="mt-3 text-lg text-gray-500 font-bold">홈에 뜰 이름을 설정합니다.</p>
               <input
