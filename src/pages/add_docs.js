@@ -99,8 +99,8 @@ export default function Add_Docs() {
                     searchIcon: 'hidden',
                     menu: 'bg-[#0d1117] rounded-lg mt-3',
                     tagItemText: 'inline-block bg-gray-600/60 rounded-lg px-2 py-1 my-1 mr-1',
-                    menuButton: (state) => 'bg-[#0d1117] flex text-gray-500 rounded-lg transition-all h-12 w-full justify-between items-center px-2.5',
-                    tagItem: (state) => 'bg-gray-600 rounded-lg flex space-x-1 pl-1',
+                    menuButton: (state) => 'bg-[#0d1117] flex text-gray-500 rounded-lg transition-all h-auto w-full justify-between items-center',
+                    tagItem: (state) => 'bg-gray-600 rounded-lg flex pl-1',
                     tagItemIconContainer: 'flex items-center px-1 cursor-pointer rounded-r-lg hover:bg-gray-700 hover:text-[#f1f1f1] transition-all',
                   }}
                   formatGroupLabel={(data) => <span className="text-[#f1f1f1] font-bold text-lg">{data.label}</span>}
