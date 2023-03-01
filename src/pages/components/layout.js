@@ -38,7 +38,10 @@ export default function Layout({ children }) {
           <button className="font-semibold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block">
             공지사항
           </button>
-          <button className="font-semibold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block">
+          <button
+            className="font-semibold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block"
+            onClick={() => router.push('/add_docs')}
+          >
             추가하기
           </button>
         </div>
@@ -77,7 +80,10 @@ export default function Layout({ children }) {
             <button className="font-semibold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]">
               공지사항
             </button>
-            <button className="font-semibold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]">
+            <button
+              className="font-semibold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]"
+              onClick={() => router.push('/add_docs')}
+            >
               추가하기
             </button>
             <button className="font-semibold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]">

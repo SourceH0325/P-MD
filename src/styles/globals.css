@@ -10,6 +10,7 @@
   margin: 0;
   padding: 0;
   color: #f1f1f1;
+  list-style: none;
 }
 
 html {
@@ -22,6 +23,11 @@ html {
 body {
   background-color: #0d1117;
   margin: 0 auto;
+}
+
+hr {
+  border: 1px solid gray;
+  margin: 10px;
 }
 
 @media screen and (min-width: 1140px) {
