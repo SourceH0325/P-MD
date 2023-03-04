@@ -29,10 +29,10 @@ export default function Home() {
             <div className="bg-[#141920] rounded-lg p-5">
               <h1 className="text-2xl font-bold">스텔라 레전드</h1>
               <div className="flex flex-wrap gap-2 mt-2">
-                <div className="bg-gray-600/60 rounded-lg px-2 py-1">
+                <div className="bg-gray-700/60 rounded-lg px-2 py-1">
                   <p className="font-semibold">1.20</p>
                 </div>
-                <div className="bg-gray-600/60 rounded-lg px-2 py-1">
+                <div className="bg-gray-700/60 rounded-lg px-2 py-1">
                   <p className="font-semibold">자바</p>
                 </div>
               </div>
@@ -49,10 +49,10 @@ export default function Home() {
             <div className="bg-[#141920] rounded-lg p-5">
               <h1 className="text-2xl font-bold">시드</h1>
               <div className="flex flex-wrap gap-2 mt-2">
-                <div className="bg-gray-600/60 rounded-lg px-2 py-1">
+                <div className="bg-gray-700/60 rounded-lg px-2 py-1">
                   <p className="font-semibold">1.18</p>
                 </div>
-                <div className="bg-gray-600/60 rounded-lg px-2 py-1">
+                <div className="bg-gray-700/60 rounded-lg px-2 py-1">
                   <p className="font-semibold">자바</p>
                 </div>
               </div>
@@ -69,10 +69,10 @@ export default function Home() {
             <div className="bg-[#141920] rounded-lg p-5">
               <h1 className="text-2xl font-bold">배드락</h1>
               <div className="flex flex-wrap gap-2 mt-2">
-                <div className="bg-gray-600/60 rounded-lg px-2 py-1">
+                <div className="bg-gray-700/60 rounded-lg px-2 py-1">
                   <p className="font-semibold">1.19</p>
                 </div>
-                <div className="bg-gray-600/60 rounded-lg px-2 py-1">
+                <div className="bg-gray-700/60 rounded-lg px-2 py-1">
                   <p className="font-semibold">배드락</p>
                 </div>
               </div>

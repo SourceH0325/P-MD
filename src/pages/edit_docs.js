@@ -92,7 +92,7 @@ export default function Add_Docs() {
               <input
                 className="mt-4 px-2.5 pb-1 w-full h-12 bg-[#0d1117] text-left text-white rounded-lg"
                 type="text"
-                placeholder="예시: 마인 독스"
+                placeholder="스텔라 레전드"
               />
             </div>
 
@@ -142,7 +142,7 @@ export default function Add_Docs() {
               <input
                 className="mt-4 px-2.5 pb-1 w-full h-12 bg-[#0d1117] text-left text-white rounded-lg"
                 type="text"
-                placeholder="기타 링크"
+                placeholder="https://discord.com/invite/cq3TeTtNxt"
               />
               <input
                 className="mt-4 px-2.5 pb-1 w-full h-12 bg-[#0d1117] text-left text-white rounded-lg"
@@ -170,8 +170,32 @@ export default function Add_Docs() {
               <div className="mt-4">
                 <div className="grid gap-4 grid-cols-1 grid-rows-auto mobile:grid-cols-2">
                   <div className="bg-gray-700/60 rounded-lg p-5">
+                    <h1 className="text-2xl font-bold">1-4-4-2</h1>
+                    <p className="mt-1 text-lg text-gray-500 font-bold">가이드용 양식으로 설정되었습니다.</p>
+                    <div className="flex justify-end mt-4">
+                      <button className="font-semibold bg-green-600 hover:bg-green-700 rounded-lg px-4 py-2 transition-all mr-4">
+                        수정하기
+                      </button>
+                      <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                        살펴보기
+                      </button>
+                    </div>
+                  </div>
+                  <div className="bg-gray-700/60 rounded-lg p-5">
+                    <h1 className="text-2xl font-bold">2-4-4-2</h1>
+                    <p className="mt-1 text-lg text-gray-500 font-bold">특수 마법용 양식으로 설정되었습니다.</p>
+                    <div className="flex justify-end mt-4">
+                      <button className="font-semibold bg-green-600 hover:bg-green-700 rounded-lg px-4 py-2 transition-all mr-4">
+                        수정하기
+                      </button>
+                      <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                        살펴보기
+                      </button>
+                    </div>
+                  </div>
+                  <div className="bg-gray-700/60 rounded-lg p-5">
                     <h1 className="text-2xl font-bold">1-3-1-2</h1>
-                    <p className="mt-1 text-lg text-gray-500 font-bold">기본 양식으로 설정되었습니다.</p>
+                    <p className="mt-1 text-lg text-gray-500 font-bold">아이템용 양식으로 설정되었습니다.</p>
                     <div className="flex justify-end mt-4">
                       <button className="font-semibold bg-green-600 hover:bg-green-700 rounded-lg px-4 py-2 transition-all mr-4">
                         수정하기
