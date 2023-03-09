@@ -116,7 +116,7 @@ export default function Add_Docs() {
                     searchBox: 'mt-4 px-2.5 pb-1 w-full h-10 bg-[#141920] text-left text-white rounded-lg',
                     searchIcon: 'hidden',
                     menu: 'bg-[#0d1117] rounded-lg mt-3',
-                    tagItemText: 'inline-block bg-gray-700/60 rounded-lg px-2 py-1 my-1 mr-1',
+                    tagItemText: 'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
                     menuButton: (state) =>
                       'bg-[#0d1117] flex text-gray-500 rounded-lg transition-all h-auto w-full justify-between items-center',
                     tagItem: (state) => 'bg-gray-600 rounded-lg flex pl-1',
@@ -125,7 +125,7 @@ export default function Add_Docs() {
                   }}
                   formatGroupLabel={(data) => <span className="text-[#f1f1f1] font-bold text-lg">{data.label}</span>}
                   formatOptionLabel={(data) => (
-                    <li className="inline-block bg-gray-700/60 rounded-lg px-2 py-1 my-1 cursor-pointer hover:bg-blue-600 transition-all">
+                    <li className="inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 cursor-pointer hover:bg-blue-600 transition-all">
                       {data.label}
                     </li>
                   )}

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { FaDiscord } from 'react-icons/fa'
 import { MdEdit } from 'react-icons/md'
+import { FaPlus } from 'react-icons/fa'
 import { useRouter } from 'next/router'
 
 export default function unknown_kr() {
@@ -25,18 +26,27 @@ export default function unknown_kr() {
           />
         </div>
       </div>
-
       <div className="mx-4 mobile:mx-0">
         <div className="flex justify-center items-center h-auto w-full mb-8">
           <div className="bg-[#141920] rounded-lg p-5 w-full">
-            <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-bold">스텔라 레전드</h1>
-              <button
-                className="rounded-lg text-lg px-4 py-2 bg-gray-600 hover:bg-gray-700"
-                onClick={() => router.push('/edit_docs')}
-              >
-                <MdEdit />
-              </button>
+            <div className="flex justify-between items-center w-auto">
+              <div className="flex items-center">
+                <h1 className="text-2xl font-bold">스텔라 레전드</h1>
+              </div>
+              <div className="flex items-center">
+                <button
+                  className="mr-2 rounded-lg text-lg px-4 py-2 bg-sky-600 hover:bg-sky-700"
+                  onClick={() => router.push('/add_list')}
+                >
+                  <FaPlus />
+                </button>
+                <button
+                  className="rounded-lg text-lg px-4 py-2 bg-gray-600 hover:bg-gray-700"
+                  onClick={() => router.push('/edit_docs')}
+                >
+                  <MdEdit />
+                </button>
+              </div>
             </div>
             <div className="flex flex-wrap gap-2 mt-2">
               <div className="bg-gray-700/60 rounded-lg px-2 py-1">
@@ -58,7 +68,7 @@ export default function unknown_kr() {
         </div>
 
         <main className="mb-12">
-          <div className="grid gap-4 grid-cols-3 grid-rows-auto mb-12">
+          <div className="grid gap-4 grid-cols-2 grid-rows-auto mb-12 mobile:grid-cols-3">
             <button className="font-semibold bg-[#141920] rounded-lg p-5 transition-all hover:bg-blue-600">
               가이드
             </button>
@@ -97,7 +107,10 @@ export default function unknown_kr() {
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                <button
+                  className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all"
+                  onClick={() => router.push('unknown_kr/list/1')}
+                >
                   더보기
                 </button>
               </div>

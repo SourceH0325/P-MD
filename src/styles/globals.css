@@ -11,6 +11,9 @@
   padding: 0;
   color: #f1f1f1;
   list-style: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 html {
