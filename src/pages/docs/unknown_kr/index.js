@@ -22,7 +22,7 @@ export default function unknown_kr() {
           <input
             className="px-2.5 pb-1 w-full h-10 bg-[#141920] text-left text-white rounded-lg"
             type="text"
-            placeholder="가이드, 특수 마법, 아이템 등을 검색해보세요"
+            placeholder="가이드, 특수 마법, 태그 등을 검색해보세요"
           />
         </div>
       </div>
@@ -35,13 +35,13 @@ export default function unknown_kr() {
               </div>
               <div className="flex items-center">
                 <button
-                  className="mr-2 rounded-lg text-lg px-4 py-2 bg-sky-600 hover:bg-sky-700"
+                  className="mr-2 rounded-lg text-lg px-4 py-2 font-bold border-2 border-gray-600 hover:border-blue-600 transition-all"
                   onClick={() => router.push('/add_list')}
                 >
                   <FaPlus />
                 </button>
                 <button
-                  className="rounded-lg text-lg px-4 py-2 bg-gray-600 hover:bg-gray-700"
+                  className="rounded-lg text-lg px-4 py-2 font-bold border-2 border-gray-600 hover:border-lime-600 transition-all"
                   onClick={() => router.push('/edit_docs')}
                 >
                   <MdEdit />
@@ -50,16 +50,19 @@ export default function unknown_kr() {
             </div>
             <div className="flex flex-wrap gap-2 mt-2">
               <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                <p className="font-semibold">1.20</p>
+                <p className="font-bold">1.20</p>
               </div>
               <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                <p className="font-semibold">공식</p>
+                <p className="font-bold">공식</p>
               </div>
             </div>
-            <div className="flex justify-end items-center w-auto mt-1">
+            <div
+              className="flex items-center w-auto mt-4 whitespace-nowrap overflow-auto mobile:justify-end"
+              id="LinkList_Main"
+            >
               <button
-                className="rounded-lg text-2xl px-4 py-2 ml-4 bg-blue-600 hover:bg-blue-700"
-                onClick={() => router.push('https://discord.com/invite/cq3TeTtNxt')}
+                className="rounded-lg text-2xl px-4 py-2 mobile:ml-4 mobile:mr-0 mr-4 ml-0 font-bold border-2 border-gray-600 hover:border-blue-600 hover:bg-blue-600 transition-all"
+                onClick={() => router.push('https://discord.gg/cq3TeTtNxt')}
               >
                 <FaDiscord />
               </button>
@@ -68,30 +71,19 @@ export default function unknown_kr() {
         </div>
 
         <main className="mb-12">
-          <div className="grid gap-4 grid-cols-2 grid-rows-auto mb-12 mobile:grid-cols-3">
-            <button className="font-semibold bg-[#141920] rounded-lg p-5 transition-all hover:bg-blue-600">
-              가이드
-            </button>
-            <button className="font-semibold bg-[#141920] rounded-lg p-5 transition-all hover:bg-blue-600">
-              특수 마법
-            </button>
-            <button className="font-semibold bg-[#141920] rounded-lg p-5 transition-all hover:bg-blue-600">
-              아이템
-            </button>
-          </div>
           <div className="grid gap-4 grid-cols-1 grid-rows-auto mobile:grid-cols-3">
             <div className="bg-[#141920] rounded-lg p-5">
               <h1 className="text-2xl font-bold">무기 강화를 하는 법</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">가이드</p>
+                  <p className="font-bold">가이드</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">무기 강화</p>
+                  <p className="font-bold">무기 강화</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                <button className="font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all">
                   더보기
                 </button>
               </div>
@@ -100,17 +92,14 @@ export default function unknown_kr() {
               <h1 className="text-2xl font-bold">라면을 끓이는 법</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">가이드</p>
+                  <p className="font-bold">가이드</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">배고프다</p>
+                  <p className="font-bold">배고프다</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button
-                  className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all"
-                  onClick={() => router.push('unknown_kr/list/1')}
-                >
+                <button className="font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all">
                   더보기
                 </button>
               </div>
@@ -119,14 +108,14 @@ export default function unknown_kr() {
               <h1 className="text-2xl font-bold">아레스</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">특수 마법</p>
+                  <p className="font-bold">특수 마법</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">전설 등급</p>
+                  <p className="font-bold">전설 등급</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                <button className="font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all">
                   더보기
                 </button>
               </div>
@@ -135,14 +124,14 @@ export default function unknown_kr() {
               <h1 className="text-2xl font-bold">데빌</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">특수 마법</p>
+                  <p className="font-bold">특수 마법</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">희귀 등급</p>
+                  <p className="font-bold">희귀 등급</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                <button className="font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all">
                   더보기
                 </button>
               </div>
@@ -151,14 +140,14 @@ export default function unknown_kr() {
               <h1 className="text-2xl font-bold">테스팅</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">팁</p>
+                  <p className="font-bold">팁</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">아이템</p>
+                  <p className="font-bold">아이템</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                <button className="font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all">
                   더보기
                 </button>
               </div>
@@ -167,14 +156,14 @@ export default function unknown_kr() {
               <h1 className="text-2xl font-bold">테스팅</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">팁</p>
+                  <p className="font-bold">팁</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">아이템</p>
+                  <p className="font-bold">아이템</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                <button className="font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all">
                   더보기
                 </button>
               </div>
@@ -183,14 +172,14 @@ export default function unknown_kr() {
               <h1 className="text-2xl font-bold">테스팅</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">팁</p>
+                  <p className="font-bold">팁</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">아이템</p>
+                  <p className="font-bold">아이템</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                <button className="font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all">
                   더보기
                 </button>
               </div>
@@ -199,14 +188,14 @@ export default function unknown_kr() {
               <h1 className="text-2xl font-bold">테스팅</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">팁</p>
+                  <p className="font-bold">팁</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">아이템</p>
+                  <p className="font-bold">아이템</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                <button className="font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all">
                   더보기
                 </button>
               </div>
@@ -215,14 +204,14 @@ export default function unknown_kr() {
               <h1 className="text-2xl font-bold">테스팅</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">팁</p>
+                  <p className="font-bold">팁</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">아이템</p>
+                  <p className="font-bold">아이템</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                <button className="font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all">
                   더보기
                 </button>
               </div>
@@ -231,14 +220,14 @@ export default function unknown_kr() {
               <h1 className="text-2xl font-bold">테스팅</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">팁</p>
+                  <p className="font-bold">팁</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">아이템</p>
+                  <p className="font-bold">아이템</p>
                 </div>
               </div>
               <div className="flex justify-end">
-                <button className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all">
+                <button className="font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all">
                   더보기
                 </button>
               </div>

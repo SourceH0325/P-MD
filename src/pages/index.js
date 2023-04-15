@@ -30,15 +30,15 @@ export default function Home() {
               <h1 className="text-2xl font-bold">스텔라 레전드</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">1.20</p>
+                  <p className="font-bold">1.20</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">자바</p>
+                  <p className="font-bold">자바</p>
                 </div>
               </div>
               <div className="flex justify-end">
                 <button
-                  className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all"
+                  className="text-lg font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all"
                   onClick={() => router.push('/docs/unknown_kr')}
                 >
                   더보기
@@ -50,15 +50,15 @@ export default function Home() {
               <h1 className="text-2xl font-bold">시드</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">1.18</p>
+                  <p className="font-bold">1.18</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">자바</p>
+                  <p className="font-bold">자바</p>
                 </div>
               </div>
               <div className="flex justify-end">
                 <button
-                  className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all"
+                  className="text-lg font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all"
                   onClick={() => router.push('/docs/unknown_kr')}
                 >
                   더보기
@@ -70,15 +70,15 @@ export default function Home() {
               <h1 className="text-2xl font-bold">배드락</h1>
               <div className="flex flex-wrap gap-2 mt-2">
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">1.19</p>
+                  <p className="font-bold">1.19</p>
                 </div>
                 <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                  <p className="font-semibold">배드락</p>
+                  <p className="font-bold">배드락</p>
                 </div>
               </div>
               <div className="flex justify-end">
                 <button
-                  className="font-semibold bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all"
+                  className="text-lg font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all"
                   onClick={() => router.push('/docs/unknown_kr')}
                 >
                   더보기

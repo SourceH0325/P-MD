@@ -43,8 +43,32 @@ hr {
   width: 5px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #f1f1f1;
+  background-color: #6b7280;
 }
 ::-webkit-scrollbar-track {
   background-color: #0d1117;
+}
+
+#LinkList_Main::-webkit-scrollbar {
+  display: none;
+}
+
+.react-grid-item.react-grid-placeholder {
+  background-color: rgb(37 99 235) !important;
+  border-radius: 0.5rem !important;
+  transition-property: all !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 150ms !important;
+  margin-left: -10px;
+}
+
+.react-grid-item > .react-resizable-handle::after {
+  color: #f1f1f1 !important;
+  width: 8px !important;
+  height: 8px !important;
+  margin-right: 1px !important;
+  margin-bottom: 1px !important;
+  border-bottom-right-radius: 6px !important;
+  border-right: 2px solid rgb(107 114 128) !important;
+  border-bottom: 2px solid rgb(107 114 128) !important;
 }

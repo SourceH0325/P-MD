@@ -6,9 +6,7 @@ import { FaTimes, FaBars } from 'react-icons/fa'
 export default function Layout({ children }) {
   const router = useRouter()
 
-  {
-    /* Mobile Menu */
-  }
+  // 모바일 메뉴
   const [mobileMenu, setMobileMenu] = useState(false)
 
   const handleMobileMenu = () => {
@@ -32,26 +30,29 @@ export default function Layout({ children }) {
             <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">MINE DOCS</h1>
           </div>
           <button
-            className="font-semibold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block"
+            className="font-bold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block"
             onClick={() => router.push('/')}
           >
-            홈
-          </button>
-          <button className="font-semibold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block">
-            지원 서버
+            메인
           </button>
           <button
-            className="font-semibold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block"
+            className="font-bold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block"
             onClick={() => router.push('/add_docs')}
           >
             추가하기
           </button>
+          <button
+            className="font-bold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block"
+            onClick={() => router.push('/')}
+          >
+            지원 서버
+          </button>
         </div>
 
         <div className="flex items-center">
-          <button className="font-semibold text-lg hidden mobile:block">로그인</button>
+          <button className="font-bold text-lg hidden mobile:block">로그인</button>
           <button
-            className="font-semibold text-3xl text-gray-500 transition-all hover:text-[#f1f1f1] mobile:hidden"
+            className="font-bold text-3xl text-gray-500 transition-all hover:text-[#f1f1f1] mobile:hidden"
             onClick={handleMobileMenu}
           >
             <FaBars />
@@ -65,14 +66,17 @@ export default function Layout({ children }) {
           }`}
         >
           <div className="flex justify-between items-center h-20 w-auto mx-4">
-            <div className="flex items-center cursor-pointer select-none" onClick={() => router.push('/')}>
+            <div
+              className="flex items-center cursor-pointer select-none"
+              onClick={() => router.push('/') && handleMobileMenu()}
+            >
               <Image src="/MINEDOCS_WHITE.png" alt="" width={36} height={40} />
               <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">MINE DOCS</h1>
             </div>
 
             <div className="flex items-center">
               <button
-                className="font-semibold text-3xl text-gray-500 transition-all hover:text-[#f1f1f1]"
+                className="font-bold text-3xl text-gray-500 transition-all hover:text-[#f1f1f1]"
                 onClick={handleMobileMenu}
               >
                 <FaTimes />
@@ -81,29 +85,38 @@ export default function Layout({ children }) {
           </div>
           <div className="flex flex-col justify-start items-start h-full w-full px-4">
             <button
-              className="font-semibold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]"
+              className="font-bold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]"
               onClick={() => router.push('/') && handleMobileMenu()}
             >
-              홈
-            </button>
-            <button className="font-semibold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]">
-              지원 서버
+              메인
             </button>
             <button
-              className="font-semibold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]"
+              className="font-bold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]"
               onClick={() => router.push('/add_docs') && handleMobileMenu()}
             >
               추가하기
             </button>
-            <button className="font-semibold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]">
+            <button
+              className="font-bold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]"
+              onClick={() => router.push('/') && handleMobileMenu()}
+            >
+              지원 서버
+            </button>
+            <button className="font-bold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]">
               로그인
             </button>
           </div>
         </div>
       </header>
       {children}
-      <footer className="flex justify-center items-center h-20 w-full">
-        <p className="font-semibold">© 2023 MINE DOCS</p>
+      {/* Footer */}
+      <footer class="py-4 mb-8">
+        <div class="container mx-auto">
+          <div class="flex justify-between items-center">
+            <div className="font-bold text-lg text-gray-600">© 2023 MINE DOCS</div>
+            <div className="font-bold text-gray-600">support@minedocs.xyz | SourceH#0325</div>
+          </div>
+        </div>
       </footer>
     </>
   )
