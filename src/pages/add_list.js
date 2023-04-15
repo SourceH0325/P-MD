@@ -17,7 +17,7 @@ export default function Add_Docs() {
         alert('화면 크기가 너무 작습니다.')
         showAlert = false
       } else {
-        router.back()
+        router.push('/')
       }
     } else {
       showAlert = true
