@@ -77,9 +77,9 @@ export default function Add_Docs() {
   ]
 
   // 태그, 버전 선택
-  const [tag, settag] = useState(null)
-  const [min_version, setmin_version] = useState(null)
-  const [max_version, setmax_version] = useState(null)
+  const [tag, settag] = useState(0)
+  const [min_version, setmin_version] = useState(0)
+  const [max_version, setmax_version] = useState(0)
 
   const handleChange_min_version = (value) => {
     setmin_version(value)
@@ -101,20 +101,23 @@ export default function Add_Docs() {
     url_input.setAttribute('id', 'Url')
     url_input.setAttribute('class', 'mt-4 px-2.5 pb-1 w-full h-12 bg-[#0d1117] text-left text-white rounded-lg')
     url_input.setAttribute('placeholder', '기타 링크')
-    url.appendChild(url_input)
+    if (url_input) {
+      url.appendChild(url_input)
+    }
   }
 
   const handleRemoveUrl = () => {
     const url = document.getElementById('UrlList')
     const url_input = document.getElementById('Url')
-    url.removeChild(url_input)
+    if (url_input) {
+      url.removeChild(url_input)
+    }
   }
 
   // URL 정규식
   const Web = VerEx().startOfLine().then('http').maybe('s').then('://').maybe('www.').anythingBut(' ').endOfLine()
 
   const handleComplete = () => {
-    
     // 버전 확인
     if (min_version == null || max_version == null) {
       alert('버전을 설정해주세요!')
@@ -296,8 +299,7 @@ export default function Add_Docs() {
                 <h1 className="text-xl text-gray-500 font-bold hidden mobile:block">STEP 4</h1>
               </div>
               <p className="mt-3 text-lg text-gray-500 font-bold">상세 설명에 링크를 설정합니다.</p>
-              <div id="UrlList">
-              </div>
+              <div id="UrlList"></div>
               <div className="mt-4 flex justify-start">
                 <button
                   className="text-lg font-bold border-2 border-gray-600 hover:border-blue-600 transition-all px-4 py-2 transition-all mr-2 rounded-lg"
