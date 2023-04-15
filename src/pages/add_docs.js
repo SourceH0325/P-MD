@@ -95,7 +95,7 @@ export default function Add_Docs() {
 
   // 링크 추가
   const handleAddUrl = () => {
-    const url = document.getElementById('UrlList')
+    const url = document.querySelector('#UrlList')
     const url_input = document.createElement('input')
     url_input.setAttribute('type', 'text')
     url_input.setAttribute('id', 'Url')
@@ -107,8 +107,8 @@ export default function Add_Docs() {
   }
 
   const handleRemoveUrl = () => {
-    const url = document.getElementById('UrlList')
-    const url_input = document.getElementById('Url')
+    const url = document.querySelector('#UrlList')
+    const url_input = document.querySelector('#Url')
     if (url_input) {
       url.removeChild(url_input)
     }
@@ -119,7 +119,7 @@ export default function Add_Docs() {
 
   const handleComplete = () => {
     // 버전 확인
-    if (min_version == null || max_version == null) {
+    if (min_version == 0 || max_version == 0) {
       alert('버전을 설정해주세요!')
     } else if (min_version.value > max_version.value) {
       alert('최소 버전이 최대 버전보다 큽니다!')
@@ -128,23 +128,23 @@ export default function Add_Docs() {
     }
 
     // 태그 확인
-    if (tag == null) {
+    if (tag == 0) {
       alert('장르를 설정해주세요!')
     } else {
       console.log('tag check success')
     }
 
     // URL 확인
-    if (document.getElementById('Url').value == '') {
+    if (document.querySelector('#Url').value == '') {
       console.log('url check success')
-    } else if (Web.test(document.getElementById('Url').value) == true) {
+    } else if (Web.test(document.querySelector('#Url').value) == true) {
       console.log('url check success')
     } else {
       alert('URL을 확인해주세요!')
     }
 
     // 이름 확인
-    if (document.getElementById('Name').value == '') {
+    if (document.querySelector('#Name').value == '') {
       alert('이름을 입력해주세요!')
     } else {
       console.log('name check success')
@@ -157,7 +157,7 @@ export default function Add_Docs() {
         <title>독스 추가하기</title>
         <meta name="description" content="마인크래프트 서버의 플레이를 도와줍니다." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <buttonnk rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="mx-4 mobile:mx-0">
