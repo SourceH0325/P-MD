@@ -77,9 +77,9 @@ export default function Add_Docs() {
   ]
 
   // 태그, 버전 선택
-  const [tag, settag] = useState(0)
-  const [min_version, setmin_version] = useState(0)
-  const [max_version, setmax_version] = useState(0)
+  const [tag, settag] = useState(null)
+  const [min_version, setmin_version] = useState(null)
+  const [max_version, setmax_version] = useState(null)
 
   const handleChange_min_version = (value) => {
     setmin_version(value)
@@ -119,7 +119,7 @@ export default function Add_Docs() {
 
   const handleComplete = () => {
     // 버전 확인
-    if (min_version == 0 || max_version == 0) {
+    if (min_version == null || max_version == null) {
       alert('버전을 설정해주세요!')
     } else if (min_version.value > max_version.value) {
       alert('최소 버전이 최대 버전보다 큽니다!')
@@ -128,7 +128,7 @@ export default function Add_Docs() {
     }
 
     // 태그 확인
-    if (tag == 0) {
+    if (tag == null) {
       alert('장르를 설정해주세요!')
     } else {
       console.log('tag check success')
@@ -260,7 +260,7 @@ export default function Add_Docs() {
                 <p className="mt-3 text-lg text-gray-500 font-bold">이름 밑에 뜰 태그를 설정합니다.</p>
                 <div className="mt-4">
                   <Select
-                    placeholder="태그를 선택해주세요!"
+                    placeholder="태그를 설정해 주세요!"
                     searchInputPlaceholder="검색"
                     value={tag}
                     onChange={handleChange_tag}

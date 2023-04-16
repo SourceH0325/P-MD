@@ -110,13 +110,13 @@ export default function Layout({ children }) {
       </header>
       {children}
       {/* Footer */}
-      <footer class="py-4 mb-8 mx-4 mobile:mx-0">
-        <div class="container mx-auto">
-          <div class="justify-between items-center hidden mobile:flex">
+      <footer className="py-4 mb-8 mx-4 mobile:mx-0">
+        <div className="container mx-auto">
+          <div className="justify-between items-center hidden mobile:flex">
             <div className="font-bold text-lg text-gray-600">© 2023 MINE DOCS</div>
             <div className="font-bold text-gray-600">support@minedocs.xyz | SourceH#0325</div>
           </div>
-          <div class="text-start text-gray-600 block mobile:hidden">
+          <div className="text-start text-gray-600 block mobile:hidden">
           <div className="font-bold text-lg text-gray-600">© 2023 MINE DOCS</div>
             <div className="font-bold text-gray-600">support@minedocs.xyz</div>
             <div className="font-bold text-gray-600">SourceH#0325</div>
