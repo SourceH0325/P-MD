@@ -1,155 +1,244 @@
-import Head from 'next/head'
-import { useState } from 'react'
-import { useRouter } from 'next/router'
-import Select from 'react-tailwindcss-select'
-import VerEx from 'verbal-expressions'
+import Head from 'next/head';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useSession, signIn } from 'next-auth/react';
+import Select from 'react-tailwindcss-select';
+import axios from 'axios';
+import VerEx from 'verbal-expressions';
 
 export default function Add_Docs() {
-  const router = useRouter()
+  const router = useRouter();
+
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      signIn('discord');
+    }
+  }, [status]);
+
+  const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(false);
 
   // 태그 옵션
   const tag_options = [
     {
       label: '장르',
       options: [
-        { value: 'wild', label: '야생' },
-        { value: 's-wild', label: '반야생' },
-        { value: 'build', label: '건축' },
-        { value: 'pvp', label: 'PVP' },
-        { value: 'towny', label: '타우니' },
-        { value: 'minigame', label: '미니게임' },
-        { value: 'economy', label: '경제' },
-        { value: 'minefarm', label: '마인팜' },
-        { value: 'skyblock', label: '스카이블럭' },
-        { value: 'rpg', label: 'RPG' },
-        { value: 'plunder', label: '약탈' },
-        { value: 'mcmmo', label: 'mcMMO' },
+        { value: '야생', label: '야생' },
+        { value: '반야생', label: '반야생' },
+        { value: '건축', label: '건축' },
+        { value: 'PVP', label: 'PVP' },
+        { value: '타우니', label: '타우니' },
+        { value: '미니게임', label: '미니게임' },
+        { value: '경제', label: '경제' },
+        { value: '마인팜', label: '마인팜' },
+        { value: '스카이블럭', label: '스카이블럭' },
+        { value: 'RPG', label: 'RPG' },
+        { value: '약탈', label: '약탈' },
+        { value: 'mcMMO', label: 'mcMMO' },
       ],
     },
-  ]
-
-  // 최소 버전 옵션
-  const min_version_options = [
-    {
-      label: '버전',
-      options: [
-        { value: 1, label: '1.5' },
-        { value: 2, label: '1.6' },
-        { value: 3, label: '1.7' },
-        { value: 4, label: '1.8' },
-        { value: 5, label: '1.9' },
-        { value: 6, label: '1.10' },
-        { value: 7, label: '1.11' },
-        { value: 8, label: '1.12' },
-        { value: 9, label: '1.13' },
-        { value: 10, label: '1.14' },
-        { value: 11, label: '1.15' },
-        { value: 12, label: '1.16' },
-        { value: 13, label: '1.17' },
-        { value: 14, label: '1.18' },
-        { value: 15, label: '1.19' },
-      ],
-    },
-  ]
+  ];
 
   // 최대 버전 옵션
-  const max_version_options = [
+  const version_options = [
     {
       label: '버전',
       options: [
-        { value: 1, label: '1.5' },
-        { value: 2, label: '1.6' },
-        { value: 3, label: '1.7' },
-        { value: 4, label: '1.8' },
-        { value: 5, label: '1.9' },
-        { value: 6, label: '1.10' },
-        { value: 7, label: '1.11' },
-        { value: 8, label: '1.12' },
-        { value: 9, label: '1.13' },
-        { value: 10, label: '1.14' },
-        { value: 11, label: '1.15' },
-        { value: 12, label: '1.16' },
-        { value: 13, label: '1.17' },
-        { value: 14, label: '1.18' },
-        { value: 15, label: '1.19' },
+        { value: 15, label: '1.5' },
+        { value: 16, label: '1.6' },
+        { value: 17, label: '1.7' },
+        { value: 18, label: '1.8' },
+        { value: 19, label: '1.9' },
+        { value: 110, label: '1.10' },
+        { value: 111, label: '1.11' },
+        { value: 112, label: '1.12' },
+        { value: 113, label: '1.13' },
+        { value: 114, label: '1.14' },
+        { value: 115, label: '1.15' },
+        { value: 116, label: '1.16' },
+        { value: 117, label: '1.17' },
+        { value: 118, label: '1.18' },
+        { value: 119, label: '1.19' },
+        { value: 120, label: '1.20' },
       ],
     },
-  ]
+  ];
 
   // 태그, 버전 선택
-  const [tag, settag] = useState(null)
-  const [min_version, setmin_version] = useState(null)
-  const [max_version, setmax_version] = useState(null)
+  const [tag, settag] = useState(null);
+  const [version, setversion] = useState(null);
+  const [edition, setedition] = useState(null);
 
-  const handleChange_min_version = (value) => {
-    setmin_version(value)
-  }
+  const handleChange_version = value => {
+    setversion(value);
+  };
 
-  const handleChange_max_version = (value) => {
-    setmax_version(value)
-  }
-
-  const handleChange_tag = (value) => {
-    settag(value)
-  }
+  const handleChange_tag = value => {
+    settag(value);
+  };
 
   // 링크 추가
   const handleAddUrl = () => {
-    const url = document.querySelector('#UrlList')
-    const url_input = document.createElement('input')
-    url_input.setAttribute('type', 'text')
-    url_input.setAttribute('id', 'Url')
-    url_input.setAttribute('class', 'mt-4 px-2.5 pb-1 w-full h-12 bg-[#0d1117] text-left text-white rounded-lg')
-    url_input.setAttribute('placeholder', '기타 링크')
-    if (url_input) {
-      url.appendChild(url_input)
+    const url = document.querySelector('#UrlList');
+    const url_div = document.createElement('div');
+    const url_link = document.createElement('input');
+    const url_name = document.createElement('input');
+
+    if (url.childElementCount >= 5) {
+      alert('링크는 최대 5개까지 추가할 수 있습니다!');
+      return;
     }
-  }
+
+    url_div.setAttribute('id', 'UrlID');
+    url_div.setAttribute('class', 'grid gap-0 grid-rows-auto grid-cols-1 mobile:grid-cols-2 mobile:gap-4');
+
+    url_name.setAttribute('type', 'text');
+    url_name.setAttribute('id', 'UrlName');
+    url_name.setAttribute('maxlength', '5');
+    url_name.setAttribute('class', 'mt-4 px-2.5 pb-1 w-full h-12 bg-[#0d1117] text-left text-white rounded-lg');
+    url_name.setAttribute('placeholder', '예: 마인독스');
+
+    url_link.setAttribute('type', 'text');
+    url_link.setAttribute('id', 'UrlLink');
+    url_link.setAttribute('class', 'mt-4 px-2.5 pb-1 w-full h-12 bg-[#0d1117] text-left text-white rounded-lg');
+    url_link.setAttribute('placeholder', '예: https://example.com');
+
+    url_name.addEventListener('input', () => {
+      const inputText = url_name.value.trim();
+      const validText = inputText.replace(/\s/g, ''); // 공백 제거
+
+      if (validText.length > 5) {
+        url_name.value = validText.slice(0, 5);
+      } else {
+        url_name.value = validText;
+      }
+    });
+
+    if (url) {
+      url.appendChild(url_div);
+      url_div.appendChild(url_name);
+      url_div.appendChild(url_link);
+    }
+  };
 
   const handleRemoveUrl = () => {
-    const url = document.querySelector('#UrlList')
-    const url_input = document.querySelector('#Url')
-    if (url_input) {
-      url.removeChild(url_input)
+    const url = document.querySelector('#UrlList');
+    if (url.childElementCount == 0) {
+      return;
+    } else {
+      url.removeChild(url.lastChild);
     }
-  }
+  };
+
+  const handleEditionChange = event => {
+    setedition(event.target.value);
+  };
 
   // URL 정규식
-  const Web = VerEx().startOfLine().then('http').maybe('s').then('://').maybe('www.').anythingBut(' ').endOfLine()
+  const Web = VerEx().startOfLine().then('http').maybe('s').then('://').maybe('www.').anythingBut(' ').endOfLine();
 
   const handleComplete = () => {
+    setIsSaveButtonDisabled(true);
+    let check_version = false;
+    let check_edition = false;
+    let check_tag = false;
+    let check_url = false;
+    let check_name = false;
+    let url = [];
+
     // 버전 확인
-    if (min_version == null || max_version == null) {
-      alert('버전을 설정해주세요!')
-    } else if (min_version.value > max_version.value) {
-      alert('최소 버전이 최대 버전보다 큽니다!')
+    if (version == null) {
+      alert('버전을 설정해주세요!');
+      check_version = false;
     } else {
-      console.log('version check success')
+      check_version = true;
+    }
+
+    // 에디션 확인
+    if (edition == null) {
+      alert('에디션을 설정해주세요!');
+      check_edition = false;
+    } else {
+      check_edition = true;
     }
 
     // 태그 확인
     if (tag == null) {
-      alert('장르를 설정해주세요!')
+      alert('장르를 설정해주세요!');
+      check_tag = false;
     } else {
-      console.log('tag check success')
+      check_tag = true;
     }
 
     // URL 확인
-    if (document.querySelector('#Url').value == '') {
-      console.log('url check success')
-    } else if (Web.test(document.querySelector('#Url').value) == true) {
-      console.log('url check success')
+    if (document.querySelector('#UrlList').children.length == 0) {
+      check_url = true;
+    } else if (document.querySelector('#UrlName').value == '') {
+      alert('링크 이름을 입력해주세요!');
+      check_url = false;
+    } else if (Web.test(document.querySelector('#UrlLink').value) == false) {
+      alert('링크 주소를 URL 형식으로 입력해주세요!');
+      check_url = false;
     } else {
-      alert('URL을 확인해주세요!')
+      check_url = true;
+      let url_name = Array.from(document.querySelectorAll('#UrlName')).map(url => url.value);
+      let url_link = Array.from(document.querySelectorAll('#UrlLink')).map(url => url.value);
+      for (let i = 0; i < url_name.length; i++) {
+        url.push({ name: url_name[i], link: url_link[i] });
+      }
     }
 
     // 이름 확인
     if (document.querySelector('#Name').value == '') {
-      alert('이름을 입력해주세요!')
+      alert('이름을 입력해주세요!');
+      check_name = false;
     } else {
-      console.log('name check success')
+      check_name = true;
     }
-  }
+
+    // 최종 확인
+    if (
+      check_version == true &&
+      check_edition == true &&
+      check_tag == true &&
+      check_url == true &&
+      check_name == true
+    ) {
+      const doc = {
+        name: document.querySelector('#Name').value,
+        version: version.label,
+        edition: edition,
+        tag: tag.map(t => t.value),
+        url: url,
+      };
+
+      axios
+        .post('/api/docs/addDocsDB', doc)
+        .then(response => {
+          console.log(response);
+          alert('독스 추가가 완료되었습니다!');
+          return axios.post('/api/addLogsDB', {
+            type: 'add_docs',
+            data: {
+              doc,
+            },
+            session: session,
+          });
+        })
+        .then(response => {
+          console.log(response);
+          router.replace('/');
+        })
+        .catch(error => {
+          console.log(error);
+          alert('독스 추가에 실패했습니다!');
+        })
+        .finally(() => {
+          setIsSaveButtonDisabled(false);
+        });
+    }
+  };
 
   return (
     <>
@@ -183,71 +272,79 @@ export default function Add_Docs() {
                   <h1 className="text-2xl font-bold">버전을 설정해 주세요!</h1>
                   <h1 className="text-xl text-gray-500 font-bold hidden mobile:block">STEP 2</h1>
                 </div>
-                <p className="mt-3 text-lg text-gray-500 font-bold">최소 버전부터 최대 버전까지 선택해 주세요!</p>
+                <p className="mt-3 text-lg text-gray-500 font-bold">대표 버전과 에디션을 설정해주세요!</p>
                 <div className="mt-4 grid grid-rows-auto grid-cols-1 mobile:grid-cols-2 gap-4">
                   <div>
                     <Select
-                      placeholder="최소 버전을 설정해 주세요!"
+                      placeholder="대표 버전을 설정해 주세요!"
                       searchInputPlaceholder="검색"
-                      value={min_version}
-                      onChange={handleChange_min_version}
-                      options={min_version_options}
+                      value={version}
+                      onChange={handleChange_version}
+                      options={version_options}
                       isMultiple={false}
                       isClearable={true}
                       isSearchable={true}
-                      noOptionsMessage="어떻게 보신거죠?"
+                      noOptionsMessage="일치하는 버전이 없습니다!"
                       classNames={{
                         searchBox: 'mt-4 px-2.5 pb-1 w-full h-10 bg-[#141920] text-left text-white rounded-lg',
                         searchIcon: 'hidden',
                         menu: 'bg-[#0d1117] rounded-lg mt-3',
                         tagItemText: 'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
-                        menuButton: (state) =>
+                        menuButton: () =>
                           'bg-[#0d1117] flex text-gray-500 rounded-lg transition-all h-auto w-full justify-between items-center',
-                        tagItem: (state) => 'bg-gray-600 rounded-lg flex pl-1',
+                        tagItem: () => 'bg-gray-600 rounded-lg flex pl-1',
                         tagItemIconContainer:
-                          'flex items-center px-1 cursor-pointer rounded-r-lg hover:bg-gray-700 hover:text-[#f1f1f1] transition-all',
+                          'flex items-center cursor-pointer rounded-r-lg hover:bg-gray-700 hover:text-[#f1f1f1] transition-all',
                       }}
-                      formatGroupLabel={(data) => (
-                        <span className="text-gray-500 font-bold text-lg px-1">{data.label}</span>
+                      formatGroupLabel={data => (
+                        <span className="text-gray-500 font-bold text-lg hidden">{data.label}</span>
                       )}
-                      formatOptionLabel={(data) => (
-                        <button className="text-left w-full rounded-md px-2 py-1 my-1 cursor-pointer hover:bg-gray-700 transition-all">
+                      formatOptionLabel={data => (
+                        <button className="text-left w-full rounded-md px-2.5 py-1 my-1 cursor-pointer hover:bg-gray-700 transition-all">
                           {data.label}
                         </button>
                       )}
                     />
                   </div>
-                  <div>
-                    <Select
-                      placeholder="최대 버전을 설정해 주세요!"
-                      searchInputPlaceholder="검색"
-                      value={max_version}
-                      onChange={handleChange_max_version}
-                      options={max_version_options}
-                      isMultiple={false}
-                      isClearable={true}
-                      isSearchable={true}
-                      noOptionsMessage="어떻게 보신거죠?"
-                      classNames={{
-                        searchBox: 'mt-4 px-2.5 pb-1 w-full h-10 bg-[#141920] text-left text-white rounded-lg',
-                        searchIcon: 'hidden',
-                        menu: 'bg-[#0d1117] rounded-lg mt-3',
-                        tagItemText: 'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
-                        menuButton: (state) =>
-                          'bg-[#0d1117] flex text-gray-500 rounded-lg transition-all h-auto w-full justify-between items-center',
-                        tagItem: (state) => 'bg-gray-600 rounded-lg flex pl-1',
-                        tagItemIconContainer:
-                          'flex items-center px-1 cursor-pointer rounded-r-lg hover:bg-gray-700 hover:text-[#f1f1f1] transition-all',
-                      }}
-                      formatGroupLabel={(data) => (
-                        <span className="text-gray-500 font-bold text-lg px-1">{data.label}</span>
-                      )}
-                      formatOptionLabel={(data) => (
-                        <button className="text-left w-full rounded-md px-2 py-1 my-1 cursor-pointer hover:bg-gray-700 transition-all">
-                          {data.label}
-                        </button>
-                      )}
-                    />
+                  <div className="grid gap-4 grid-cols-2 grid-rows-auto">
+                    <div className="text-center">
+                      <input
+                        type="radio"
+                        id="java"
+                        name="option"
+                        value="자바"
+                        checked={edition === '자바'}
+                        onChange={handleEditionChange}
+                        className="hidden"
+                      />
+                      <label
+                        htmlFor="java"
+                        className={`block bg-[#0d1117] text-lg font-bold text-center rounded-lg w-full py-1.5 cursor-pointer hover:bg-blue-600 transition-all ${
+                          edition === '자바' && 'bg-blue-600'
+                        }`}
+                      >
+                        자바
+                      </label>
+                    </div>
+                    <div className="text-center">
+                      <input
+                        type="radio"
+                        id="bedrock"
+                        name="option"
+                        value="베드락"
+                        checked={edition === '베드락'}
+                        onChange={handleEditionChange}
+                        className="hidden"
+                      />
+                      <label
+                        htmlFor="bedrock"
+                        className={`block bg-[#0d1117] text-lg font-bold text-center rounded-lg px-6 py-1.5 cursor-pointer hover:bg-blue-600 transition-all ${
+                          edition === '베드락' && 'bg-blue-600'
+                        }`}
+                      >
+                        베드락
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -268,23 +365,23 @@ export default function Add_Docs() {
                     isMultiple={true}
                     isClearable={true}
                     isSearchable={true}
-                    noOptionsMessage="이걸 전부 다 쓰시다니.."
+                    noOptionsMessage="일치하는 태그가 없습니다!"
                     classNames={{
                       searchBox: 'mt-4 px-2.5 pb-1 w-full h-10 bg-[#141920] text-left text-white rounded-lg',
                       searchIcon: 'hidden',
                       menu: 'bg-[#0d1117] rounded-lg mt-3',
                       tagItemText: 'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
-                      menuButton: (state) =>
+                      menuButton: () =>
                         'bg-[#0d1117] flex text-gray-500 rounded-lg transition-all h-auto w-full justify-between items-center',
-                      tagItem: (state) => 'bg-gray-600 rounded-lg flex pl-1',
+                      tagItem: () => 'bg-gray-600 rounded-lg flex pl-1',
                       tagItemIconContainer:
                         'flex items-center px-1 cursor-pointer rounded-r-lg hover:bg-gray-700 hover:text-[#f1f1f1] transition-all',
                     }}
-                    formatGroupLabel={(data) => (
-                      <span className="text-gray-500 font-bold text-lg px-1">{data.label}</span>
+                    formatGroupLabel={data => (
+                      <span className="text-gray-500 font-bold text-lg hidden">{data.label}</span>
                     )}
-                    formatOptionLabel={(data) => (
-                      <button className="text-left w-full rounded-md px-2 py-1 my-1 cursor-pointer hover:bg-gray-700 transition-all">
+                    formatOptionLabel={data => (
+                      <button className="text-left w-full rounded-md px-2.5 py-1 my-1 cursor-pointer hover:bg-gray-700 transition-all">
                         {data.label}
                       </button>
                     )}
@@ -299,7 +396,7 @@ export default function Add_Docs() {
                 <h1 className="text-xl text-gray-500 font-bold hidden mobile:block">STEP 4</h1>
               </div>
               <p className="mt-3 text-lg text-gray-500 font-bold">상세 설명에 링크를 설정합니다.</p>
-              <div id="UrlList"></div>
+              <div id="UrlList" className="grid gap-0 grid-rows-auto grid-cols-1"></div>
               <div className="mt-4 flex justify-start">
                 <button
                   className="text-lg font-bold border-2 border-gray-600 hover:border-blue-600 transition-all px-4 py-2 transition-all mr-2 rounded-lg"
@@ -320,13 +417,14 @@ export default function Add_Docs() {
               <div className="flex items-center">
                 <button
                   className="text-lg font-bold border-2 border-gray-600 hover:border-rose-700 rounded-lg px-4 py-2 transition-all mr-2"
-                  onClick={() => router.push('/')}
+                  onClick={() => router.replace('/')}
                 >
                   취소
                 </button>
                 <button
                   className="text-lg font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all"
                   onClick={handleComplete}
+                  disabled={isSaveButtonDisabled}
                 >
                   완료
                 </button>
@@ -336,5 +434,5 @@ export default function Add_Docs() {
         </main>
       </div>
     </>
-  )
+  );
 }

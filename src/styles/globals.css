@@ -59,7 +59,6 @@ hr {
   transition-property: all !important;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
   transition-duration: 150ms !important;
-  margin-left: -10px;
 }
 
 .react-grid-item > .react-resizable-handle::after {
@@ -71,4 +70,36 @@ hr {
   border-bottom-right-radius: 6px !important;
   border-right: 2px solid rgb(107 114 128) !important;
   border-bottom: 2px solid rgb(107 114 128) !important;
+}
+
+.relative:hover .absolute {
+  opacity: 100;
+  visibility: visible;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgb(82 82 91);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
