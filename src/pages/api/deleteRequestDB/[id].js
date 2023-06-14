@@ -11,8 +11,10 @@ async function deleteRequestDB(id) {
   const db = client.db('minedocs');
   const collection = db.collection('docs');
   const collectionRequest = db.collection('requests');
+  const collectionList = db.collection('lists');
 
   const result = await collection.deleteOne({ _id: new ObjectId(id) });
+  await collectionList.deleteMany({ 'linkDocs': new ObjectId(id) });
   await collectionRequest.deleteMany({ 'data._id': new ObjectId(id) });
 
   await client.close();

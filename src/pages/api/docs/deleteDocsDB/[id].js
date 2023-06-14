@@ -14,6 +14,7 @@ async function deleteDocsDB(id, reason, session) {
   const requestsCollection = db.collection('requests');
 
   const foundDoc = await docsCollection.findOne({ _id: new ObjectId(id) });
+  
 
   if (foundDoc) {
     const request = {
@@ -35,8 +36,8 @@ async function deleteDocsDB(id, reason, session) {
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const id = req.query.id;
-    const { reason, session } = req.body; // 수정된 부분
+    const { reason, session } = req.body;
     const result = await deleteDocsDB(id, reason, session);
-    res.status(201).json({ message: 'success', result });
+    res.status(201).json({ result });
   }
 }
