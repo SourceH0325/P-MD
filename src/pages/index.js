@@ -28,13 +28,14 @@ export default function Home() {
         setRemainingDocs(remaining);
         setHoveredBlocks(Array(loaded.length).fill(false));
         setClickedBlocks(Array(loaded.length).fill(false));
-        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchDocs();
+
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
