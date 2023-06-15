@@ -368,7 +368,7 @@ export default function Privacy() {
 
           <div className="mt-10">
             <h2 className="text-start font-bold text-xl">제12조(개인정보 처리방침 변경)</h2>
-            <p className="mt-2">① 이 개인정보처리방침은 2023년 6월 24부터 적용됩니다.</p>
+            <p className="mt-2">① 이 개인정보처리방침은 2023년 6월 15부터 적용됩니다.</p>
             <p className="mt-2">② 이전의 개인정보 처리방침은 아래에서 확인하실 수 있습니다.</p>
           </div>
         </main>

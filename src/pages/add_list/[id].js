@@ -145,7 +145,6 @@ export default function Add_List() {
   };
 
   const handleComplete = () => {
-    setIsSaveButtonDisabled(true);
     const name = document.querySelector('#Name').value;
     const tagA = document.querySelector('#TagA').value;
     const tagB = document.querySelector('#TagB').value;
@@ -193,6 +192,7 @@ export default function Add_List() {
       return;
     }
 
+    setIsSaveButtonDisabled(true);
     axios
       .post('/api/list/addListDB', list)
       .then(res => {

@@ -83,7 +83,6 @@ export default function Edit_Docs() {
     }
   }, [id]);
 
-  // versionValue는 점을 제거한 버전 숫자만, versionLabel은 점이 있는 버전 숫자만
   const versionValue = docs.map(doc => doc.version.replace(/\./g, ''));
   const versionLabel = docs.map(doc => doc.version);
 
@@ -172,7 +171,6 @@ export default function Edit_Docs() {
   const Web = VerEx().startOfLine().then('http').maybe('s').then('://').maybe('www.').anythingBut(' ').endOfLine();
 
   const handleComplete = () => {
-    setIsSaveButtonDisabled(true);
     let check_version = false;
     let check_edition = false;
     let check_tag = false;
@@ -246,6 +244,7 @@ export default function Edit_Docs() {
         url: url,
       };
 
+      setIsSaveButtonDisabled(true);
       axios
         .put(`/api/docs/editDocsDB/${id}`, doc)
         .then(res => {

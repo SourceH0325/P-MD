@@ -197,7 +197,6 @@ export default function Edit_List() {
   };
 
   const handleComplete = () => {
-    setIsSaveButtonDisabled(true);
     const name = document.querySelector('#Name').value;
     const tagA = document.querySelector('#TagA').value;
     const tagB = document.querySelector('#TagB').value;
@@ -243,6 +242,7 @@ export default function Edit_List() {
       return;
     }
 
+    setIsSaveButtonDisabled(true);
     axios
       .put(`/api/list/editListDB/${id}`, list)
       .then(res => {
@@ -309,6 +309,7 @@ export default function Edit_List() {
     };
 
     if (result) {
+      setIsSaveButtonDisabled(true);
       axios
         .delete(`/api/list/deleteListDB/${id}`)
         .then(res => {
@@ -329,6 +330,9 @@ export default function Edit_List() {
         .catch(err => {
           console.log(err);
           alert('리스트 삭제에 실패했습니다.');
+        })
+        .finally(() => {
+          setIsSaveButtonDisabled(false);
         });
     }
   };

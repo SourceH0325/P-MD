@@ -8,7 +8,7 @@ const options = {
 
 async function addDocsBookmarkDB(name, email, docID) {
   const client = await MongoClient.connect(uri, options);
-  const db = client.db('minedocs');
+  const db = client.db(process.env.DATABASE_NAME);
   const collection = db.collection('users');
 
   const result = await collection.updateOne({ name: name, email: email }, { $push: { 'bookmark.lists': docID } });

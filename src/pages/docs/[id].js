@@ -28,15 +28,12 @@ export default function Home() {
         .get(`/api/docs/callDocsDB/${id}`)
         .then(res => {
           setDocs(res.data.result);
-          setIsLoading(false);
         })
         .catch(err => {
           console.log(err);
         });
     }
-  }, [id]);
 
-  useEffect(() => {
     const fetchLists = async () => {
       try {
         const res = await axios.get(`/api/docs/callLinkDocsDB/${id}`);
@@ -46,13 +43,14 @@ export default function Home() {
         setRemainingLists(remaining);
         setHoveredBlocks(Array(loaded.length).fill(false));
         setClickedBlocks(Array(loaded.length).fill(false));
-        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchLists();
+
+    setIsLoading(false);
   }, [id]);
 
   useEffect(() => {
@@ -98,7 +96,6 @@ export default function Home() {
           setRemainingLists(remaining);
           setHoveredBlocks(Array(loaded.length).fill(false));
           setClickedBlocks(Array(loaded.length).fill(false));
-          setIsLoading(false);
         } catch (error) {
           console.log(error);
         }
@@ -202,7 +199,7 @@ export default function Home() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [remainingLists]);
 
   return (

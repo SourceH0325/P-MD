@@ -8,7 +8,7 @@ const options = {
 
 async function callrequestDB() {
   const client = await MongoClient.connect(uri, options);
-  const db = client.db('minedocs');
+  const db = client.db(process.env.DATABASE_NAME);
   const collection = db.collection('requests');
 
   const result = await collection.find({}).toArray();

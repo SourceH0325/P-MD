@@ -104,47 +104,37 @@ export default function Tos() {
           <div className="mt-10">
             <h2 className="text-start font-bold text-xl">제7조 (이용자의 의무)</h2>
             <p className="mt-2">이용자는 다음 각 호의 행위를 하여서는 아니 됩니다.</p>
-
-            <ol className="mt-2">
-              <li className="list-decimal list-inside">
-                회사의 서비스를 이용하여 얻은 정보를 회사의 사전 승낙 없이 복제, 유통, 조장하거나 상업적으로 이용
-              </li>
-              <li className="list-decimal list-inside">
-                회사의 서비스를 이용하여 제3자에게 본인을 가장하거나 타인과의 관계를 허위로 명시
-              </li>
-              <li className="list-decimal list-inside">
-                회사의 서비스를 이용하여 제3자에게 피해를 주거나 불이익을 가하거나 제3자의 지적재산권을 침해하는 행위
-              </li>
-              <li className="list-decimal list-inside">
-                회사의 서비스를 이용하여 음란, 저속한 정보를 교류, 게재하거나 음란사이트를 연결(링크)하는 행위
-              </li>
-              <li className="list-decimal list-inside">
-                회사의 서비스를 이용하여 불법적으로 영리를 추구할 목적으로 허위 또는 타인의 정보를 이용하는 행위
-              </li>
-              <li className="list-decimal list-inside">
-                회사의 서비스를 이용하여 타인의 명예를 훼손하거나 타인의 지적재산권을 침해하는 행위
-              </li>
-              <li className="list-decimal list-inside">
-                회사의 서비스를 이용하여 자신의 불법적인 행위를 꾀하거나 타인을 기망하는 행위
-              </li>
-              <li className="list-decimal list-inside">
-                회사의 서비스를 이용하여 컴퓨터 소프트웨어, 하드웨어, 전기통신 장비를 파괴, 방해 또는 기능을 제한하기
-                위한 컴퓨터 바이러스를 유포하는 행위
-              </li>
-              <li className="list-decimal list-inside">회사의 서비스를 이용하여 다른 이용자에게 피해를 주는 행위</li>
-              <li className="list-decimal list-inside">
-                회사의 서비스를 이용하여 다른 이용자의 개인정보를 수집, 저장, 공개하는 행위
-              </li>
-              <li className="list-decimal list-inside">회사의 서비스를 이용하여 광고성 정보를 전송하는 행위</li>
-              <li className="list-decimal list-inside">
-                회사의 서비스를 이용하여 서비스의 안정적인 운영을 방해하는 행위
-              </li>
-              <li className="list-decimal list-inside">회사의 서비스에 게시된 정보를 변경하는 행위</li>
-              <li className="list-decimal list-inside">
-                회사의 서비스의 운영에 지장을 주거나 줄 우려가 있는 일체의 행위
-              </li>
-              <li className="list-decimal list-inside">기타 관계법령에 위배되는 행위</li>
-            </ol>
+            <p className="mt-2">
+              ① 회사의 서비스를 이용하여 얻은 정보를 회사의 사전 승낙 없이 복제, 유통, 조장하거나 상업적으로 이용하는
+              행위
+            </p>
+            <p className="mt-2">
+              ② 회사의 서비스를 이용하여 제3자에게 본인을 가장하거나 타인과의 관계를 허위로 명시하는 행위
+            </p>
+            <p className="mt-2">
+              ③ 회사의 서비스를 이용하여 제3자에게 피해를 주거나 불이익을 가하거나 제3자의 지적재산권을 침해하는 행위
+            </p>
+            <p className="mt-2">
+              ④ 회사의 서비스를 이용하여 음란, 저속한 정보를 교류, 게재하거나 공공질서 및 미풍양속에 위반되는 정보,
+              문장, 도형 등을 타인에게 유포하는 행위
+            </p>
+            <p className="mt-2">⑤ 회사의 서비스를 이용하여 자기 또는 타인에게 재산상의 이익을 발생시키는 행위</p>
+            <p className="mt-2">
+              ⑥ 회사의 서비스를 이용하여 타인의 명예를 훼손하거나 타인의 지적재산권을 침해하는 행위
+            </p>
+            <p className="mt-2">⑦ 회사의 서비스를 이용하여 범죄와 결부된다고 객관적으로 판단되는 행위</p>
+            <p className="mt-2">⑧ 회사의 서비스를 이용하여 자기 또는 타인에게 재산상의 이익을 발생시키는 행위</p>
+            <p className="mt-2">
+              ⑨ 회사의 서비스를 이용하여 타인의 명예를 훼손하거나 타인의 지적재산권을 침해하는 행위
+            </p>
+            <p className="mt-2">⑩ 회사의 서비스를 이용하여 범죄와 결부된다고 객관적으로 판단되는 행위</p>
+            <p className="mt-2">⑪ 회사의 서비스를 이용하여 타인의 개인정보를 수집, 저장, 공개하는 행위</p>
+            <p className="mt-2">⑫ 회사의 서비스를 이용하여 광고성 정보를 전송하는 행위</p>
+            <p className="mt-2">⑬ 회사의 서비스를 이용하여 스토킹(stalking) 등 다른 이용자를 괴롭히는 행위</p>
+            <p className="mt-2">⑭ 회사의 서비스를 이용하여 다른 이용자를 희롱하거나, 서비스 이용을 방해하는 행위</p>
+            <p className="mt-2">⑮ 회사의 서비스를 이용하여 자신의 계정을 타인에게 매매하거나 양도하는 행위</p>
+            <p className="mt-2">⑯ 회사의 서비스를 이용하여 타인의 계정을 도용하는 행위</p>
+            <p className="mt-2">⑰ 회사의 서비스를 이용하여 자신의 계정 또는 타인의 계정을 부정하게 사용하는 행위</p>
           </div>
 
           <div className="mt-10">
@@ -163,18 +153,12 @@ export default function Tos() {
               경우에는 사전통지 없이 삭제하거나 이동 또는 등록을 거부할 수 있습니다.
             </p>
 
-            <ol className="mt-2">
-              <li className="list-decimal list-inside">
-                다른 이용자 또는 제3자를 비방하거나 중상모략으로 명예를 손상시키는 내용인 경우
-              </li>
-              <li className="list-decimal list-inside">공공질서 및 미풍양속에 위반되는 내용인 경우</li>
-              <li className="list-decimal list-inside">범죄적 행위에 결부된다고 인정되는 내용일 경우</li>
-              <li className="list-decimal list-inside">
-                회사의 저작권, 제3자의 저작권 등 기타 권리를 침해하는 내용인 경우
-              </li>
-              <li className="list-decimal list-inside">서비스 성격에 부합하지 않는 정보의 경우</li>
-              <li className="list-decimal list-inside">기타 관계법령에 위배된다고 판단되는 경우</li>
-            </ol>
+            <p className="mt-2">① 다른 이용자 또는 제3자를 비방하거나 중상모략으로 명예를 손상시키는 내용인 경우</p>
+            <p className="mt-2">② 공공질서 및 미풍양속에 위반되는 내용인 경우</p>
+            <p className="mt-2">③ 범죄적 행위에 결부된다고 인정되는 내용일 경우</p>
+            <p className="mt-2">④ 회사의 저작권, 제3자의 저작권 등 기타 권리를 침해하는 내용인 경우</p>
+            <p className="mt-2">⑤ 서비스 성격에 부합하지 않는 정보의 경우</p>
+            <p className="mt-2">⑥ 기타 관계법령에 위배된다고 판단되는 경우</p>
           </div>
 
           <div className="mt-10">
@@ -215,7 +199,7 @@ export default function Tos() {
 
           <div className="mt-10">
             <h2 className="text-start font-bold text-xl">부칙</h2>
-            <p className="mt-2">이 약관은 2023년 6월 24일부터 적용됩니다.</p>
+            <p className="mt-2">이 약관은 2023년 6월 15일부터 적용됩니다.</p>
           </div>
         </main>
       </div>

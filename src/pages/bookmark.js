@@ -33,7 +33,6 @@ export default function Bookmark() {
         setDocs(res.data.result);
         setHoveredDocs(Array(res.data.result.length).fill(false));
         setClickedDocs(Array(res.data.result.length).fill(false));
-        setIsLoading(false);
       })
       .catch(err => {
         console.log(err);
@@ -47,7 +46,6 @@ export default function Bookmark() {
         setLists(res.data.result);
         setHoveredLists(Array(res.data.result.length).fill(false));
         setClickedLists(Array(res.data.result.length).fill(false));
-        setIsLoading(false);
       })
       .catch(err => {
         console.log(err);
@@ -83,6 +81,7 @@ export default function Bookmark() {
 
           setClickedDocs(updatedClickedDocs);
           setClickedLists(updatedClickedLists);
+          setIsLoading(false);
         })
         .catch(err => {
           console.log(err);

@@ -15,7 +15,7 @@ export default NextAuth({
   callbacks: {
     async signIn({ user, account }) {
       const client = await clientPromise;
-      const db = client.db('minedocs');
+      const db = client.db(process.env.DATABASE_NAME);
       const collection = db.collection('users');
 
       const result = await collection.findOne({

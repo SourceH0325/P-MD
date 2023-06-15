@@ -9,12 +9,11 @@ const options = {
 async function deleteDocsDB(id, reason, session) {
   const client = await MongoClient.connect(uri, options);
 
-  const db = client.db('minedocs');
+  const db = client.db(process.env.DATABASE_NAME);
   const docsCollection = db.collection('docs');
   const requestsCollection = db.collection('requests');
 
   const foundDoc = await docsCollection.findOne({ _id: new ObjectId(id) });
-  
 
   if (foundDoc) {
     const request = {

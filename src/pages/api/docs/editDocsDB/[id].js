@@ -8,12 +8,12 @@ const options = {
 
 async function editDocsDB(id, updatedDoc) {
   const client = await MongoClient.connect(uri, options);
-  const db = client.db('minedocs');
+  const db = client.db(process.env.DATABASE_NAME);
   const collection = db.collection('docs');
 
   const filter = { _id: new ObjectId(id) };
   const updateDoc = { $set: updatedDoc };
-  
+
   const result = await collection.updateOne(filter, updateDoc);
 
   await client.close();

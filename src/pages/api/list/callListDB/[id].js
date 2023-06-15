@@ -8,7 +8,7 @@ const options = {
 
 async function callListDB(id) {
   const client = await MongoClient.connect(uri, options);
-  const db = client.db('minedocs');
+  const db = client.db(process.env.DATABASE_NAME);
   const collection = db.collection('lists');
 
   const result = await collection.find({ _id: new ObjectId(id) }).toArray();

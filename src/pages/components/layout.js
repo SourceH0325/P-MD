@@ -9,10 +9,7 @@ export default function Layout({ children }) {
   const router = useRouter();
 
   const { data: session } = useSession();
-  // 모바일 메뉴
   const [mobileMenu, setMobileMenu] = useState(false);
-
-  // 관리자 여부
   const [admin, isAdmin] = useState(false);
 
   const handleMobileMenu = () => {
@@ -28,14 +25,13 @@ export default function Layout({ children }) {
   }, [mobileMenu]);
 
   useEffect(() => {
-    // callroleDB에 접근해서 role을 가져온다.
     axios
       .post('/api/callroleDB', {
         name: session?.user.name,
         email: session?.user.email,
       })
       .then(res => {
-        const result = res.data.result; // 응답에서 result 배열 추출
+        const result = res.data.result;
 
         if (result && result.length > 0 && result[0].role === 'admin') {
           isAdmin(true);
@@ -44,7 +40,6 @@ export default function Layout({ children }) {
         }
       })
       .catch(error => {
-        // 오류 처리
         console.error(error);
       });
   }, [session]);

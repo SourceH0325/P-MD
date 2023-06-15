@@ -8,7 +8,7 @@ const options = {
 
 async function deleteRequestDB(id) {
   const client = await MongoClient.connect(uri, options);
-  const db = client.db('minedocs');
+  const db = client.db(process.env.DATABASE_NAME);
   const collection = db.collection('docs');
   const collectionRequest = db.collection('requests');
   const collectionList = db.collection('lists');
