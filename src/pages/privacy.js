@@ -1,6 +1,9 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 export default function Privacy() {
+  const router = useRouter();
+  
   return (
     <>
       <Head>
@@ -29,8 +32,8 @@ export default function Privacy() {
             <table className="mt-4 table-auto border-collapse border border-gray-600">
               <thead>
                 <tr>
-                  <th className="border border-gray-600 px-4 py-2">목적</th>
-                  <th className="border border-gray-600 px-4 py-2">항목</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">목적</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">항목</th>
                 </tr>
               </thead>
               <tbody>
@@ -54,9 +57,9 @@ export default function Privacy() {
             <table className="mt-4 table-auto border-collapse border border-gray-600">
               <thead>
                 <tr>
-                  <th className="border border-gray-600 px-4 py-2">항목</th>
-                  <th className="border border-gray-600 px-4 py-2">보유근거</th>
-                  <th className="border border-gray-600 px-4 py-2">보유기간</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">항목</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">보유근거</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">보유기간</th>
                 </tr>
               </thead>
               <tbody>
@@ -75,8 +78,8 @@ export default function Privacy() {
             <table className="mt-4 table-auto border-collapse border border-gray-600">
               <thead>
                 <tr>
-                  <th className="border border-gray-600 px-4 py-2">항목</th>
-                  <th className="border border-gray-600 px-4 py-2">필수/선택</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">항목</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">필수 / 선택</th>
                 </tr>
               </thead>
               <tbody>
@@ -118,10 +121,10 @@ export default function Privacy() {
             <table className="mt-4 table-auto border-collapse border border-gray-600">
               <thead>
                 <tr>
-                  <th className="border border-gray-600 px-4 py-2">제공받는 자</th>
-                  <th className="border border-gray-600 px-4 py-2">제공받는 자의 개인정보 이용목적</th>
-                  <th className="border border-gray-600 px-4 py-2">제공하는 개인정보 항목</th>
-                  <th className="border border-gray-600 px-4 py-2">제공받는 자의 보유.이용기간</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">제공받는 자</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">제공받는 자의 개인정보 이용목적</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">제공하는 개인정보 항목</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">제공받는 자의 보유·이용기간</th>
                 </tr>
               </thead>
               <tbody>
@@ -146,9 +149,9 @@ export default function Privacy() {
             <table className="mt-4 table-auto border-collapse border border-gray-600">
               <thead>
                 <tr>
-                  <th className="border border-gray-600 px-4 py-2">파기절차</th>
-                  <th className="border border-gray-600 px-4 py-2">파기기한</th>
-                  <th className="border border-gray-600 px-4 py-2">파기방법</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">파기절차</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">파기기한</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">파기방법</th>
                 </tr>
               </thead>
               <tbody>
@@ -268,9 +271,9 @@ export default function Privacy() {
             <table className="mt-4 table-auto border-collapse border border-gray-600">
               <thead>
                 <tr>
-                  <th className="border border-gray-600 px-4 py-2">성명</th>
-                  <th className="border border-gray-600 px-4 py-2">직책</th>
-                  <th className="border border-gray-600 px-4 py-2">이메일</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">성명</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">직책</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">이메일</th>
                 </tr>
               </thead>
               <tbody>
@@ -290,69 +293,38 @@ export default function Privacy() {
           </div>
 
           <div className="mt-10">
-            <h2 className="text-start font-bold text-xl">제10조(개인정보 열람청구)</h2>
-            <p className="mt-2">
-              정보주체는 개인정보 보호법 제35조에 따른 개인정보의 열람 청구를 아래의 부서에 할 수 있습니다. MINE
-              DOCS(&#39;minedocs.xyz&#39;이하 &#39;MINE DOCS&#39;) 은(는) 정보주체의 개인정보 열람청구가 신속하게 처리되도록
-              노력하겠습니다.
-            </p>
-            <table className="mt-4 table-auto border-collapse border border-gray-600">
-              <thead>
-                <tr>
-                  <th className="border border-gray-600 px-4 py-2">부서</th>
-                  <th className="border border-gray-600 px-4 py-2">개인정보 보호책임자</th>
-                  <th className="border border-gray-600 px-4 py-2">이메일</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border border-gray-600 px-4 py-2">개인정보 보호 담당부서</td>
-                  <td className="border border-gray-600 px-4 py-2">손근원</td>
-                  <td className="border border-gray-600 px-4 py-2">zizark4040@gmail.com</td>
-                </tr>
-              </tbody>
-            </table>
-            <p className="mt-4">
-              정보주체께서는 MINE DOCS(&#39;minedocs.xyz&#39;이하 &#39;MINE DOCS&#39;) 의 서비스(또는 사업)을 이용하시면서 발생한 모든
-              개인정보 보호 관련 문의, 불만처리, 피해구제 등에 관한 사항을 개인정보 보호책임자로 문의하실 수 있습니다.
-              MINE DOCS(&#39;minedocs.xyz&#39;이하 &#39;MINE DOCS&#39;) 은(는) 정보주체의 문의에 대해 지체 없이 답변 및 처리해드릴
-              것입니다.
-            </p>
-          </div>
-
-          <div className="mt-10">
-            <h2 className="text-start font-bold text-xl">제11조(권익침해 구제방법)</h2>
+            <h2 className="text-start font-bold text-xl">제10조(권익침해 구제방법)</h2>
             <p className="mt-2">
               정보주체는 아래의 기관에 대해 개인정보 침해에 대한 피해구제, 상담 등을 문의하실 수 있습니다.
             </p>
             <table className="mt-4 table-auto border-collapse border border-gray-600">
               <thead>
                 <tr>
-                  <th className="border border-gray-600 px-4 py-2">기관</th>
-                  <th className="border border-gray-600 px-4 py-2">전화번호</th>
-                  <th className="border border-gray-600 px-4 py-2">홈페이지</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">기관</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">전화번호</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">홈페이지</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td className="border border-gray-600 px-4 py-2">개인정보 침해신고센터</td>
                   <td className="border border-gray-600 px-4 py-2">(국번없이) 118</td>
-                  <td className="border border-gray-600 px-4 py-2">privacy.kisa.or.kr</td>
+                  <td className="border border-gray-600 px-4 py-2 cursor-pointer transition-all hover:text-gray-400" onClick={() => router.push('https://privacy.kisa.or.kr')}>privacy.kisa.or.kr</td>
                 </tr>
                 <tr>
                   <td className="border border-gray-600 px-4 py-2">개인정보 분쟁조정위원회</td>
                   <td className="border border-gray-600 px-4 py-2">(국번없이) 1833-6972</td>
-                  <td className="border border-gray-600 px-4 py-2">www.kopico.go.kr</td>
+                  <td className="border border-gray-600 px-4 py-2 cursor-pointer transition-all hover:text-gray-400" onClick={() => router.push('https://kopico.go.kr')}>www.kopico.go.kr</td>
                 </tr>
                 <tr>
                   <td className="border border-gray-600 px-4 py-2">대검찰청</td>
                   <td className="border border-gray-600 px-4 py-2">(국번없이) 1301</td>
-                  <td className="border border-gray-600 px-4 py-2">www.spo.go.kr</td>
+                  <td className="border border-gray-600 px-4 py-2 cursor-pointer transition-all hover:text-gray-400" onClick={() => router.push('https://spo.go.kr')}>www.spo.go.kr</td>
                 </tr>
                 <tr>
                   <td className="border border-gray-600 px-4 py-2">경찰청</td>
                   <td className="border border-gray-600 px-4 py-2">(국번없이) 182</td>
-                  <td className="border border-gray-600 px-4 py-2">cyberbureau.police.go.kr</td>
+                  <td className="border border-gray-600 px-4 py-2 cursor-pointer transition-all hover:text-gray-400" onClick={() => router.push('https://cyberbureau.police.go.kr')}>cyberbureau.police.go.kr</td>
                 </tr>
               </tbody>
             </table>
@@ -367,7 +339,7 @@ export default function Privacy() {
           </div>
 
           <div className="mt-10">
-            <h2 className="text-start font-bold text-xl">제12조(개인정보 처리방침 변경)</h2>
+            <h2 className="text-start font-bold text-xl">제11조(개인정보 처리방침 변경)</h2>
             <p className="mt-2">① 이 개인정보처리방침은 2023년 6월 15부터 적용됩니다.</p>
             <p className="mt-2">② 이전의 개인정보 처리방침은 아래에서 확인하실 수 있습니다.</p>
           </div>

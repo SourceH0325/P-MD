@@ -29,8 +29,8 @@ export default function Tos() {
             <table className="mt-4 table-auto border-collapse border border-gray-600">
               <thead>
                 <tr>
-                  <th className="border border-gray-600 px-4 py-2">용어</th>
-                  <th className="border border-gray-600 px-4 py-2">정의</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">용어</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">정의</th>
                 </tr>
               </thead>
               <tbody>
