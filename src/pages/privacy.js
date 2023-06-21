@@ -205,8 +205,8 @@ export default function Privacy() {
             <table className="mt-4 table-auto border-collapse border border-gray-600">
               <thead>
                 <tr>
-                  <th className="border border-gray-600 px-4 py-2">항목</th>
-                  <th className="border border-gray-600 px-4 py-2">내용</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">항목</th>
+                  <th className="border border-gray-600 px-4 py-2 bg-gray-800">내용</th>
                 </tr>
               </thead>
               <tbody>
