@@ -280,7 +280,7 @@ export default function Privacy() {
                 <tr>
                   <td className="border border-gray-600 px-4 py-2">손근원</td>
                   <td className="border border-gray-600 px-4 py-2">운영 책임자</td>
-                  <td className="border border-gray-600 px-4 py-2">zizark4040@gmail.com</td>
+                  <td className="border border-gray-600 px-4 py-2">support@minedocs.xyz</td>
                 </tr>
               </tbody>
             </table>
