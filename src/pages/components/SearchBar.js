@@ -20,9 +20,9 @@ export default function SearchBar({ onSearch }) {
   return (
     <>
       <div className="flex justify-center items-center h-20 w-auto mb-2 mx-4 mobile:mx-0">
-        <div className="flex justify-center items-center w-full h-12 bg-[#141920] rounded-l-lg">
+        <div className="flex justify-center items-center w-full h-12 bg-[#202026] rounded-l-lg">
           <input
-            className="px-2.5 pb-1 w-full h-10 bg-[#141920] text-left text-white rounded-lg"
+            className="px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg"
             type="text"
             placeholder="이름, 태그 등을 검색해보세요!"
             value={query}

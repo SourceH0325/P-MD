@@ -209,7 +209,7 @@ export default function Home() {
           <main className="mb-12">
             <div className="grid gap-4 grid-rows-auto grid-cols-1 mobile:grid-cols-3">
               {filteredDocs.map((doc, index) => (
-                <div key={doc._id} className="bg-[#141920] rounded-lg p-5">
+                <div key={doc._id} className="bg-[#202026] rounded-lg p-5">
                   <h1 className="text-2xl font-bold truncate">{doc.name}</h1>
                   <div className="flex flex-wrap gap-2 mt-2">
                     <div className="bg-gray-700/60 rounded-lg px-2 py-1">
