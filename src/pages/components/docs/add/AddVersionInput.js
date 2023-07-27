@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import VersionModal from './VersionModal';
+import VersionModal from './AddVersionModal';
 
 const VersionInput = ({ selectedVersion, setSelectedVersion, edition, setEdition }) => {
   const version_options = [
