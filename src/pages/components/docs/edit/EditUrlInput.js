@@ -1,57 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const UrlInput = ({ docs }) => {
+  const [urls, setUrls] = useState([]);
+
+  useEffect(() => {
+    if (docs.length > 0) {
+      const initialUrls = docs.map(doc => {
+        return doc.url.map(url => {
+          return { name: url.name, link: url.link };
+        });
+      });
+
+      const flattenedUrls = initialUrls.flat();
+
+      setUrls(flattenedUrls);
+    }
+  }, [docs]);
 
   const handleAddUrl = () => {
-    const url = document.querySelector('#UrlList');
-    const url_div = document.createElement('div');
-    const url_link = document.createElement('input');
-    const url_name = document.createElement('input');
-
-    if (url.childElementCount >= 5) {
+    if (urls.length >= 5) {
       alert('링크는 최대 5개까지 추가할 수 있습니다!');
       return;
     }
 
-    url_div.setAttribute('id', 'UrlID');
-    url_div.setAttribute('class', 'grid gap-0 grid-rows-auto grid-cols-1 mobile:grid-cols-2 mobile:gap-4');
-
-    url_name.setAttribute('type', 'text');
-    url_name.setAttribute('id', 'UrlName');
-    url_name.setAttribute('maxlength', '5');
-    url_name.setAttribute('class', 'mt-4 px-2.5 pb-1 w-full h-12 bg-[#17171b] text-left text-white rounded-lg');
-    url_name.setAttribute('placeholder', '예: 마인독스');
-
-    url_link.setAttribute('type', 'text');
-    url_link.setAttribute('id', 'UrlLink');
-    url_link.setAttribute('class', 'mt-4 px-2.5 pb-1 w-full h-12 bg-[#17171b] text-left text-white rounded-lg');
-    url_link.setAttribute('placeholder', '예: https://example.com');
-
-    url_name.addEventListener('input', () => {
-      const inputText = url_name.value.trim();
-      const validText = inputText.replace(/\s/g, '');
-
-      if (validText.length > 5) {
-        url_name.value = validText.slice(0, 5);
-      } else {
-        url_name.value = validText;
-      }
-    });
-
-    if (url) {
-      url.appendChild(url_div);
-      url_div.appendChild(url_name);
-      url_div.appendChild(url_link);
-    }
+    setUrls(prevUrls => [...prevUrls, { name: '', link: '' }]);
   };
 
   const handleRemoveUrl = () => {
-    const url = document.querySelector('#UrlList');
-    if (url.childElementCount == 0) {
+    if (urls.length === 0) {
       return;
-    } else {
-      url.removeChild(url.lastChild);
     }
+
+    setUrls(prevUrls => prevUrls.slice(0, prevUrls.length - 1));
+  };
+
+  const handleUrlChange = (index, field, value) => {
+    setUrls(prevUrls => prevUrls.map((url, i) => (i === index ? { ...url, [field]: value } : url)));
   };
 
   return (
@@ -62,27 +46,27 @@ const UrlInput = ({ docs }) => {
       </div>
       <p className="mt-3 text-lg text-gray-500 font-bold">상세 설명에 링크를 설정합니다.</p>
       <div id="UrlList" className="grid gap-0 grid-rows-auto grid-cols-1">
-        {docs.map(doc =>
-          doc.url.map(url => (
-            <div key={url.name} id="UrlID" className="grid gap-4 grid-rows-auto grid-cols-1 mobile:grid-cols-2">
-              <input
-                id="UrlName"
-                maxLength="5"
-                className="mt-4 px-2.5 pb-1 w-full h-12 bg-[#17171b] text-left text-white rounded-lg"
-                type="text"
-                placeholder="예: 마인독스"
-                defaultValue={url.name}
-              />
-              <input
-                id="UrlLink"
-                className="mt-4 px-2.5 pb-1 w-full h-12 bg-[#17171b] text-left text-white rounded-lg"
-                type="text"
-                placeholder="예: https://example.com"
-                defaultValue={url.link}
-              />
-            </div>
-          )),
-        )}
+        {urls.map((url, index) => (
+          <div key={index} id="UrlID" className="grid gap-4 grid-rows-auto grid-cols-1 mobile:grid-cols-2">
+            <input
+              id="UrlName"
+              maxLength="5"
+              className="mt-4 px-2.5 pb-1 w-full h-12 bg-[#17171b] text-left text-white rounded-lg"
+              type="text"
+              placeholder="예: 마인독스"
+              value={url.name}
+              onChange={e => handleUrlChange(index, 'name', e.target.value)}
+            />
+            <input
+              id="UrlLink"
+              className="mt-4 px-2.5 pb-1 w-full h-12 bg-[#17171b] text-left text-white rounded-lg"
+              type="text"
+              placeholder="예: https://example.com"
+              value={url.link}
+              onChange={e => handleUrlChange(index, 'link', e.target.value)}
+            />
+          </div>
+        ))}
       </div>
       <div className="mt-4 flex justify-start">
         <button
