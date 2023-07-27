@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { useSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import Select from 'react-tailwindcss-select';
 import axios from 'axios';
 import VerEx from 'verbal-expressions';
 import DocsNameInput from '@/pages/components/docs/edit/DocsNameInput';
@@ -89,7 +88,6 @@ export default function Edit_Docs() {
       check_version = false;
       setIsSaveButtonDisabled(false);
     } else {
-      // Check for "multiple" case
       if (selectedVersion.type === 'multiple') {
         if (selectedVersion.multipleVersions.length < 2) {
           alert('다중 버전을 선택할 때는 최소 2개 이상을 선택해주세요!');
