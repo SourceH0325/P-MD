@@ -138,11 +138,13 @@ export default function Add_Docs() {
 
       if (selectedVersion.type === 'single') {
         versionLabel = selectedVersion.singleVersion.label;
+        multipleVersions = null;
       } else if (selectedVersion.type === 'multiple') {
         multipleVersions = selectedVersion.multipleVersions.map(version => version.label);
         versionLabel = getMultipleVersionsLabel();
       } else if (selectedVersion.type === 'range') {
         versionLabel = `${selectedVersion.minVersion.label} ~ ${selectedVersion.maxVersion.label}`;
+        multipleVersions = null;
       }
 
       const doc = {
