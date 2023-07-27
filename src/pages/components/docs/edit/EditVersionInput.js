@@ -116,7 +116,7 @@ const VersionInput = ({ selectedVersion, setSelectedVersion, edition, setEdition
   };
 
   const getMultipleVersionsLabel = () => {
-    if (selectedVersion?.type === 'multiple') {
+    if (selectedVersion && selectedVersion.type === 'multiple') {
       const selectedVersions = selectedVersion.multipleVersions.map(version => version.label);
       const additionalCount = selectedVersion.multipleVersions.length - 1;
       return `${selectedVersions[0]} 외 ${additionalCount}개`;

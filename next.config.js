@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     domains: ['cdn.discordapp.com'],
   },
   webpack(config) {
-    config.experiments = { ...config.experiments, topLevelAwait: true };
-    return config;
+    config.experiments = { ...config.experiments, topLevelAwait: true }
+    return config
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
