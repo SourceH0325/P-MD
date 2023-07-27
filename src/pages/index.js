@@ -186,7 +186,7 @@ export default function Home() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [remainingDocs]);
 
   return (
@@ -222,7 +222,7 @@ export default function Home() {
                       <p className="font-bold">{doc.tag[0]}</p>
                     </div>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between mt-2">
                     <button
                       className="text-2xl pt-1.5"
                       onMouseEnter={() => handleMouseEnter(index)}
@@ -232,7 +232,7 @@ export default function Home() {
                       {clickedBlocks[index] || hoveredBlocks[index] ? <FaStar /> : <FaRegStar />}
                     </button>
                     <button
-                      className="text-lg font-bold border-2 border-gray-600 hover:border-blue-600 rounded-lg px-4 py-2 transition-all"
+                      className="font-bold text-lg bg-blue-600 hover:bg-blue-700 transition-all px-4 py-2 transition-all rounded-lg"
                       onClick={() => router.push(`/docs/${doc._id}`)}
                     >
                       더보기

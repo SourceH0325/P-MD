@@ -91,11 +91,11 @@ export default function Add_List() {
         const placing = document.querySelector('#placing');
         if (placing) {
             if (isCheck) {
-                placing.classList.add('border-blue-600');
-                placing.classList.remove('border-gray-600');
+                placing.classList.add('bg-blue-700');
+                placing.classList.remove('bg-blue-600');
             } else {
-                placing.classList.remove('border-blue-600');
-                placing.classList.add('border-gray-600');
+                placing.classList.remove('bg-blue-700');
+                placing.classList.add('bg-blue-600');
             }
         }
     }, [isCheck]);
@@ -274,9 +274,11 @@ export default function Add_List() {
                         <div className="flex justify-start items-center mb-1">
                             <label
                                 id="placing"
-                                className="flex items-center relative w-max cursor-pointer select-none p-2 rounded-lg mr-3 border-2 border-gray-600 transition-all px-4 py-2 hover:border-blue-600"
+                                className="flex items-center relative w-max cursor-pointer select-none p-2 rounded-lg mr-3 bg-blue-600 transition-all px-4 py-2 hover:bg-blue-700"
                             >
                                 <span className="text-lg font-bold text-center">배치하기</span>
+
+
                                 <input
                                     type="checkbox"
                                     className="appearance-none"
@@ -287,7 +289,7 @@ export default function Add_List() {
                                 />
                             </label>
                             <button
-                                className="text-lg font-bold border-2 border-gray-600 hover:border-blue-600 transition-all px-4 py-2 transition-all mr-2 rounded-lg"
+                                className="font-bold text-lg bg-gray-600 hover:bg-gray-700 transition-all px-4 py-2 transition-all mr-2 rounded-lg"
                                 onClick={add_list_block}
                             >
                                 리스트 추가하기
@@ -339,14 +341,14 @@ export default function Add_List() {
                     <div className="flex justify-between items-center mt-5">
                         <button
                             id="PreNext"
-                            className="text-lg font-bold border-2 border-gray-600 hover:border-lime-600 transition-all px-4 py-2 transition-all mr-2 rounded-lg"
+                            className="font-bold text-lg bg-green-600 hover:bg-green-700 rounded-lg px-4 py-2 transition-all mr-2"
                             onClick={PreNext}
                         >
                             다음 단계
                         </button>
                         <div id="Complete" className="flex justify-end items-center hidden">
                             <button
-                                className="text-lg font-bold border-2 border-gray-600 hover:border-red-600 transition-all px-4 py-2 transition-all mr-2 rounded-lg"
+                                className="font-bold text-lg bg-gray-600 hover:bg-gray-700 transition-all px-4 py-2 transition-all mr-2 rounded-lg"
                                 onClick={() => {
                                     router.replace(`/docs/${id}`);
                                 }}
@@ -354,7 +356,7 @@ export default function Add_List() {
                                 취소
                             </button>
                             <button
-                                className="text-lg font-bold border-2 border-gray-600 hover:border-blue-600 transition-all px-4 py-2 transition-all rounded-lg"
+                                className="font-bold text-lg bg-blue-600 hover:bg-blue-700 rounded-lg px-4 py-2 transition-all"
                                 onClick={handleComplete}
                                 disabled={isSaveButtonDisabled}
                             >

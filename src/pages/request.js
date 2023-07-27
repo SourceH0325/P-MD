@@ -134,7 +134,7 @@ export default function Request() {
                                         {doc.data.url.map((link, index) => (
                                             <button
                                                 key={index}
-                                                className="rounded-lg text-lg px-2 pb-1.5 pt-1 mr-2 ml-0 font-bold border-2 border-gray-600 hover:border-blue-600 hover:bg-blue-600 transition-all relative"
+                                                className="rounded-lg text-lg px-2 pb-1.5 pt-1 mr-2 ml-0 font-bold bg-blue-600 hover:bg-blue-700 transition-all relative"
                                                 onClick={() => alert(link)}
                                             >
                                                 {link.name}
@@ -143,13 +143,13 @@ export default function Request() {
                                     </div>
                                     <div className="flex justify-between mt-5">
                                         <button
-                                            className="text-lg font-bold border-2 border-gray-600 hover:border-lime-600 rounded-lg px-4 py-2 transition-all"
+                                            className="font-bold text-lg bg-gray-600 hover:bg-gray-700 transition-all px-4 py-2 transition-all rounded-lg"
                                             onClick={() => alert(doc.reason)}
                                         >
                                             사유 보기
                                         </button>
                                         <button
-                                            className="text-lg font-bold border-2 border-gray-600 hover:border-red-600 hover:bg-red-600 rounded-lg px-4 py-2 transition-all"
+                                            className="font-bold text-lg bg-red-600 hover:bg-red-700 transition-all px-4 py-2 transition-all rounded-lg"
                                             onClick={() => handleDelete(doc.data._id)}
                                         >
                                             삭제
