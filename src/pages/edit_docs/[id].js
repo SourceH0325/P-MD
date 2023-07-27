@@ -4,10 +4,10 @@ import { useSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import VerEx from 'verbal-expressions';
-import DocsNameInput from '@/pages/components/docs/edit/DocsNameInput';
-import TagInput from '@/pages/components/docs/edit/TagInput';
-import UrlInput from '@/pages/components/docs/edit/UrlInput';
-import VersionInput from '../components/docs/edit/VersionInput';
+import DocsNameInput from '@/pages/components/docs/edit/EditDocsNameInput';
+import TagInput from '@/pages/components/docs/edit/EditTagInput';
+import UrlInput from '@/pages/components/docs/edit/EditUrlInput';
+import VersionInput from '../components/docs/edit/EditVersionInput';
 
 export default function Edit_Docs() {
   const router = useRouter();
