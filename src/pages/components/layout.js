@@ -273,6 +273,9 @@ export default function Layout({ children }) {
               </a>
             </div>
           </div>
+          <p className="text-gray-600 text-sm font-bold text-center mt-4">
+            마인크래프트는 Mojang AB의 상표이며, 이 사이트는 Mojang과 관련이 없습니다.
+          </p>
         </div>
       </footer>
     </>
