@@ -55,7 +55,7 @@ export default function Bookmark() {
   useEffect(() => {
     if (session) {
       axios
-        .post('/api/callBookmarkDB', {
+        .post('/api/calluserDB', {
           name: session.user.name,
           email: session.user.email,
         })

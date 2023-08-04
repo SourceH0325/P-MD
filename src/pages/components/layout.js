@@ -11,6 +11,7 @@ export default function Layout({ children }) {
   const { data: session } = useSession();
   const [mobileMenu, setMobileMenu] = useState(false);
   const [admin, isAdmin] = useState(false);
+  const [profileImage, setProfileImage] = useState(null);
 
   const handleMobileMenu = () => {
     setMobileMenu(!mobileMenu);
@@ -26,7 +27,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     axios
-      .post('/api/callroleDB', {
+      .post('/api/calluserDB', {
         name: session?.user.name,
         email: session?.user.email,
       })
@@ -37,6 +38,25 @@ export default function Layout({ children }) {
           isAdmin(true);
         } else {
           isAdmin(false);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [session]);
+
+  useEffect(() => {
+    axios
+      .post('/api/calluserDB', {
+        name: session?.user.name,
+        email: session?.user.email,
+      })
+      .then(res => {
+        const result = res.data.result;
+
+        if (result && result.length > 0 && result[0].image) {
+          const profileImage = result[0].image;
+          setProfileImage(profileImage); // 상태에 프로필 이미지를 저장
         }
       })
       .catch(error => {
@@ -110,7 +130,11 @@ export default function Layout({ children }) {
                 className="inline-flex items-center px-0 py-2 text-gray-700"
                 onClick={handleProfileButtonClick}
               >
-                <Image src={session.user.image} alt="Profile" width={40} height={40} className="rounded-full" />
+                {profileImage ? (
+                  <Image src={profileImage} alt="Profile" width={40} height={40} className="rounded-full" />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-gray-500" />
+                )}
               </button>
               {profileDropdownOpen && (
                 <div className="bg-gray-700 absolute right-0 mt-1 w-56 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 opacity-100 visible transition-all duration-300 z-50 profile-dropdown">
@@ -155,7 +179,11 @@ export default function Layout({ children }) {
             <>
               <div className="relative inline-block mobile:hidden z-50 mr-3">
                 <button type="button" className="inline-flex items-center px-0 py-2 text-gray-700">
-                  <Image src={session.user.image} alt="Profile" width={40} height={40} className="rounded-full" />
+                  {profileImage ? (
+                    <Image src={profileImage} alt="Profile" width={40} height={40} className="rounded-full" />
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-gray-500" />
+                  )}
                 </button>
               </div>
               <button

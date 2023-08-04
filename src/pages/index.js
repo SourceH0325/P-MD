@@ -42,7 +42,7 @@ export default function Home() {
     if (session) {
       const fetchBookmarkedDocs = async () => {
         try {
-          const res = await axios.post('/api/callBookmarkDB', {
+          const res = await axios.post('/api/calluserDB', {
             name: session.user.name,
             email: session.user.email,
           });

@@ -6,7 +6,7 @@ const options = {
   useNewUrlParser: true,
 };
 
-async function callBookmarkDB(name, email) {
+async function calluserDB(name, email) {
   const client = await MongoClient.connect(uri, options);
   const db = client.db(process.env.DATABASE_NAME);
   const collection = db.collection('users');
@@ -18,9 +18,7 @@ async function callBookmarkDB(name, email) {
 }
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { name, email } = req.body;
-    const result = await callBookmarkDB(name, email);
-    res.status(201).json({ result });
-  }
+  const { name, email } = req.body;
+  const result = await calluserDB(name, email);
+  res.status(200).json({ result });
 }

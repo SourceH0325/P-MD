@@ -13,7 +13,7 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    async signIn({ user, account }) {
+    async signIn({ user, account, profile }) {
       const client = await clientPromise;
       const db = client.db(process.env.DATABASE_NAME);
       const collection = db.collection('users');
@@ -25,7 +25,7 @@ export default NextAuth({
         const data = {
           email: user.email,
           name: user.name,
-          image: user.image,
+          image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
           provider: account.provider,
           providerAccountId: account.providerAccountId,
           createdAt: new Date(),
@@ -45,7 +45,7 @@ export default NextAuth({
             $set: {
               email: user.email,
               name: user.name,
-              image: user.image,
+              image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
               updatedAt: new Date(),
             },
           },
