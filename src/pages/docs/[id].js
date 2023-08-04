@@ -284,37 +284,43 @@ export default function Home() {
             ))}
           </div>
           <main className="mb-12">
-            <div className="grid gap-4 grid-cols-1 grid-rows-auto mobile:grid-cols-3">
-              {filteredLists.map((list, index) => (
-                <div key={list._id} className="bg-[#202026] rounded-lg p-5">
-                  <h1 className="text-2xl font-bold truncate">{list.name}</h1>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                      <p className="font-bold">{list.tagA}</p>
+            {filteredLists.length > 0 ? (
+              <div className="grid gap-4 grid-cols-1 grid-rows-auto mobile:grid-cols-3">
+                {filteredLists.map((list, index) => (
+                  <div key={list._id} className="bg-[#202026] rounded-lg p-5">
+                    <h1 className="text-2xl font-bold truncate">{list.name}</h1>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <div className="bg-gray-700/60 rounded-lg px-2 py-1">
+                        <p className="font-bold">{list.tagA}</p>
+                      </div>
+                      <div className="bg-gray-700/60 rounded-lg px-2 py-1">
+                        <p className="font-bold">{list.tagB}</p>
+                      </div>
                     </div>
-                    <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                      <p className="font-bold">{list.tagB}</p>
+                    <div className="flex justify-between">
+                      <button
+                        className="text-2xl pt-1.5"
+                        onMouseEnter={() => handleMouseEnter(index)}
+                        onMouseLeave={() => handleMouseLeave(index)}
+                        onClick={() => handleClick(index)}
+                      >
+                        {clickedBlocks[index] || hoveredBlocks[index] ? <FaStar /> : <FaRegStar />}
+                      </button>
+                      <button
+                        className="font-bold text-lg bg-blue-600 hover:bg-blue-700 transition-all px-4 py-2 transition-all rounded-lg"
+                        onClick={() => router.push(`/lists/${list._id}`)}
+                      >
+                        더보기
+                      </button>
                     </div>
                   </div>
-                  <div className="flex justify-between">
-                    <button
-                      className="text-2xl pt-1.5"
-                      onMouseEnter={() => handleMouseEnter(index)}
-                      onMouseLeave={() => handleMouseLeave(index)}
-                      onClick={() => handleClick(index)}
-                    >
-                      {clickedBlocks[index] || hoveredBlocks[index] ? <FaStar /> : <FaRegStar />}
-                    </button>
-                    <button
-                      className="font-bold text-lg bg-blue-600 hover:bg-blue-700 transition-all px-4 py-2 transition-all rounded-lg"
-                      onClick={() => router.push(`/lists/${list._id}`)}
-                    >
-                      더보기
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-[#202026] rounded-lg p-5">
+                <p className="text-center text-gray-500 text-xl font-bold">리스트가 없습니다!</p>
+              </div>
+            )}
           </main>
         </div>
       )}
