@@ -5,9 +5,9 @@ import { useSession, signIn } from 'next-auth/react';
 import axios from 'axios';
 import VerEx from 'verbal-expressions';
 import NameInput from '@/pages/components/docs/add/AddDocsNameInput';
-import VersionInput from './components/docs/add/AddVersionInput';
-import UrlInput from './components/docs/add/AddUrlInput';
-import TagInput from './components/docs/add/AddTagInput';
+import VersionInput from '@/pages/components/docs/add/AddVersionInput';
+import UrlInput from '@/pages/components/docs/add/AddUrlInput';
+import TagInput from '@/pages/components/docs/add/AddTagInput';
 
 export default function Add_Docs() {
   const router = useRouter();

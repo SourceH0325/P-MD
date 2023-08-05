@@ -6,7 +6,7 @@ const options = {
   useNewUrlParser: true,
 };
 
-async function removeDocsBookmarkDB(name, email, docID) {
+async function removeListBookmarkDB(name, email, docID) {
   const client = await MongoClient.connect(uri, options);
   const db = client.db(process.env.DATABASE_NAME);
   const collection = db.collection('users');
@@ -20,7 +20,7 @@ async function removeDocsBookmarkDB(name, email, docID) {
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { name, email, docID } = req.body;
-    const result = await removeDocsBookmarkDB(name, email, docID);
+    const result = await removeListBookmarkDB(name, email, docID);
     res.status(201).json({ message: 'success', result });
   }
 }

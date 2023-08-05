@@ -3,9 +3,9 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { signIn, useSession } from 'next-auth/react';
 import { useState, useEffect, useRef } from 'react';
-import ReactGridLayout from 'react-grid-layout';
-import 'react-grid-layout/css/styles.css';
-import { BiX } from 'react-icons/bi';
+import NameInput from '@/pages/components/list/edit/EditListNameInput';
+import TagInput from '@/pages/components/list/edit/EditListTagInput';
+import GridInput from '@/pages/components/list/edit/EditListGridInput';
 
 export default function Edit_List() {
   const router = useRouter();
@@ -355,43 +355,8 @@ export default function Edit_List() {
           <main className="mb-12">
             <div id="StepP">
               <div className="grid gap-4 grid-rows-auto grid-cols-1 mobile:grid-cols-2">
-                <div className="bg-[#202026] rounded-lg p-5">
-                  <div className="flex justify-between">
-                    <h1 className="text-2xl font-bold">리스트 이름을 설정해 주세요!</h1>
-                  </div>
-                  <p className="mt-3 text-lg text-gray-500 font-bold">메인에 뜰 이름을 설정합니다.</p>
-                  <input
-                    className="mt-4 px-2.5 pb-1 w-full h-12 bg-[#17171b] text-left text-white rounded-lg"
-                    id="Name"
-                    type="text"
-                    placeholder="예시: 마인 독스"
-                    defaultValue={lists[0]?.name}
-                  />
-                </div>
-                <div className="bg-[#202026] rounded-lg p-5">
-                  <div className="flex justify-between">
-                    <h1 className="text-2xl font-bold">태그를 설정해 주세요!</h1>
-                  </div>
-                  <p className="mt-3 text-lg text-gray-500 font-bold">상세 설명에 태그를 설정합니다.</p>
-                  <div className="flex justify-between items-center">
-                    <input
-                      className="mt-4 mr-2 px-2.5 pb-1 w-full h-12 bg-[#17171b] text-left text-white rounded-lg"
-                      id="TagA"
-                      type="text"
-                      placeholder="예시: 가이드"
-                      value={tagSetA}
-                      onChange={handletagSetA}
-                    />
-                    <input
-                      className="mt-4 ml-2 px-2.5 pb-1 w-full h-12 bg-[#17171b] text-left text-white rounded-lg"
-                      id="TagB"
-                      type="text"
-                      placeholder="예시: 전설"
-                      value={tagSetB}
-                      onChange={handletagSetB}
-                    />
-                  </div>
-                </div>
+                <NameInput defaultValue={lists[0]?.name} />
+                <TagInput tagSetA={tagSetA} tagSetB={tagSetB} onChangeA={handletagSetA} onChangeB={handletagSetB} />
               </div>
             </div>
             <div id="StepN" className="hidden">
@@ -425,76 +390,7 @@ export default function Edit_List() {
                   삭제
                 </button>
               </div>
-              <ReactGridLayout
-                className="layout select-none"
-                layout={layout}
-                cols={5}
-                onLayoutChange={onLayoutChange}
-                containerPadding={[0, 10]}
-                isDraggable={isDraggable}
-                isResizable={isDraggable}
-                rowHeight={30}
-                width={1140}
-              >
-                {layout.map(item => {
-                  const currentItem = lists[0]?.result_location.find(location => location.i === item.i);
-
-                  if (!currentItem) {
-                    return null;
-                  }
-
-                  const result = lists[0]?.result_content.find(content => content.i === currentItem.i);
-
-                  return (
-                    <div
-                      key={currentItem.i}
-                      className="bg-[#202026] rounded-lg p-5 flex flex-col"
-                      data-grid={currentItem}
-                    >
-                      <input
-                        id={`writing_a_${currentItem.i}`}
-                        ref={writing_a}
-                        className="title text-2xl text-white font-bold bg-[#202026]"
-                        placeholder="타이틀을 적어주세요!"
-                        defaultValue={result ? result.title : ''}
-                      />
-                      <br />
-                      <textarea
-                        id={`writing_b_${currentItem.i}`}
-                        ref={writing_b}
-                        rows="1"
-                        className="content text-xl text-white font-bold bg-[#202026] -mt-3 w-full h-full resize-none"
-                        placeholder="내용을 적어주세요!"
-                        defaultValue={result ? result.content : ''}
-                      />
-                      {/* x 버튼 */}
-                      <div className="absolute top-0 right-0">
-                        <button
-                          className="text-xl text-gray-500 font-bold"
-                          onClick={() => {
-                            const newLayout = layout.filter(layoutItem => layoutItem.i !== currentItem.i);
-                            setLayout(newLayout);
-
-                            // 리스트를 제거한 후 defaultValue를 초기화
-                            const newLists = [...lists];
-                            newLists[0].result_location = newLists[0].result_location.filter(
-                              location => location.i !== currentItem.i,
-                            );
-
-                            newLists[0].result_content = newLists[0].result_content.filter(
-                              content => content.i !== currentItem.i,
-                            );
-
-                            setLists(newLists);
-                          }}
-                        >
-                          <BiX className="fill-gray-500 hover:fill-white transition-all" />
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </ReactGridLayout>
+              <GridInput layout={layout} setLayout={setLayout} isDraggable={isDraggable} onLayoutChange={onLayoutChange} lists={lists} setLists={setLists} writing_a={writing_a} writing_b={writing_b} />
             </div>
             <div className="flex justify-between items-center mt-5">
               <button
@@ -506,7 +402,7 @@ export default function Edit_List() {
               </button>
               <div id="Complete" className="flex justify-end items-center hidden">
                 <button
-                  className="font-bold text-lg bg-gray-600 hover:bg-gray-700 transition-all px-4 py-2 transition-all mr-2 rounded-lg"
+                  className="font-bold text-lg bg-gray-600 hover:bg-gray-700 px-4 py-2 transition-all mr-2 rounded-lg"
                   onClick={() => {
                     router.replace(`/lists/${id}`);
                   }}

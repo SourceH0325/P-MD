@@ -6,7 +6,7 @@ const options = {
   useNewUrlParser: true,
 };
 
-async function editListDB(id) {
+async function deleteListDB(id) {
   const client = await MongoClient.connect(uri, options);
   const db = client.db(process.env.DATABASE_NAME);
   const collection = db.collection('lists');
@@ -20,7 +20,7 @@ async function editListDB(id) {
 export default async function handler(req, res) {
   if (req.method === 'DELETE') {
     const id = req.query.id;
-    const result = await editListDB(id);
+    const result = await deleteListDB(id);
     res.status(201).json({ message: 'success', result });
   }
 }

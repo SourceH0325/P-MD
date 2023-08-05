@@ -56,7 +56,7 @@ export default function Layout({ children }) {
 
         if (result && result.length > 0 && result[0].image) {
           const profileImage = result[0].image;
-          setProfileImage(profileImage); // 상태에 프로필 이미지를 저장
+          setProfileImage(profileImage);
         }
       })
       .catch(error => {

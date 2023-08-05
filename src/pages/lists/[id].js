@@ -80,7 +80,7 @@ export default function Home() {
                     <div className="flex justify-end items-center mt-8 w-auto">
                         <div className="flex items-center">
                             <button
-                                className="font-bold text-lg bg-green-600 hover:bg-green-700 transition-all px-4 py-2 transition-all rounded-lg mr-4"
+                                className="font-bold text-lg bg-green-600 hover:bg-green-700 px-4 py-2 transition-all rounded-lg mr-4"
                                 onClick={() => {
                                     router.push(`/edit_list/${id}`);
                                 }}
@@ -90,7 +90,7 @@ export default function Home() {
                             {lists.map((list) => (
                                 <button
                                     key={list._id}
-                                    className="font-bold text-lg bg-blue-600 hover:bg-blue-700 transition-all px-4 py-2 transition-all rounded-lg"
+                                    className="font-bold text-lg bg-blue-600 hover:bg-blue-700 px-4 py-2 transition-all rounded-lg"
                                     onClick={() => {
                                         router.push(`/docs/${list.linkDocs}`);
                                     }}

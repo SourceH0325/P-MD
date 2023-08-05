@@ -7,7 +7,7 @@ import VerEx from 'verbal-expressions';
 import DocsNameInput from '@/pages/components/docs/edit/EditDocsNameInput';
 import TagInput from '@/pages/components/docs/edit/EditTagInput';
 import UrlInput from '@/pages/components/docs/edit/EditUrlInput';
-import VersionInput from '../components/docs/edit/EditVersionInput';
+import VersionInput from '@/pages/components/docs/edit/EditVersionInput';
 
 export default function Edit_Docs() {
   const router = useRouter();
@@ -279,7 +279,7 @@ export default function Edit_Docs() {
               <div className="flex justify-between items-center mt-4 w-auto">
                 <div>
                   <button
-                    className="font-bold text-lg bg-red-600 hover:bg-red-700 transition-all px-4 py-2 transition-all rounded-lg"
+                    className="font-bold text-lg bg-red-600 hover:bg-red-700 px-4 py-2 transition-all rounded-lg"
                     onClick={handleDelete}
                   >
                     삭제
@@ -287,13 +287,13 @@ export default function Edit_Docs() {
                 </div>
                 <div className="flex items-center">
                   <button
-                    className="font-bold text-lg bg-gray-600 hover:bg-gray-700 transition-all px-4 py-2 transition-all mr-2 rounded-lg"
+                    className="font-bold text-lg bg-gray-600 hover:bg-gray-700 px-4 py-2 transition-all mr-2 rounded-lg"
                     onClick={() => router.replace(`/docs/${id}`)}
                   >
                     취소
                   </button>
                   <button
-                    className="font-bold text-lg bg-blue-600 hover:bg-blue-700 transition-all px-4 py-2 transition-all rounded-lg"
+                    className="font-bold text-lg bg-blue-600 hover:bg-blue-700 px-4 py-2 transition-all rounded-lg"
                     onClick={handleComplete}
                     disabled={isSaveButtonDisabled}
                   >

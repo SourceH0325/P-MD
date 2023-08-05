@@ -6,7 +6,7 @@ const options = {
   useNewUrlParser: true,
 };
 
-async function callListDB(id) {
+async function callLinkDocsDB(id) {
   const client = await MongoClient.connect(uri, options);
   const db = client.db(process.env.DATABASE_NAME);
   const collection = db.collection('lists');
@@ -20,7 +20,7 @@ async function callListDB(id) {
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     const id = req.query.id;
-    const result = await callListDB(id);
+    const result = await callLinkDocsDB(id);
     res.status(201).json({ result });
   }
 }

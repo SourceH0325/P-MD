@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import SearchBar from '@/pages/components/SearchBar';
 import axios from 'axios';
-import { FaStar, FaRegStar } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 
 export default function Home() {
   const router = useRouter();
@@ -13,7 +13,6 @@ export default function Home() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState('');
-  const [hoveredBlocks, setHoveredBlocks] = useState([]);
   const [clickedBlocks, setClickedBlocks] = useState([]);
   const [loadedDocs, setLoadedDocs] = useState([]);
   const [remainingDocs, setRemainingDocs] = useState([]);
@@ -26,7 +25,6 @@ export default function Home() {
         const remaining = res.data.result.slice(15);
         setLoadedDocs(loaded);
         setRemainingDocs(remaining);
-        setHoveredBlocks(Array(loaded.length).fill(false));
         setClickedBlocks(Array(loaded.length).fill(false));
       } catch (error) {
         console.log(error);
@@ -79,7 +77,6 @@ export default function Home() {
           const remaining = res.data.result.slice(15);
           setLoadedDocs(loaded);
           setRemainingDocs(remaining);
-          setHoveredBlocks(Array(loaded.length).fill(false));
           setClickedBlocks(Array(loaded.length).fill(false));
         } catch (error) {
           console.log(error);
@@ -117,22 +114,6 @@ export default function Home() {
       return doc;
     }
   });
-
-  const handleMouseEnter = index => {
-    setHoveredBlocks(prevHoveredBlocks => {
-      const newHoveredBlocks = [...prevHoveredBlocks];
-      newHoveredBlocks[index] = true;
-      return newHoveredBlocks;
-    });
-  };
-
-  const handleMouseLeave = index => {
-    setHoveredBlocks(prevHoveredBlocks => {
-      const newHoveredBlocks = [...prevHoveredBlocks];
-      newHoveredBlocks[index] = false;
-      return newHoveredBlocks;
-    });
-  };
 
   const handleClick = index => {
     if (session) {
@@ -226,14 +207,16 @@ export default function Home() {
                     <div className="flex justify-between mt-2">
                       <button
                         className="text-2xl pt-1.5"
-                        onMouseEnter={() => handleMouseEnter(index)}
-                        onMouseLeave={() => handleMouseLeave(index)}
                         onClick={() => handleClick(index)}
                       >
-                        {clickedBlocks[index] || hoveredBlocks[index] ? <FaStar /> : <FaRegStar />}
+                        {clickedBlocks[index] ? ( 
+                          <FaStar className="fill-[#f1f1f1] hover:fill-gray-600 transition-all" />
+                        ) : (
+                          <FaStar className="fill-gray-600 hover:fill-[#f1f1f1] transition-all" />
+                        )}
                       </button>
                       <button
-                        className="font-bold text-lg bg-blue-600 hover:bg-blue-700 transition-all px-4 py-2 transition-all rounded-lg"
+                        className="font-bold text-lg bg-blue-600 hover:bg-blue-700 px-4 py-2 transition-all rounded-lg"
                         onClick={() => router.push(`/docs/${doc._id}`)}
                       >
                         더보기
