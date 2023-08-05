@@ -3,9 +3,11 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useSession, signIn } from 'next-auth/react';
 import { useState, useEffect, useRef } from 'react';
+import ReactGridLayout from 'react-grid-layout';
+import 'react-grid-layout/css/styles.css';
+import { BiX } from 'react-icons/bi';
 import NameInput from '@/pages/components/list/add/AddListNameInput';
 import TagInput from '@/pages/components/list/add/AddListTagInput';
-import GridInput from '@/pages/components/list/add/AddListGridInput';
 
 export default function Add_List() {
   const router = useRouter();
@@ -267,14 +269,48 @@ export default function Add_List() {
                 리스트 추가하기
               </button>
             </div>
-            <GridInput
+            <ReactGridLayout
+              className="layout select-none"
               layout={layout}
-              setLayout={setLayout}
-              isDraggable={isDraggable}
+              cols={5}
               onLayoutChange={onLayoutChange}
-              writing_a={writing_a}
-              writing_b={writing_b}
-            />
+              containerPadding={[0, 10]}
+              isDraggable={isDraggable}
+              isResizable={isDraggable}
+              rowHeight={30}
+              width={1140}
+            >
+              {layout.map(item => (
+                <div key={item.i} className="bg-[#202026] rounded-lg p-5 flex flex-col">
+                  <input
+                    id={`writing_a_${item.i}`}
+                    ref={writing_a}
+                    className="title text-2xl text-white font-bold bg-[#202026]"
+                    placeholder="타이틀을 적어주세요!"
+                  />
+                  <br />
+                  <textarea
+                    id={`writing_b_${item.i}`}
+                    ref={writing_b}
+                    rows="1"
+                    className="content text-xl text-white font-bold bg-[#202026] -mt-3 w-full h-full resize-none"
+                    placeholder="내용을 적어주세요!"
+                  />
+                  {/* x 버튼 */}
+                  <div className="absolute top-0 right-0">
+                    <button
+                      className="text-xl text-gray-500 font-bold"
+                      onClick={() => {
+                        const newLayout = layout.filter(i => i.i !== item.i);
+                        setLayout(newLayout);
+                      }}
+                    >
+                      <BiX className="fill-gray-500 hover:fill-white transition-all" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </ReactGridLayout>
           </div>
           <div className="flex justify-between items-center mt-5">
             <button
