@@ -3,7 +3,7 @@ import ReactGridLayout from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import { BiX } from 'react-icons/bi';
 
-const ListGridInput = ({ layout, setLayout, isDraggable, onLayoutChange, writing_a, writing_b }) => {
+const ListGridInput = ({ layout = [], setLayout, isDraggable, onLayoutChange, writing_a, writing_b }) => {
 
   return (
     <ReactGridLayout

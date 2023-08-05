@@ -235,7 +235,12 @@ export default function Add_List() {
           <div id="StepP">
             <div className="grid gap-4 grid-rows-auto grid-cols-1 mobile:grid-cols-2">
               <NameInput />
-              <TagInput tagSetA={tagSetA} tagSetB={tagSetB} handletagSetA={handletagSetA} handletagSetB={handletagSetB} />
+              <TagInput
+                tagSetA={tagSetA}
+                tagSetB={tagSetB}
+                handletagSetA={handletagSetA}
+                handletagSetB={handletagSetB}
+              />
             </div>
           </div>
           <div id="StepN" className="hidden">

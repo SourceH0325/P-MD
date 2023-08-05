@@ -390,7 +390,16 @@ export default function Edit_List() {
                   삭제
                 </button>
               </div>
-              <GridInput layout={layout} setLayout={setLayout} isDraggable={isDraggable} onLayoutChange={onLayoutChange} lists={lists} setLists={setLists} writing_a={writing_a} writing_b={writing_b} />
+              <GridInput
+                layout={layout}
+                setLayout={setLayout}
+                isDraggable={isDraggable}
+                onLayoutChange={onLayoutChange}
+                lists={lists}
+                setLists={setLists}
+                writing_a={writing_a}
+                writing_b={writing_b}
+              />
             </div>
             <div className="flex justify-between items-center mt-5">
               <button
