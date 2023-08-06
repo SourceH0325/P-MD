@@ -10,8 +10,6 @@ export default function Error404() {
       <Head>
         <title>MINE DOCS</title>
         <meta name="description" content="페이지를 찾을 수 없습니다." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="mx-4 mobile:mx-0">

@@ -228,8 +228,6 @@ export default function Add_List() {
       <Head>
         <title>리스트 추가하기</title>
         <meta name="description" content="마인크래프트 서버의 플레이를 도와줍니다." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="mx-4 mobile:mx-0">

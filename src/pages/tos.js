@@ -6,8 +6,6 @@ export default function Tos() {
       <Head>
         <title>이용약관</title>
         <meta name="description" content="이용약관" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="mx-4 mobile:mx-0">

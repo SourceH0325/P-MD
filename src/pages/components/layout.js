@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { FaTimes, FaBars } from 'react-icons/fa';
@@ -91,6 +92,11 @@ export default function Layout({ children }) {
 
   return (
     <>
+      <Head>
+        <meta name="naver-site-verification" content="6eb3f16b30a15f21d8e43546f8291dc3bc516864" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <header className="flex justify-between items-center h-20 w-auto mx-4 mobile:mx-0">
         <div className="flex items-center">
           <div className="flex items-center cursor-pointer select-none" onClick={() => router.push('/')}>

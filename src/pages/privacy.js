@@ -9,8 +9,6 @@ export default function Privacy() {
       <Head>
         <title>개인정보처리방침</title>
         <meta name="description" content="개인정보처리방침" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className="mx-4 mobile:mx-0">
