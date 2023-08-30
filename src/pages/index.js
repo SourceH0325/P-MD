@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import SearchBar from '@/pages/components/SearchBar';
+import Loading from '@/pages/components/load/DefaultLoad';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 
@@ -32,8 +33,6 @@ export default function Home() {
     };
 
     fetchDocs();
-
-    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -61,6 +60,7 @@ export default function Home() {
       };
 
       fetchBookmarkedDocs();
+      setIsLoading(false);
     }
   }, [session, loadedDocs]);
 
@@ -180,9 +180,7 @@ export default function Home() {
       <SearchBar onSearch={handleSearch} />
 
       {isLoading ? (
-        <div className="loader-container">
-          <div className="loader" />
-        </div>
+        <Loading />
       ) : (
         <div className="mx-4 mobile:mx-0">
           <main className="mb-12">
@@ -203,11 +201,8 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex justify-between mt-2">
-                      <button
-                        className="text-2xl pt-1.5"
-                        onClick={() => handleClick(index)}
-                      >
-                        {clickedBlocks[index] ? ( 
+                      <button className="text-2xl pt-1.5" onClick={() => handleClick(index)}>
+                        {clickedBlocks[index] ? (
                           <FaStar className="fill-[#f1f1f1] hover:fill-gray-600 transition-all" />
                         ) : (
                           <FaStar className="fill-gray-600 hover:fill-[#f1f1f1] transition-all" />

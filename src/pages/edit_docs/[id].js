@@ -4,6 +4,7 @@ import { useSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import VerEx from 'verbal-expressions';
+import Loading from '@/pages/components/load/EditDocsLoad';
 import DocsNameInput from '@/pages/components/docs/edit/EditDocsNameInput';
 import TagInput from '@/pages/components/docs/edit/EditTagInput';
 import UrlInput from '@/pages/components/docs/edit/EditUrlInput';
@@ -253,9 +254,7 @@ export default function Edit_Docs() {
       </Head>
 
       {isLoading ? (
-        <div className="loader-container">
-          <div className="loader" />
-        </div>
+        <Loading />
       ) : (
         <div className="mx-4 mobile:mx-0">
           <main className="mb-12">

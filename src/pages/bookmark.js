@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useSession, signIn } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import SearchBar from '@/pages/components/SearchBar';
+import Loading from '@/pages/components/load/DefaultLoad';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 
@@ -73,9 +74,9 @@ export default function Bookmark() {
             }
           });
 
+          setIsLoading(false);
           setClickedDocs(updatedClickedDocs);
           setClickedLists(updatedClickedLists);
-          setIsLoading(false);
         })
         .catch(err => {
           console.log(err);
@@ -171,9 +172,7 @@ export default function Bookmark() {
       <SearchBar onSearch={handleSearch} />
 
       {isLoading ? (
-        <div className="loader-container">
-          <div className="loader" />
-        </div>
+        <Loading />
       ) : (
         <div className="mx-4 mobile:mx-0">
           <main className="mb-12">

@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import ReactGridLayout from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import { BiX } from 'react-icons/bi';
+import Loading from '@/pages/components/load/EditListLoad';
 import NameInput from '@/pages/components/list/edit/EditListNameInput';
 import TagInput from '@/pages/components/list/edit/EditListTagInput';
 
@@ -347,9 +348,7 @@ export default function Edit_List() {
       </Head>
 
       {isLoading ? (
-        <div className="loader-container">
-          <div className="loader" />
-        </div>
+        <Loading />
       ) : (
         <div className="mx-4 mobile:mx-0">
           <main className="mb-12">
