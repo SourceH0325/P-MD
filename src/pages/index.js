@@ -32,6 +32,7 @@ export default function Home() {
       }
     };
 
+    setIsLoading(false);
     fetchDocs();
   }, []);
 
@@ -60,7 +61,6 @@ export default function Home() {
       };
 
       fetchBookmarkedDocs();
-      setIsLoading(false);
     }
   }, [session, loadedDocs]);
 
