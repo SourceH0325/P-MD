@@ -47,6 +47,7 @@ export default function Home() {
       }
     };
 
+    setIsLoading(false);
     fetchLists();
   }, [id]);
 
@@ -75,7 +76,6 @@ export default function Home() {
       };
 
       fetchBookmarkedLists();
-      setIsLoading(false);
     }
   }, [session, loadedLists]);
 
