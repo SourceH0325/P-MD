@@ -190,6 +190,13 @@ export default function Edit_Docs() {
       };
 
       setIsSaveButtonDisabled(true);
+
+      if (status === 'unauthenticated') {
+        alert('로그인이 필요합니다!');
+        setIsSaveButtonDisabled(false);
+        return;
+      }
+      
       axios
         .put(`/api/docs/editDocsDB/${id}`, doc)
         .then(res => {

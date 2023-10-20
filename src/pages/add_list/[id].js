@@ -154,9 +154,9 @@ export default function Add_List() {
     const tagB = document.querySelector('#TagB').value;
     const title = document.querySelector('.title').value;
     const content = document.querySelector('.content').value;
-
+  
     const result_content = [];
-
+  
     for (let i = 0; i < layout.length; i++) {
       const title = document.querySelector(`#writing_a_${i}`).value;
       const content = document.querySelector(`#writing_b_${i}`).value;
@@ -166,7 +166,7 @@ export default function Add_List() {
         content: content,
       });
     }
-
+  
     const result_location = layout.map(item => {
       return {
         i: item.i,
@@ -176,12 +176,12 @@ export default function Add_List() {
         h: item.h,
       };
     });
-
+  
     if (title === '' || content === '') {
       alert('내용을 추가해주세요!');
       return;
     }
-
+  
     const list = {
       name: name,
       tagA: tagA,
@@ -190,13 +190,20 @@ export default function Add_List() {
       result_location: result_location,
       linkDocs: id,
     };
-
+  
     if (result_location.length === 0) {
       alert('리스트를 추가해주세요!');
       return;
     }
 
     setIsSaveButtonDisabled(true);
+  
+    if (status === 'unauthenticated') {
+      alert('로그인이 필요합니다!');
+      setIsSaveButtonDisabled(false);
+      return;
+    }
+
     axios
       .post('/api/list/addListDB', list)
       .then(res => {

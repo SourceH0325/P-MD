@@ -43,6 +43,13 @@ export default function Add_Docs() {
 
   const handleComplete = () => {
     setIsSaveButtonDisabled(true);
+    
+    if (status === 'unauthenticated') {
+      alert('로그인이 필요합니다!');
+      setIsSaveButtonDisabled(false);
+      return;
+    }
+    
     let check_version = false;
     let check_edition = false;
     let check_tag = false;
