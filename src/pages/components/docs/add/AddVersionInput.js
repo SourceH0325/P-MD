@@ -127,10 +127,9 @@ const VersionInput = ({ selectedVersion, setSelectedVersion, edition, setEdition
   return (
     <div className="bg-[#202026] rounded-lg p-5">
       <div className="flex justify-between">
-        <h1 className="text-2xl font-bold">버전을 설정해 주세요!</h1>
-        <h1 className="text-xl text-gray-500 font-bold hidden mobile:block">STEP 2</h1>
+        <h1 className="text-2xl font-bold">버전과 에디션을 설정해 주세요!</h1>
       </div>
-      <p className="mt-3 text-lg text-gray-500 font-bold">버전과 에디션을 설정해주세요!</p>
+      <p className="mt-3 text-lg text-gray-500 font-bold">버전과 에디션을 설정합니다.</p>
       <div className="mt-4 grid grid-rows-auto grid-cols-1 mobile:grid-cols-2 gap-4">
         <button
           className="text-lg font-bold bg-[#17171b] hover:bg-blue-600 transition-all px-4 py-2 rounded-lg"

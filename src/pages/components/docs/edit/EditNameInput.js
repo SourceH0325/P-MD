@@ -1,11 +1,10 @@
 import React from 'react';
 
-const DocsNameInput = ({ defaultValue }) => {
+const NameInput = ({ defaultValue }) => {
   return (
     <div className="bg-[#202026] rounded-lg p-5">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">이름을 설정해 주세요!</h1>
-        <h1 className="text-xl text-gray-500 font-bold hidden mobile:block">STEP 1</h1>
       </div>
       <p className="mt-3 text-lg text-gray-500 font-bold">메인에 뜰 이름을 설정합니다.</p>
       <input
@@ -19,4 +18,4 @@ const DocsNameInput = ({ defaultValue }) => {
   );
 };
 
-export default DocsNameInput;
+export default NameInput;

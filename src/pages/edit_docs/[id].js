@@ -5,7 +5,9 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import VerEx from 'verbal-expressions';
 import Loading from '@/pages/components/load/EditDocsLoad';
-import DocsNameInput from '@/pages/components/docs/edit/EditDocsNameInput';
+import NameInput from '@/pages/components/docs/edit/EditNameInput';
+import AddressInput from '../components/docs/edit/EditAddressInput';
+import ExplanationInput from '@/pages/components/docs/edit/EditExplanationInput';
 import TagInput from '@/pages/components/docs/edit/EditTagInput';
 import UrlInput from '@/pages/components/docs/edit/EditUrlInput';
 import VersionInput from '@/pages/components/docs/edit/EditVersionInput';
@@ -76,50 +78,36 @@ export default function Edit_Docs() {
   };
 
   const handleComplete = () => {
+    setIsSaveButtonDisabled(true);
+
+    if (status === 'unauthenticated') {
+      alert('로그인이 필요합니다!');
+      setIsSaveButtonDisabled(false);
+      return;
+    }
+
     let check_version = false;
     let check_edition = false;
     let check_tag = false;
     let check_url = false;
     let check_name = false;
+    let check_explanation = false;
+    let check_address = false;
     let url = [];
+    let errMessages = [];
 
     // 버전 확인
     if (selectedVersion == null) {
-      alert('버전을 설정해주세요!');
+      errMessages.push('버전');
       check_version = false;
       setIsSaveButtonDisabled(false);
     } else {
-      if (selectedVersion.type === 'multiple') {
-        if (selectedVersion.multipleVersions.length < 2) {
-          alert('다중 버전을 선택할 때는 최소 2개 이상을 선택해주세요!');
-          check_version = false;
-          setIsSaveButtonDisabled(false);
-        } else {
-          check_version = true;
-        }
-      }
-      // Check for "range" case
-      else if (selectedVersion.type === 'range') {
-        const minVersionValue = parseInt(selectedVersion.minVersion.value);
-        const maxVersionValue = parseInt(selectedVersion.maxVersion.value);
-        if (minVersionValue >= maxVersionValue) {
-          alert('최소 버전이 최대 버전보다 높거나 같을 수 없습니다!');
-          check_version = false;
-          setIsSaveButtonDisabled(false);
-        } else {
-          check_version = true;
-        }
-      }
-
-      // Check for "single" case
-      else {
-        check_version = true;
-      }
+      check_version = true;
     }
 
     // 에디션 확인
     if (edition == null) {
-      alert('에디션을 설정해주세요!');
+      errMessages.push('에디션');
       check_edition = false;
       setIsSaveButtonDisabled(false);
     } else {
@@ -128,7 +116,7 @@ export default function Edit_Docs() {
 
     // 태그 확인
     if (tag == null) {
-      alert('장르를 설정해주세요!');
+      errMessages.push('태그');
       check_tag = false;
       setIsSaveButtonDisabled(false);
     } else {
@@ -139,11 +127,11 @@ export default function Edit_Docs() {
     if (document.querySelector('#UrlList').children.length == 0) {
       check_url = true;
     } else if (document.querySelector('#UrlName').value == '') {
-      alert('링크 이름을 입력해주세요!');
+      errMessages.push('링크 이름');
       check_url = false;
       setIsSaveButtonDisabled(false);
     } else if (Web.test(document.querySelector('#UrlLink').value) == false) {
-      alert('링크 주소를 URL 형식으로 입력해주세요!');
+      errMessages.push('링크 주소');
       check_url = false;
       setIsSaveButtonDisabled(false);
     } else {
@@ -157,15 +145,38 @@ export default function Edit_Docs() {
 
     // 이름 확인
     if (document.querySelector('#Name').value == '') {
-      alert('이름을 입력해주세요!');
+      errMessages.push('이름');
       check_name = false;
       setIsSaveButtonDisabled(false);
     } else {
       check_name = true;
     }
 
+    // 설명 확인
+    if (document.querySelector('#Explanation').value == '') {
+      errMessages.push('설명');
+      check_explanation = false;
+      setIsSaveButtonDisabled(false);
+    } else {
+      check_explanation = true;
+    }
+
+    // 주소 확인
+    if (document.querySelector('#Address').value == '') {
+      errMessages.push('주소');
+      check_address = false;
+      setIsSaveButtonDisabled(false);
+    } else {
+      check_address = true;
+    }
+
+    if (errMessages.length > 0) {
+      alert(`${errMessages.join(', ')}를 입력해주세요!`);
+      setIsSaveButtonDisabled(false);
+    }
+
     // 최종 확인
-    if (check_version && check_edition && check_tag && check_url && check_name) {
+    if (check_version && check_edition && check_tag && check_url && check_name && check_explanation && check_address) {
       let versionLabel;
       let multipleVersions;
 
@@ -182,6 +193,8 @@ export default function Edit_Docs() {
 
       const doc = {
         name: document.querySelector('#Name').value,
+        explanation: document.querySelector('#Explanation').value,
+        address: document.querySelector('#Address').value,
         version: versionLabel,
         multiple: multipleVersions,
         edition: edition,
@@ -189,14 +202,6 @@ export default function Edit_Docs() {
         url: url,
       };
 
-      setIsSaveButtonDisabled(true);
-
-      if (status === 'unauthenticated') {
-        alert('로그인이 필요합니다!');
-        setIsSaveButtonDisabled(false);
-        return;
-      }
-      
       axios
         .put(`/api/docs/editDocsDB/${id}`, doc)
         .then(res => {
@@ -266,7 +271,12 @@ export default function Edit_Docs() {
         <div className="mx-4 mobile:mx-0">
           <main className="mb-12">
             <div className="grid gap-4 grid-rows-auto grid-cols-1">
-              <DocsNameInput defaultValue={docs.map(doc => doc.name)} />
+              <div className="grid gap-4 grid-cols-1 mobile:grid-cols-2 grid-rows-auto">
+                <NameInput defaultValue={docs.map(doc => doc.name)} />
+                <AddressInput defaultValue={docs.map(doc => doc.address)} />
+              </div>
+
+              <ExplanationInput defaultValue={docs.map(doc => doc.explanation)} />
 
               <div className="grid gap-4 grid-cols-1 mobile:grid-cols-2 grid-rows-auto">
                 <VersionInput

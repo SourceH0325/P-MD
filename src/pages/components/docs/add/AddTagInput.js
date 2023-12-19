@@ -37,7 +37,6 @@ const TagInput = ({ onTagChange }) => {
     <div className="bg-[#202026] rounded-lg p-5">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">태그를 설정해 주세요!</h1>
-        <h1 className="text-xl text-gray-500 font-bold hidden mobile:block">STEP 3</h1>
       </div>
       <p className="mt-3 text-lg text-gray-500 font-bold">이름 밑에 뜰 태그를 설정합니다.</p>
       <div className="mt-4">

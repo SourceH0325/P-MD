@@ -24,7 +24,7 @@ const UrlInput = () => {
     url_link.setAttribute('type', 'text');
     url_link.setAttribute('id', 'UrlLink');
     url_link.setAttribute('class', 'mt-4 px-2.5 pb-1 w-full h-12 bg-[#17171b] text-left text-white rounded-lg');
-    url_link.setAttribute('placeholder', '예: https://example.com');
+    url_link.setAttribute('placeholder', '예: https://minedocs.xyz');
 
     url_name.addEventListener('input', () => {
       const inputText = url_name.value.trim();
@@ -57,7 +57,6 @@ const UrlInput = () => {
     <div className="bg-[#202026] rounded-lg p-5">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">링크를 설정해 주세요!</h1>
-        <h1 className="text-xl text-gray-500 font-bold hidden mobile:block">STEP 4</h1>
       </div>
       <p className="mt-3 text-lg text-gray-500 font-bold">상세 설명에 링크를 설정합니다.</p>
       <div id="UrlList" className="grid gap-0 grid-rows-auto grid-cols-1"></div>

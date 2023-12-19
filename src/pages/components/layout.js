@@ -8,6 +8,7 @@ import axios from 'axios';
 
 export default function Layout({ children }) {
   const router = useRouter();
+  const currentYear = new Date().getFullYear();
 
   const { data: session } = useSession();
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -286,7 +287,7 @@ export default function Layout({ children }) {
       <footer className="py-8">
         <div className="container mx-auto flex flex-wrap justify-center">
           <div className="w-full lg:w-1/3 px-4">
-            <p className="text-gray-600 text-lg font-bold text-center">&#169; 2023 MINE DOCS</p>
+            <p className="text-gray-600 text-lg font-bold text-center">&#169; {currentYear} MINE DOCS</p>
           </div>
           <div className="w-full lg:w-1/3 px-4">
             <p className="text-gray-600 font-bold text-center">support@minedocs.xyz</p>

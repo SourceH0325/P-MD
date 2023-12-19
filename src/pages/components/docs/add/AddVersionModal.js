@@ -185,6 +185,12 @@ const VersionModal = ({ isOpen, closeModal, setSelectedVersion, versionOptions }
       if (!selectedVersion.minVersion || !selectedVersion.maxVersion) {
         alert('최소, 최대 버전을 선택해주세요!');
         return;
+      } else if (selectedVersion.minVersion.value > selectedVersion.maxVersion.value) {
+        alert('최소 버전이 최대 버전보다 높습니다!');
+        return;
+      } else if (selectedVersion.minVersion.value === selectedVersion.maxVersion.value) {
+        alert('최소 버전과 최대 버전이 같습니다!');
+        return;
       }
     }
 

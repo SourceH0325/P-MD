@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import SearchBar from '@/pages/components/SearchBar';
 import Loading from '@/pages/components/load/DocsLoad';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 
@@ -15,6 +15,7 @@ export default function Home() {
 
   const { data: session } = useSession();
 
+  const textAreaRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
   const [docs, setDocs] = useState([]);
   const [query, setQuery] = useState('');
@@ -78,6 +79,13 @@ export default function Home() {
       fetchBookmarkedLists();
     }
   }, [session, loadedLists]);
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = 'auto';
+      textAreaRef.current.style.height = textAreaRef.current.scrollHeight + 'px';
+    }
+  }, [docs]);
 
   const handleSearch = query => {
     setQuery(query);
@@ -200,10 +208,20 @@ export default function Home() {
         <div className="mx-4 mobile:mx-0">
           <div className="flex justify-center items-center h-auto w-full mb-8">
             {docs.map(doc => (
-              <div key={doc._id} className="bg-[#202026] rounded-lg p-5 w-full">
+              <div key={doc._id} className="bg-[#202026] rounded-lg p-5 w-full shadow-lg">
                 <div className="flex justify-between items-center w-auto">
-                  <div className="flex items-center">
-                    <h1 className="text-2xl font-bold">{doc.name}</h1>
+                  <div className="flex flex-col mobile:flex-row items-center">
+                    <h1 className="text-2xl font-bold text-white mr-0 mobile:mr-3">{doc.name}</h1>
+                    <p
+                      className="text-lg text-gray-500 font-bold cursor-pointer transition-all rounded-lg px-2 py-1 hover:text-white hover:bg-blue-700"
+                      onClick={() => {
+                        const serverAddress = doc.address;
+                        navigator.clipboard.writeText(serverAddress);
+                        alert(`${serverAddress}를 클립보드에 복사했습니다!`);
+                      }}
+                    >
+                      {doc.address}
+                    </p>
                   </div>
                   <div className="flex items-center">
                     <button
@@ -220,29 +238,40 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
+
                 <div className="flex flex-wrap gap-2 mt-2">
                   {doc.multiple !== null ? (
                     doc.multiple.map((multiple, index) => (
                       <div key={index} className="bg-gray-700/60 rounded-lg px-2 py-1 mt-2">
-                        <p className="font-bold">{multiple}</p>
+                        <p className="font-bold text-white">{multiple}</p>
                       </div>
                     ))
                   ) : (
                     <div className="bg-gray-700/60 rounded-lg px-2 py-1 mt-2">
-                      <p className="font-bold">{doc.version}</p>
+                      <p className="font-bold text-white">{doc.version}</p>
                     </div>
                   )}
                   <div className="bg-gray-700/60 rounded-lg px-2 py-1 mt-2">
-                    <p className="font-bold">{doc.edition}</p>
+                    <p className="font-bold text-white">{doc.edition}</p>
                   </div>
                   {doc.tag.map((tag, index) => {
                     return (
                       <div key={index} className="bg-gray-700/60 rounded-lg px-2 py-1 mt-2">
-                        <p className="font-bold">{tag}</p>
+                        <p className="font-bold text-white">{tag}</p>
                       </div>
                     );
                   })}
                 </div>
+
+                <div className="bg-gray-700/60 rounded-lg px-2 py-1 mt-4 text-lg">
+                  <textarea
+                    ref={textAreaRef}
+                    className="bg-transparent w-full text-white resize-none outline-none"
+                    value={doc.explanation}
+                    readOnly
+                  />
+                </div>
+
                 <div
                   className="flex items-center w-auto mt-4 whitespace-nowrap overflow-auto mobile:justify-end"
                   id="LinkList_Main"
