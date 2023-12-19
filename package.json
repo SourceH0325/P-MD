@@ -19,7 +19,7 @@
     "cors": "^2.8.5",
     "eslint": "8.56.0",
     "eslint-config-next": "14.0.4",
-    "mongodb": "6.3",
+    "mongodb": "^5.9.2",
     "next": "^14.0.4",
     "next-auth": "^4.24.5",
     "nodemailer": "^6.9.7",
