@@ -173,14 +173,23 @@ const VersionModal = ({ isOpen, closeModal, setSelectedVersion, versionOptions }
         alert('버전을 선택해주세요!');
         return;
       }
-      console.log('선택한 단일 버전:', selectedVersion.singleVersion.label);
     } else if (selectedVersion.type === 'multiple') {
       if (!selectedVersion.multipleVersions || selectedVersion.multipleVersions.length <= 1) {
         alert('버전을 2개 이상 선택해주세요!');
         return;
       }
-      const selectedVersionsLabels = selectedVersion.multipleVersions.map(version => version.label);
-      console.log('선택한 다중 버전:', selectedVersionsLabels.join(', '));
+
+      const versionsWithX = selectedVersion.multipleVersions.filter(version => version.label.includes('x'));
+      for (const versionWithX of versionsWithX) {
+        const [majorWithX, minorWithX] = versionWithX.label.split('.');
+        for (const version of selectedVersion.multipleVersions) {
+          const [major, minor] = version.label.split('.');
+          if (majorWithX === major && minorWithX === minor && version.label !== versionWithX.label) {
+            alert('동일한 메이저와 마이너 버전을 가진 버전은 추가할 수 없습니다!');
+            return;
+          }
+        }
+      }
     } else if (selectedVersion.type === 'range') {
       if (!selectedVersion.minVersion || !selectedVersion.maxVersion) {
         alert('최소, 최대 버전을 선택해주세요!');
@@ -191,6 +200,15 @@ const VersionModal = ({ isOpen, closeModal, setSelectedVersion, versionOptions }
       } else if (selectedVersion.minVersion.value === selectedVersion.maxVersion.value) {
         alert('최소 버전과 최대 버전이 같습니다!');
         return;
+      }
+
+      const minVersionParts = selectedVersion.minVersion.label.split('.');
+      const maxVersionParts = selectedVersion.maxVersion.label.split('.');
+      if (minVersionParts[0] === maxVersionParts[0] && minVersionParts[1] === maxVersionParts[1]) {
+        if (minVersionParts[2] === 'x' || maxVersionParts[2] === 'x') {
+          alert('동일한 메이저와 마이너 버전을 가진 범위는 선택할 수 없습니다!');
+          return;
+        }
       }
     }
 

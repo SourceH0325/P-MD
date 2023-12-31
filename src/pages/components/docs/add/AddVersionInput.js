@@ -94,9 +94,12 @@ const VersionInput = ({ selectedVersion, setSelectedVersion, edition, setEdition
         { value: 11930, label: '1.19.2' },
         { value: 11940, label: '1.19.3' },
         { value: 11950, label: '1.19.4' },
-        { value: '12000', label: '1.20.x' },
+        { value: 12000, label: '1.20.x' },
         { value: 12010, label: '1.20' },
         { value: 12020, label: '1.20.1' },
+        { value: 12030, label: '1.20.2' },
+        { value: 12040, label: '1.20.3' },
+        { value: 12050, label: '1.20.4' },
       ],
     },
   ];
