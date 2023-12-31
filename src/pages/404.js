@@ -19,7 +19,7 @@ export default function Error404() {
           </div>
           <h1 className="text-center font-bold text-2xl">페이지를 찾을 수 없습니다!</h1>
           <button
-            className="border-2 border-gray-600 text-lg hover:border-blue-600 rounded-lg px-4 py-2 transition-all font-bold mx-auto block mt-4"
+            className="font-bold text-lg bg-gray-600 hover:bg-gray-700 transition-all px-4 py-2 transition-all mx-auto mt-4 rounded-lg block"
             onClick={() => router.back()}
           >
             돌아가기

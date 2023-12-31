@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useSession, signIn } from 'next-auth/react';
 import { useState, useEffect, useRef } from 'react';
 import ReactGridLayout from 'react-grid-layout';
+import { v4 as uuidv4 } from 'uuid';
 import 'react-grid-layout/css/styles.css';
 import { BiX } from 'react-icons/bi';
 import NameInput from '@/pages/components/list/add/AddListNameInput';
@@ -134,39 +135,60 @@ export default function Add_List() {
     }
   };
 
-  const [layout, setLayout] = useState([{ i: '0', x: 0, y: 0, w: 10, h: 4, minH: 4 }]);
+  const initialLayout = [
+    {
+      i: uuidv4(),
+      x: 0,
+      y: Infinity,
+      w: 10,
+      h: 4,
+      minH: 4,
+    },
+  ];
+
+  const [layout, setLayout] = useState(initialLayout);
 
   const add_list_block = () => {
     const newLayout = layout.concat({
-      i: `${layout.length}`,
+      i: uuidv4(),
       x: 0,
       y: Infinity,
       w: 10,
       h: 4,
       minH: 4,
     });
+    console.log(newLayout);
     setLayout(newLayout);
   };
 
   const handleComplete = () => {
+    if (layout.length === 0) {
+      alert('리스트를 추가해주세요!');
+      return;
+    }
+
     const name = document.querySelector('#Name').value;
     const tagA = document.querySelector('#TagA').value;
     const tagB = document.querySelector('#TagB').value;
-    const title = document.querySelector('.title').value;
-    const content = document.querySelector('.content').value;
-  
+
     const result_content = [];
-  
+    let errMessages = [];
+
     for (let i = 0; i < layout.length; i++) {
-      const title = document.querySelector(`#writing_a_${i}`).value;
-      const content = document.querySelector(`#writing_b_${i}`).value;
+      const title = document.querySelector(`#writing_a_${layout[i].i}`).value;
+      const content = document.querySelector(`#writing_b_${layout[i].i}`).value;
+
+      if (title === '' || content === '') {
+        errMessages.push('내용');
+        break;
+      }
+
       result_content.push({
-        i: `${i}`,
         title: title,
         content: content,
       });
     }
-  
+
     const result_location = layout.map(item => {
       return {
         i: item.i,
@@ -176,12 +198,21 @@ export default function Add_List() {
         h: item.h,
       };
     });
-  
-    if (title === '' || content === '') {
-      alert('내용을 추가해주세요!');
+
+    if (name === '') {
+      errMessages.push('이름');
+    }
+
+    if (tagA === '' || tagB === '') {
+      errMessages.push('태그');
+    }
+
+    if (errMessages.length > 0) {
+      alert(`${errMessages.join(', ')}을 추가해주세요!`);
+      setIsSaveButtonDisabled(false);
       return;
     }
-  
+
     const list = {
       name: name,
       tagA: tagA,
@@ -190,14 +221,9 @@ export default function Add_List() {
       result_location: result_location,
       linkDocs: id,
     };
-  
-    if (result_location.length === 0) {
-      alert('리스트를 추가해주세요!');
-      return;
-    }
 
     setIsSaveButtonDisabled(true);
-  
+
     if (status === 'unauthenticated') {
       alert('로그인이 필요합니다!');
       setIsSaveButtonDisabled(false);
@@ -306,7 +332,8 @@ export default function Add_List() {
                     <button
                       className="text-xl text-gray-500 font-bold"
                       onClick={() => {
-                        const newLayout = layout.filter(i => i.i !== item.i);
+                        const newLayout = layout.filter(layoutItem => layoutItem.i !== item.i);
+                        console.log(newLayout);
                         setLayout(newLayout);
                       }}
                     >
