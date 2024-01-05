@@ -6,6 +6,8 @@ import { useSession } from 'next-auth/react';
 import SearchBar from '@/pages/components/SearchBar';
 import Loading from '@/pages/components/load/DocsLoad';
 import { useState, useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 
@@ -176,6 +178,11 @@ export default function Home() {
     setRemainingLists(prevRemainingLists => prevRemainingLists.slice(15));
   };
 
+  const RenderImage = props => {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img {...props} style={{ maxWidth: '100%', height: 'auto' }} alt={props.alt} />;
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolledToBottom =
@@ -263,14 +270,13 @@ export default function Home() {
                   })}
                 </div>
 
-                <div className="bg-gray-700/60 rounded-lg px-2 py-1 mt-4 text-lg">
-                  <textarea
-                    ref={textAreaRef}
-                    className="bg-transparent w-full text-white resize-none outline-none"
-                    value={doc.explanation}
-                    readOnly
-                  />
-                </div>
+                <ReactMarkdown
+                  className="bg-gray-700/60 rounded-lg px-2 py-1 mt-4 markdown-content"
+                  components={{ img: RenderImage }}
+                  rehypePlugins={[rehypeRaw]}
+                >
+                  {doc.explanation}
+                </ReactMarkdown>
 
                 <div
                   className="flex items-center w-auto mt-4 whitespace-nowrap overflow-auto mobile:justify-end"

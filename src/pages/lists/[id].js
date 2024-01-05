@@ -67,8 +67,7 @@ function RenderLists({ lists, router, id }) {
   }));
 
   if (!layout) {
-    console.log('Layout is not available.');
-    return <p>No layout available.</p>;
+    return <p>데이터가 없습니다!</p>;
   }
 
   return (

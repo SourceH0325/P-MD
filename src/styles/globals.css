@@ -75,3 +75,53 @@ hr {
   opacity: 100;
   visibility: visible;
 }
+
+.markdown-content {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.markdown-content h1 {
+  font-size: 24px;
+}
+
+.markdown-content h2 {
+  font-size: 20px;
+}
+
+.markdown-content h3 {
+  font-size: 18px;
+}
+
+.markdown-content h4 {
+  font-size: 16px;
+}
+
+.markdown-content h5 {
+  font-size: 14px;
+}
+
+.markdown-content ul {
+  padding-left: 20px;
+}
+
+.markdown-content ol {
+  margin-bottom: 16px;
+  padding-left: 20px;
+}
+
+.markdown-content li {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  list-style: disc;
+}
+
+.markdown-content a {
+  color: rgb(37 99 235);
+  text-decoration: none;
+}
+
+.markdown-content a:hover {
+  text-decoration: underline;
+}
