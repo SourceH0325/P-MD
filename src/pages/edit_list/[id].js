@@ -434,7 +434,7 @@ export default function Edit_List() {
                 <ReactGridLayout
                   className="layout select-none"
                   layout={layout}
-                  cols={5}
+                  cols={6}
                   onLayoutChange={onLayoutChange}
                   containerPadding={[0, 10]}
                   isDraggable={isDraggable}

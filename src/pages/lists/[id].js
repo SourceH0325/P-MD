@@ -80,7 +80,7 @@ function RenderLists({ lists, router, id }) {
         onLayoutChange={layout => console.log(layout)}
         layouts={{ lg: layout, md: layout, sm: layout, xs: layout, xxs: layout }}
         breakpoints={{ lg: 1140, md: 996, sm: 768, xs: 480, xxs: 0 }}
-        cols={{ lg: 5, md: 5, sm: 1, xs: 1, xxs: 1 }}
+        cols={{ lg: 6, md: 6, sm: 1, xs: 1, xxs: 1 }}
         containerPadding={[0, 0]}
         rowHeight={30}
         width={1140}
