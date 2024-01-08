@@ -31,6 +31,7 @@ export default function Edit_List() {
     if (window.innerWidth <= 1140) {
       if (showAlert == true) {
         alert('화면 크기가 너무 작습니다.');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         showAlert = false;
         router.back();
       }
@@ -228,6 +229,7 @@ export default function Edit_List() {
 
     const result_content = [];
     let errMessages = [];
+    const LinkDocs = lists?.map(list => list.linkDocs);
 
     for (let i = 0; i < layout.length; i++) {
       const title = document.querySelector(`#writing_a_${layout[i].i}`).value;
@@ -274,7 +276,7 @@ export default function Edit_List() {
       tagB: tagB,
       result_content: result_content,
       result_location: result_location,
-      linkDocs: id,
+      linkDocs: LinkDocs,
     };
 
     setIsSaveButtonDisabled(true);
@@ -347,7 +349,7 @@ export default function Edit_List() {
       tagB: tagB,
       result_content: result_content,
       result_location: result_location,
-      linkDocs: id,
+      linkDocs: LinkDocs,
     };
 
     if (result) {
