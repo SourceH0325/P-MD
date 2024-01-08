@@ -229,7 +229,8 @@ export default function Edit_List() {
 
     const result_content = [];
     let errMessages = [];
-    const LinkDocs = lists?.map(list => list.linkDocs);
+
+    const linkDocs = lists ? lists.map(list => list.linkDocs).join('') : '';
 
     for (let i = 0; i < layout.length; i++) {
       const title = document.querySelector(`#writing_a_${layout[i].i}`).value;
@@ -276,7 +277,7 @@ export default function Edit_List() {
       tagB: tagB,
       result_content: result_content,
       result_location: result_location,
-      linkDocs: LinkDocs,
+      linkDocs: linkDocs,
     };
 
     setIsSaveButtonDisabled(true);
@@ -331,7 +332,7 @@ export default function Edit_List() {
       });
     }
 
-    const LinkDocs = lists?.map(list => list.linkDocs);
+    const linkDocs = lists ? lists.map(list => list.linkDocs).join('') : '';
 
     const result_location = layout.map(item => {
       return {
@@ -349,7 +350,7 @@ export default function Edit_List() {
       tagB: tagB,
       result_content: result_content,
       result_location: result_location,
-      linkDocs: LinkDocs,
+      linkDocs: linkDocs,
     };
 
     if (result) {
@@ -370,7 +371,7 @@ export default function Edit_List() {
         })
         .then(res => {
           console.log(res);
-          router.replace(`/docs/${LinkDocs}`);
+          router.replace(`/docs/${linkDocs}`);
         })
         .catch(err => {
           console.log(err);
