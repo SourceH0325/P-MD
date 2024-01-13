@@ -324,7 +324,7 @@ export default function Add_List() {
                     id={`writing_b_${item.i}`}
                     ref={writing_b}
                     rows="1"
-                    className="content text-xl text-white font-bold bg-[#202026] -mt-3 w-full h-full resize-none"
+                    className="content text-xl text-white font-bold bg-transparent -mt-3 w-full h-full resize-none"
                     placeholder="내용을 적어주세요!"
                   />
                   {/* x 버튼 */}

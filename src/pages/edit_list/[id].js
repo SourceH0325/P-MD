@@ -467,8 +467,8 @@ export default function Edit_List() {
                           newWritingB[index] = e.target.value;
                           setWritingB(newWritingB);
                         }}
-                        rows="1"
-                        className="content text-xl text-white font-bold bg-[#202026] -mt-3 w-full h-full resize-none"
+                        rows={writingB[index]?.split('\n').length || 1}
+                        className="content text-xl text-white font-bold bg-transparent -mt-3 w-full h-full resize-none"
                         placeholder="내용을 적어주세요!"
                       />
                       <div className="absolute top-0 right-0">

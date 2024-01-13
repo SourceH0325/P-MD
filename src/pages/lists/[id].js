@@ -81,20 +81,20 @@ function RenderLists({ lists, router, id }) {
         layouts={{ lg: layout, md: layout, sm: layout, xs: layout, xxs: layout }}
         breakpoints={{ lg: 1140, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{ lg: 6, md: 6, sm: 1, xs: 1, xxs: 1 }}
-        containerPadding={[0, 0]}
+        containerPadding={[0, 10]}
         rowHeight={30}
         width={1140}
       >
         {lists[0]?.result_content?.map((result, index) => (
           <div
             key={result.i || index}
-            className="bg-[#202026] rounded-lg p-5"
+            className="bg-[#202026] rounded-lg p-5 flex flex-col"
             data-grid={lists[0]?.result_location[index]}
           >
             <h1 className="text-2xl text-white font-bold">{result.title}</h1>
             <br />
             <textarea
-              className="bg-[#202026] -mt-3 text-xl font-bold text-white w-full h-auto resize-none"
+              className="text-xl text-white font-bold bg-transparent -mt-3 w-full h-full resize-none"
               value={result.content}
               readOnly
               rows={result.content.split('\n').length}
