@@ -93,7 +93,12 @@ function RenderLists({ lists, router, id }) {
           >
             <h1 className="text-2xl text-white font-bold">{result.title}</h1>
             <br />
-            <p className="text-xl text-white font-bold -mt-3 w-full h-full">{result.content}</p>
+            <textarea
+              className="bg-[#202026] -mt-3 text-xl font-bold text-white w-full h-auto resize-none"
+              value={result.content}
+              readOnly
+              rows={result.content.split('\n').length}
+            />
           </div>
         ))}
       </ResponsiveGridLayout>
