@@ -40,8 +40,10 @@ export default function Home() {
     const fetchLists = async () => {
       try {
         const res = await axios.get(`/api/docs/callLinkDocsDB/${id}`);
-        const loaded = res.data.result.slice(0, 15);
-        const remaining = res.data.result.slice(15);
+        const lists = res.data.result;
+        lists.sort((a, b) => a.name.localeCompare(b.name));
+        const loaded = lists.slice(0, 15);
+        const remaining = lists.slice(15);
         setLoadedLists(loaded);
         setRemainingLists(remaining);
         setClickedBlocks(Array(loaded.length).fill(false));
@@ -113,13 +115,11 @@ export default function Home() {
     }
 
     const filteredRemainingLists = remainingLists.filter(list => {
-      if (
-        list.name.toLowerCase().includes(query.toLowerCase()) ||
-        list.tagA.toLowerCase().includes(query.toLowerCase()) ||
-        list.tagB.toLowerCase().includes(query.toLowerCase())
-      ) {
-        return list;
-      }
+      return list.result_content.some(
+        content =>
+          content.title.toLowerCase().includes(query.toLowerCase()) ||
+          content.content.toLowerCase().includes(query.toLowerCase()),
+      );
     });
 
     setLoadedLists(prevLoadedLists => [...prevLoadedLists, ...filteredRemainingLists.slice(0, 15)]);
@@ -129,12 +129,12 @@ export default function Home() {
   const filteredLists = loadedLists.filter(list => {
     if (query === '') {
       return list;
-    } else if (
-      list.name.toLowerCase().includes(query.toLowerCase()) ||
-      list.tagA.toLowerCase().includes(query.toLowerCase()) ||
-      list.tagB.toLowerCase().includes(query.toLowerCase())
-    ) {
-      return list;
+    } else {
+      return list.result_content.some(
+        content =>
+          content.title.toLowerCase().includes(query.toLowerCase()) ||
+          content.content.toLowerCase().includes(query.toLowerCase()),
+      );
     }
   });
 

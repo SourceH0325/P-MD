@@ -22,8 +22,10 @@ export default function Home() {
     const fetchDocs = async () => {
       try {
         const res = await axios.get('/api/docs/callDocsDB');
-        const loaded = res.data.result.slice(0, 15);
-        const remaining = res.data.result.slice(15);
+        const docs = res.data.result;
+        docs.sort((a, b) => a.name.localeCompare(b.name));
+        const loaded = docs.slice(0, 15);
+        const remaining = docs.slice(15);
         setLoadedDocs(loaded);
         setRemainingDocs(remaining);
         setClickedBlocks(Array(loaded.length).fill(false));
