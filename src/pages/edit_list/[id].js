@@ -48,6 +48,11 @@ export default function Edit_List() {
 
   const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(false);
   const [isDraggable, setIsDraggable] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  useEffect(() => {
+    setIsDisabled(isDraggable);
+  }, [isDraggable]);
 
   const edit_list = () => {
     setIsDraggable(!isDraggable);
@@ -455,7 +460,10 @@ export default function Edit_List() {
                           newWritingA[index] = e.target.value;
                           setWritingA(newWritingA);
                         }}
-                        className="title text-2xl text-white font-bold bg-[#202026]"
+                        disabled={isDisabled}
+                        className={`title text-2xl text-white font-bold bg-[#202026] ${
+                          isDraggable ? 'pointer-events-none' : ''
+                        }`}
                         placeholder="타이틀을 적어주세요!"
                       />
                       <br />
@@ -467,8 +475,11 @@ export default function Edit_List() {
                           newWritingB[index] = e.target.value;
                           setWritingB(newWritingB);
                         }}
+                        disabled={isDisabled}
                         rows={writingB[index]?.split('\n').length || 1}
-                        className="content text-xl text-white font-bold bg-transparent -mt-3 w-full h-full resize-none"
+                        className={`content text-xl text-white font-bold bg-transparent -mt-3 w-full h-full resize-none ${
+                          isDraggable ? 'pointer-events-none' : ''
+                        }`}
                         placeholder="내용을 적어주세요!"
                       />
                       <div className="absolute top-0 right-0">

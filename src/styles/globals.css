@@ -45,7 +45,7 @@ hr {
   background-color: #6b7280;
 }
 ::-webkit-scrollbar-track {
-  background-color: #17171b;
+  background-color: transparent;
 }
 
 #LinkList_Main::-webkit-scrollbar {

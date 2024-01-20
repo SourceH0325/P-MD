@@ -46,6 +46,11 @@ export default function Add_List() {
 
   const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(false);
   const [isDraggable, setIsDraggable] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  useEffect(() => {
+    setIsDisabled(isDraggable);
+  }, [isDraggable]);
 
   const edit_list = () => {
     setIsDraggable(!isDraggable);
@@ -316,15 +321,21 @@ export default function Add_List() {
                   <input
                     id={`writing_a_${item.i}`}
                     ref={writing_a}
-                    className="title text-2xl text-white font-bold bg-[#202026]"
+                    disabled={isDraggable}
+                    className={`title text-2xl text-white font-bold bg-[#202026] ${
+                      isDraggable ? 'pointer-events-none' : ''
+                    }`}
                     placeholder="타이틀을 적어주세요!"
                   />
                   <br />
                   <textarea
                     id={`writing_b_${item.i}`}
                     ref={writing_b}
+                    disabled={isDraggable}
                     rows="1"
-                    className="content text-xl text-white font-bold bg-transparent -mt-3 w-full h-full resize-none"
+                    className={`content text-xl text-white font-bold bg-transparent -mt-3 w-full h-full resize-none ${
+                      isDraggable ? 'pointer-events-none' : ''
+                    }`}
                     placeholder="내용을 적어주세요!"
                   />
                   {/* x 버튼 */}

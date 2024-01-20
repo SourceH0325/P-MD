@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { NextSeo } from 'next-seo';
 import { MdEdit } from 'react-icons/md';
 import { FaPlus } from 'react-icons/fa';
 import { useRouter } from 'next/router';
@@ -203,10 +202,6 @@ export default function Home() {
 
   return (
     <>
-      <NextSeo
-        title={docs.map(doc => doc.name)}
-        description="마인크래프트 서버의 플레이를 도와줍니다."
-      />
       <Head>
         {docs.map(doc => (
           <title key={doc._id}>{doc.name}</title>

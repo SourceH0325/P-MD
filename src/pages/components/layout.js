@@ -101,7 +101,7 @@ export default function Layout({ children }) {
       <header className="flex justify-between items-center h-20 w-auto mx-4 mobile:mx-0">
         <div className="flex items-center">
           <div className="flex items-center cursor-pointer select-none" onClick={() => router.push('/')}>
-            <Image src="/MINEDOCS_WHITE.png" alt="" width={36} height={40} />
+            <Image src="/MINEDOCS_WHITE.png" alt="Logo" width={40} height={40} />
             <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">MINE DOCS</h1>
           </div>
           <button
@@ -214,7 +214,7 @@ export default function Layout({ children }) {
               className="flex items-center cursor-pointer select-none"
               onClick={() => router.push('/') && handleMobileMenu()}
             >
-              <Image src="/MINEDOCS_WHITE.png" alt="" width={36} height={40} />
+              <Image src="/MINEDOCS_WHITE.png" alt="Logo" width={40} height={40} />
               <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">MINE DOCS</h1>
             </div>
 
