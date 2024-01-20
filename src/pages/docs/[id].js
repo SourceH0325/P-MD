@@ -91,8 +91,6 @@ export default function Home() {
     }
   }, [docs]);
 
-
-
   const handleSearch = query => {
     setQuery(query);
 
@@ -198,7 +196,7 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remainingLists]);
+  }, [remainingLists, docs]);
 
   return (
     <>
