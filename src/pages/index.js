@@ -193,13 +193,13 @@ export default function Home() {
                     <h1 className="text-2xl font-bold truncate">{doc.name}</h1>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                        <p className="font-bold">{doc.version}</p>
+                        <p className="font-medium">{doc.version}</p>
                       </div>
                       <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                        <p className="font-bold">{doc.edition}</p>
+                        <p className="font-medium">{doc.edition}</p>
                       </div>
                       <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                        <p className="font-bold">{doc.tag[0]}</p>
+                        <p className="font-medium">{doc.tag[0]}</p>
                       </div>
                     </div>
                     <div className="flex justify-between mt-2">

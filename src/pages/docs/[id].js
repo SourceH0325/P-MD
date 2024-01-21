@@ -250,21 +250,21 @@ export default function Home() {
                   {doc.multiple !== null ? (
                     doc.multiple.map((multiple, index) => (
                       <div key={index} className="bg-gray-700/60 rounded-lg px-2 py-1 mt-2">
-                        <p className="font-bold text-white">{multiple}</p>
+                        <p className="font-medium text-white">{multiple}</p>
                       </div>
                     ))
                   ) : (
                     <div className="bg-gray-700/60 rounded-lg px-2 py-1 mt-2">
-                      <p className="font-bold text-white">{doc.version}</p>
+                      <p className="font-medium text-white">{doc.version}</p>
                     </div>
                   )}
                   <div className="bg-gray-700/60 rounded-lg px-2 py-1 mt-2">
-                    <p className="font-bold text-white">{doc.edition}</p>
+                    <p className="font-medium text-white">{doc.edition}</p>
                   </div>
                   {doc.tag.map((tag, index) => {
                     return (
                       <div key={index} className="bg-gray-700/60 rounded-lg px-2 py-1 mt-2">
-                        <p className="font-bold text-white">{tag}</p>
+                        <p className="font-medium text-white">{tag}</p>
                       </div>
                     );
                   })}
