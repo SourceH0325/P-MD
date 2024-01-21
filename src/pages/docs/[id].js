@@ -303,10 +303,10 @@ export default function Home() {
                     <h1 className="text-2xl font-bold truncate">{list.name}</h1>
                     <div className="flex flex-wrap gap-2 mt-2">
                       <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                        <p className="font-bold">{list.tagA}</p>
+                        <p className="font-medium">{list.tagA}</p>
                       </div>
                       <div className="bg-gray-700/60 rounded-lg px-2 py-1">
-                        <p className="font-bold">{list.tagB}</p>
+                        <p className="font-medium">{list.tagB}</p>
                       </div>
                     </div>
                     <div className="flex justify-between">
