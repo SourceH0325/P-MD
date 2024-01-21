@@ -333,7 +333,7 @@ export default function Add_List() {
                     ref={writing_b}
                     disabled={isDisabled}
                     rows="1"
-                    className={`content text-xl text-white font-bold bg-transparent -mt-3 w-full h-full resize-none ${
+                    className={`content text-xl text-white font-medium bg-transparent -mt-3 w-full h-full resize-none ${
                       isDraggable ? 'pointer-events-none' : ''
                     }`}
                     placeholder="내용을 적어주세요!"

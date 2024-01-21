@@ -94,7 +94,7 @@ function RenderLists({ lists, router, id }) {
             <h1 className="text-2xl text-white font-bold">{result.title}</h1>
             <br />
             <textarea
-              className="text-xl text-white font-bold bg-transparent -mt-3 w-full h-full resize-none"
+              className="text-xl text-white font-medium bg-transparent -mt-3 w-full h-full resize-none"
               value={result.content}
               readOnly
               rows={result.content.split('\n').length}
