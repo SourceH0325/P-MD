@@ -321,7 +321,7 @@ export default function Add_List() {
                   <input
                     id={`writing_a_${item.i}`}
                     ref={writing_a}
-                    disabled={isDraggable}
+                    disabled={isDisabled}
                     className={`title text-2xl text-white font-bold bg-[#202026] ${
                       isDraggable ? 'pointer-events-none' : ''
                     }`}
@@ -331,7 +331,7 @@ export default function Add_List() {
                   <textarea
                     id={`writing_b_${item.i}`}
                     ref={writing_b}
-                    disabled={isDraggable}
+                    disabled={isDisabled}
                     rows="1"
                     className={`content text-xl text-white font-bold bg-transparent -mt-3 w-full h-full resize-none ${
                       isDraggable ? 'pointer-events-none' : ''
