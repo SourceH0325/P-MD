@@ -74,18 +74,15 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const handleOutsideClick = event => {
-      // Check if the click target is inside the profile button or the dropdown itself
       if (!event.target.closest('.profile-button') && !event.target.closest('.profile-dropdown')) {
         setProfileDropdownOpen(false);
       }
     };
 
     if (profileDropdownOpen) {
-      // Attach the click event listener to the document when the dropdown is open
       document.addEventListener('click', handleOutsideClick);
     }
 
-    // Cleanup the event listener when the component unmounts or the dropdown is closed
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
@@ -95,6 +92,7 @@ export default function Layout({ children }) {
     <>
       <Head>
         <meta name="naver-site-verification" content="6eb3f16b30a15f21d8e43546f8291dc3bc516864" />
+        <meta name="theme-color" content="#2563eb" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

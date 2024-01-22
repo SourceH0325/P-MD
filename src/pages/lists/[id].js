@@ -33,13 +33,17 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        {lists?.map(list => (
-          <title key={list._id}>{list.name}</title>
-        ))}
-        <meta name="og:title" content={lists?.map(list => list.name)} />
-        <meta name="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
-      </Head>
+      <div>
+        <Head>
+          {lists && lists.length > 0 && lists[0].name && (
+            <>
+              <title>{lists[0].name}</title>
+              <meta name="og:title" content={lists[0].name} />
+            </>
+          )}
+          <meta name="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
+        </Head>
+      </div>
 
       {isLoading ? (
         <Loading />
