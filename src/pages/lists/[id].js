@@ -1,19 +1,19 @@
 import axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import Loading from '@/pages/components/load/ListLoad';
 import 'react-grid-layout/css/styles.css';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-export default function Home({ initialLists }) {
+export default function Home({ OGLists }) {
   const router = useRouter();
   const id = router.query.id;
 
-  const [lists, setLists] = useState(initialLists);
-  const [isLoading, setIsLoading] = useState(false);
+  const [lists, setLists] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (id) {
@@ -34,10 +34,8 @@ export default function Home({ initialLists }) {
   return (
     <>
       <Head>
-        {lists?.map(list => (
-          <title key={list._id}>{list.name}</title>
-        ))}
-        <meta name="og:title" content={lists?.map(list => list.name)} />
+        <title>{lists && lists.length > 0 ? lists[0].name : 'MINE DOCS'}</title>
+        <meta name="og:title" content={OGLists && OGLists.length > 0 ? OGLists[0].name : 'MINE DOCS'} />
         <meta name="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 
@@ -128,19 +126,22 @@ function RenderLists({ lists, router, id }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
-  let lists = [];
-  try {
-    const res = await axios.get(`/api/list/callListDB/${id}`);
-    lists = res.data.result;
-  } catch (err) {
-    console.error('Error fetching list:', err);
-  }
+export async function getServerSideProps({ params }) {
+  const { id } = params;
 
-  return {
-    props: {
-      initialLists: lists,
-    },
-  };
+  try {
+    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/list/callListDB/${id}`);
+    const OGLists = res.data.result;
+
+    return {
+      props: {
+        OGLists,
+      },
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      props: {},
+    };
+  }
 }

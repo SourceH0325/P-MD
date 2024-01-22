@@ -129,7 +129,7 @@ export default function Bookmark() {
           console.log(res.data.message);
           setClickedDocs(prevClickedDocs => {
             const newClickedDocs = [...prevClickedDocs];
-            newClickedDocs[index] = false; // Reset the bookmark status
+            newClickedDocs[index] = false;
             return newClickedDocs;
           });
         })
@@ -152,7 +152,7 @@ export default function Bookmark() {
           console.log(res.data.message);
           setClickedLists(prevClickedLists => {
             const newClickedLists = [...prevClickedLists];
-            newClickedLists[index] = false; // Reset the bookmark status
+            newClickedLists[index] = false;
             return newClickedLists;
           });
         })
