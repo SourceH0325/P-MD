@@ -204,7 +204,8 @@ export default function Home() {
         {docs.map(doc => (
           <title key={doc._id}>{doc.name}</title>
         ))}
-        <meta name="description" content="마인크래프트 서버의 플레이를 도와줍니다." />
+        <meta property="og:title" content={docs[0]?.name} />
+        <meta property="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 
       <SearchBar onSearch={handleSearch} />

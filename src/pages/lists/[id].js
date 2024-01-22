@@ -37,9 +37,8 @@ export default function Home() {
         {lists?.map(list => (
           <title key={list._id}>{list.name}</title>
         ))}
-        <meta name="description" content="마인크래프트 서버의 플레이를 도와줍니다." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="og:title" content={lists?.map(list => list.name)} />
+        <meta name="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 
       {isLoading ? (
