@@ -185,15 +185,12 @@ export default function Home({ OGDocs }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolledToBottom =
-        window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight;
+      const isScrolledToBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
 
       if (isScrolledToBottom && remainingLists.length > 0) {
         loadMoreLists();
       }
     };
-
-    loadMoreLists();
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
