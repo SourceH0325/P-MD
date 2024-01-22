@@ -1,19 +1,19 @@
 import axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import Loading from '@/pages/components/load/ListLoad';
 import 'react-grid-layout/css/styles.css';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-export default function Home() {
+export default function Home({ initialLists }) {
   const router = useRouter();
   const id = router.query.id;
 
-  const [lists, setLists] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [lists, setLists] = useState(initialLists);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -33,17 +33,13 @@ export default function Home() {
 
   return (
     <>
-      <div>
-        <Head>
-          {lists && lists.length > 0 && lists[0].name && (
-            <>
-              <title>{lists[0].name}</title>
-              <meta name="og:title" content={lists[0].name} />
-            </>
-          )}
-          <meta name="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
-        </Head>
-      </div>
+      <Head>
+        {lists?.map(list => (
+          <title key={list._id}>{list.name}</title>
+        ))}
+        <meta name="og:title" content={lists?.map(list => list.name)} />
+        <meta name="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
+      </Head>
 
       {isLoading ? (
         <Loading />
@@ -130,4 +126,21 @@ function RenderLists({ lists, router, id }) {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { id } = context.query;
+  let lists = [];
+  try {
+    const res = await axios.get(`/api/list/callListDB/${id}`);
+    lists = res.data.result;
+  } catch (err) {
+    console.error('Error fetching list:', err);
+  }
+
+  return {
+    props: {
+      initialLists: lists,
+    },
+  };
 }
