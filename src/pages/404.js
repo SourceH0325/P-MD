@@ -8,7 +8,7 @@ export default function Error404() {
   return (
     <>
       <Head>
-        <title>MINE DOCS</title>
+        <title>404</title>
         <meta name="description" content="페이지를 찾을 수 없습니다." />
       </Head>
 

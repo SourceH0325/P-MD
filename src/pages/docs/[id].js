@@ -200,8 +200,8 @@ export default function Home({ OGDocs }) {
   return (
     <>
       <Head>
-        <title>{docs && docs.length > 0 ? docs[0].name : 'MINE DOCS'}</title>
-        <meta name="og:title" content={OGDocs && OGDocs.length > 0 ? OGDocs[0].name : 'MINE DOCS'} />
+        <title>{docs && docs.length > 0 ? docs[0].name : '마인독스'}</title>
+        <meta name="og:title" content={OGDocs && OGDocs.length > 0 ? OGDocs[0].name : '마인독스'} />
         <meta property="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 

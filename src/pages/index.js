@@ -175,7 +175,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>MINE DOCS</title>
+        <title>마인독스</title>
         <meta name="description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 

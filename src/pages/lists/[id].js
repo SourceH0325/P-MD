@@ -34,8 +34,8 @@ export default function Home({ OGLists }) {
   return (
     <>
       <Head>
-        <title>{lists && lists.length > 0 ? lists[0].name : 'MINE DOCS'}</title>
-        <meta name="og:title" content={OGLists && OGLists.length > 0 ? OGLists[0].name : 'MINE DOCS'} />
+        <title>{lists && lists.length > 0 ? lists[0].name : '마인독스'}</title>
+        <meta name="og:title" content={OGLists && OGLists.length > 0 ? OGLists[0].name : '마인독스'} />
         <meta name="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 

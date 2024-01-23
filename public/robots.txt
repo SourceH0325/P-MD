@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /api/
-
-Host: https://minedocs.xyz
-
-Sitemap: https://minedocs.xyz/sitemap-0.xml
