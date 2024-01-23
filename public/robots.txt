@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Disallow: /api/
+
+# Host
+Host: https://minedocs.xyz
+
+# Sitemaps
+Sitemap: https://minedocs.xyz/sitemap.xml
