@@ -11,7 +11,7 @@ import rehypeRaw from 'rehype-raw';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 
-export default function Home({ OGDocs }) {
+export default function Home({ SSDocs }) {
   const router = useRouter();
   const id = router.query.id;
 
@@ -200,8 +200,8 @@ export default function Home({ OGDocs }) {
   return (
     <>
       <Head>
-        <title>{docs && docs.length > 0 ? docs[0].name : '마인독스'}</title>
-        <meta name="og:title" content={OGDocs && OGDocs.length > 0 ? OGDocs[0].name : '마인독스'} />
+        <title>{SSDocs && SSDocs.length > 0 ? SSDocs[0].name : '마인독스'}</title>
+        <meta name="og:title" content={SSDocs && SSDocs.length > 0 ? SSDocs[0].name : '마인독스'} />
         <meta property="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 
@@ -337,22 +337,13 @@ export default function Home({ OGDocs }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
-  const { id } = params;
-
-  try {
-    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/docs/callDocsDB/${id}`);
-    const OGDocs = res.data.result;
-
-    return {
-      props: {
-        OGDocs,
-      },
-    };
-  } catch (err) {
-    console.error(err);
-    return {
-      props: {},
-    };
-  }
+export async function getServerSideProps(context) {
+  const id = context.params.id;
+  const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/docs/callDocsDB/${id}`);
+  const SSDocs = res.data.result;
+  return {
+    props: {
+      SSDocs,
+    },
+  };
 }

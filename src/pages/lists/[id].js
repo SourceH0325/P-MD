@@ -8,7 +8,7 @@ import 'react-grid-layout/css/styles.css';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-export default function Home({ OGLists }) {
+export default function Home({ SSLists }) {
   const router = useRouter();
   const id = router.query.id;
 
@@ -34,8 +34,8 @@ export default function Home({ OGLists }) {
   return (
     <>
       <Head>
-        <title>{lists && lists.length > 0 ? lists[0].name : '마인독스'}</title>
-        <meta name="og:title" content={OGLists && OGLists.length > 0 ? OGLists[0].name : '마인독스'} />
+        <title>{SSLists && SSLists.length > 0 ? SSLists[0].name : '마인독스'}</title>
+        <meta name="og:title" content={SSLists && SSLists.length > 0 ? SSLists[0].name : '마인독스'} />
         <meta name="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 
@@ -126,22 +126,13 @@ function RenderLists({ lists, router, id }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
-  const { id } = params;
-
-  try {
-    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/list/callListDB/${id}`);
-    const OGLists = res.data.result;
-
-    return {
-      props: {
-        OGLists,
-      },
-    };
-  } catch (err) {
-    console.error(err);
-    return {
-      props: {},
-    };
-  }
+export async function getServerSideProps(context) {
+  const id = context.params.id;
+  const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/list/callListDB/${id}`);
+  const SSLists = res.data.result;
+  return {
+    props: {
+      SSLists,
+    },
+  };
 }
