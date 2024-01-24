@@ -34,8 +34,8 @@ export default function Home({ SSLists }) {
   return (
     <>
       <Head>
-        <title>{SSLists && SSLists.length > 0 ? SSLists[0].name : '마인독스'}</title>
-        <meta name="og:title" content={SSLists && SSLists.length > 0 ? SSLists[0].name : '마인독스'} />
+        <title>{SSLists && SSLists.length > 0 ? `${SSLists[0].name} - 마인독스` : '마인독스'}</title>
+        <meta name="og:title" content={SSLists && SSLists.length > 0 ? `${SSLists[0].name} - 마인독스` : '마인독스'} />
         <meta name="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 
@@ -44,7 +44,7 @@ export default function Home({ SSLists }) {
       ) : lists.length > 0 ? (
         <RenderLists lists={lists} router={router} id={id} />
       ) : (
-        <p>데이터가 없습니다!</p>
+        router.push('/404')
       )}
     </>
   );

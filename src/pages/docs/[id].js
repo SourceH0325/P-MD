@@ -200,8 +200,8 @@ export default function Home({ SSDocs }) {
   return (
     <>
       <Head>
-        <title>{SSDocs && SSDocs.length > 0 ? SSDocs[0].name : '마인독스'}</title>
-        <meta name="og:title" content={SSDocs && SSDocs.length > 0 ? SSDocs[0].name : '마인독스'} />
+        <title>{SSDocs && SSDocs.length > 0 ? `${SSDocs[0].name} - 마인독스` : '마인독스'}</title>
+        <meta name="og:title" content={SSDocs && SSDocs.length > 0 ? `${SSDocs[0].name} - 마인독스` : '마인독스'} />
         <meta property="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 

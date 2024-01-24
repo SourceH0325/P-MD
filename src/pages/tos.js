@@ -10,12 +10,12 @@ export default function Tos() {
 
       <div className="mx-4 mobile:mx-0">
         <main className="mb-12">
-          <h1 className="text-start font-bold text-2xl">마인 독스 이용약관</h1>
+          <h1 className="text-start font-bold text-2xl">마인독스 이용약관</h1>
 
           <div className="mt-10">
             <h2 className="text-start font-bold text-xl">제1조 (목적)</h2>
             <p className="mt-2">
-              본 약관은 MINE DOCS(이하 &#34;회사&#34;)가 운영하는 웹사이트 &#39;MINE DOCS&#39;(이하
+              본 약관은 MINEDOCS(이하 &#34;회사&#34;)가 운영하는 웹사이트 &#39;MINEDOCS&#39;(이하
               &#34;서비스&#34;)에서 제공하는 서비스의 이용과 관련하여 회사와 이용자의 권리, 의무 및 책임사항을 규정함을
               목적으로 합니다.
             </p>
@@ -35,7 +35,7 @@ export default function Tos() {
                 <tr>
                   <td className="border border-gray-600 px-4 py-2">서비스</td>
                   <td className="border border-gray-600 px-4 py-2">
-                    회사가 제공하는 웹사이트 &#39;MINE DOCS&#39;를 의미합니다.
+                    회사가 제공하는 웹사이트 &#39;MINEDOCS&#39;를 의미합니다.
                   </td>
                 </tr>
                 <tr>

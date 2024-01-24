@@ -100,7 +100,7 @@ export default function Layout({ children }) {
         <div className="flex items-center">
           <div className="flex items-center cursor-pointer select-none" onClick={() => router.push('/')}>
             <Image src="/MINEDOCS_WHITE.png" alt="Logo" width={40} height={40} />
-            <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">MINE DOCS</h1>
+            <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">MINEDOCS</h1>
           </div>
           <button
             className="font-bold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block"
@@ -213,7 +213,7 @@ export default function Layout({ children }) {
               onClick={() => router.push('/') && handleMobileMenu()}
             >
               <Image src="/MINEDOCS_WHITE.png" alt="Logo" width={40} height={40} />
-              <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">MINE DOCS</h1>
+              <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">MINEDOCS</h1>
             </div>
 
             <div className="flex items-center">
@@ -285,7 +285,7 @@ export default function Layout({ children }) {
       <footer className="py-8">
         <div className="container mx-auto flex flex-wrap justify-center">
           <div className="w-full lg:w-1/3 px-4">
-            <p className="text-gray-600 text-lg font-bold text-center">&#169; {currentYear} MINE DOCS</p>
+            <p className="text-gray-600 text-lg font-bold text-center">&#169; {currentYear} MINEDOCS</p>
           </div>
           <div className="w-full lg:w-1/3 px-4">
             <p className="text-gray-600 font-bold text-center">support@minedocs.xyz</p>
