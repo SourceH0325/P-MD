@@ -5,9 +5,13 @@ const nextConfig = {
     domains: ['cdn.discordapp.com'],
   },
   webpack(config) {
-    config.experiments = { ...config.experiments, topLevelAwait: true }
-    return config
-  },
-}
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
 
-module.exports = nextConfig
+    return config;
+  },
+};
+
+module.exports = nextConfig;

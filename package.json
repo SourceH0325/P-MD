@@ -1,6 +1,6 @@
 {
   "name": "p-md",
-  "version": "1.0.6.12",
+  "version": "1.0.6.13",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -42,6 +42,7 @@
     "verbal-expressions": "^1.0.2"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.33",
     "prettier": "3.1.1",
