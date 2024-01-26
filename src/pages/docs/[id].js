@@ -118,8 +118,10 @@ export default function Home({ SSDocs }) {
       return list.result_content.some(
         content =>
           content.title.toLowerCase().includes(query.toLowerCase()) ||
-          content.content.toLowerCase().includes(query.toLowerCase()),
-      );
+          content.content.toLowerCase().includes(query.toLowerCase())
+      ) ||
+      list.tagA.toLowerCase().includes(query.toLowerCase()) ||
+      list.tagB.toLowerCase().includes(query.toLowerCase());
     });
 
     setLoadedLists(prevLoadedLists => [...prevLoadedLists, ...filteredRemainingLists.slice(0, 15)]);
@@ -133,8 +135,10 @@ export default function Home({ SSDocs }) {
       return list.result_content.some(
         content =>
           content.title.toLowerCase().includes(query.toLowerCase()) ||
-          content.content.toLowerCase().includes(query.toLowerCase()),
-      );
+          content.content.toLowerCase().includes(query.toLowerCase())
+      ) ||
+      list.tagA.toLowerCase().includes(query.toLowerCase()) ||
+      list.tagB.toLowerCase().includes(query.toLowerCase());
     }
   });
 
