@@ -91,10 +91,10 @@ export default function Home({ SSDocs }) {
     }
   }, [docs]);
 
+  const queryWords = query.split(' ');
+
   const handleSearch = query => {
     setQuery(query);
-
-    const queryWords = query.split(' ');
 
     if (query === '') {
       setLoadedLists([]);
@@ -124,6 +124,7 @@ export default function Home({ SSDocs }) {
               content.title.toLowerCase().includes(word.toLowerCase()) ||
               content.content.toLowerCase().includes(word.toLowerCase()),
           ) ||
+          list.name.toLowerCase().includes(word.toLowerCase()) ||
           list.tagA.toLowerCase().includes(word.toLowerCase()) ||
           list.tagB.toLowerCase().includes(word.toLowerCase()),
       );
@@ -144,6 +145,7 @@ export default function Home({ SSDocs }) {
               content.title.toLowerCase().includes(word.toLowerCase()) ||
               content.content.toLowerCase().includes(word.toLowerCase()),
           ) ||
+          list.name.toLowerCase().includes(word.toLowerCase()) ||
           list.tagA.toLowerCase().includes(word.toLowerCase()) ||
           list.tagB.toLowerCase().includes(word.toLowerCase()),
       );
