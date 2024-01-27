@@ -94,6 +94,8 @@ export default function Home({ SSDocs }) {
   const handleSearch = query => {
     setQuery(query);
 
+    const queryWords = query.split(' ');
+
     if (query === '') {
       setLoadedLists([]);
       setRemainingLists([]);
@@ -115,13 +117,16 @@ export default function Home({ SSDocs }) {
     }
 
     const filteredRemainingLists = remainingLists.filter(list => {
-      return list.result_content.some(
-        content =>
-          content.title.toLowerCase().includes(query.toLowerCase()) ||
-          content.content.toLowerCase().includes(query.toLowerCase())
-      ) ||
-      list.tagA.toLowerCase().includes(query.toLowerCase()) ||
-      list.tagB.toLowerCase().includes(query.toLowerCase());
+      return queryWords.every(
+        word =>
+          list.result_content.some(
+            content =>
+              content.title.toLowerCase().includes(word.toLowerCase()) ||
+              content.content.toLowerCase().includes(word.toLowerCase()),
+          ) ||
+          list.tagA.toLowerCase().includes(word.toLowerCase()) ||
+          list.tagB.toLowerCase().includes(word.toLowerCase()),
+      );
     });
 
     setLoadedLists(prevLoadedLists => [...prevLoadedLists, ...filteredRemainingLists.slice(0, 15)]);
@@ -132,13 +137,16 @@ export default function Home({ SSDocs }) {
     if (query === '') {
       return list;
     } else {
-      return list.result_content.some(
-        content =>
-          content.title.toLowerCase().includes(query.toLowerCase()) ||
-          content.content.toLowerCase().includes(query.toLowerCase())
-      ) ||
-      list.tagA.toLowerCase().includes(query.toLowerCase()) ||
-      list.tagB.toLowerCase().includes(query.toLowerCase());
+      return queryWords.every(
+        word =>
+          list.result_content.some(
+            content =>
+              content.title.toLowerCase().includes(word.toLowerCase()) ||
+              content.content.toLowerCase().includes(word.toLowerCase()),
+          ) ||
+          list.tagA.toLowerCase().includes(word.toLowerCase()) ||
+          list.tagB.toLowerCase().includes(word.toLowerCase()),
+      );
     }
   });
 
