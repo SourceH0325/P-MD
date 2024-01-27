@@ -66,55 +66,54 @@ export default function Home() {
     }
   }, [session, loadedDocs]);
 
-  const handleSearch = async query => {
+  const handleSearch = query => {
     setQuery(query);
 
-    const res = await axios.get('/api/docs/callDocsDB');
-    res.data.result.sort((a, b) => a.name.localeCompare(b.name));
-
     if (query === '') {
-      const loaded = res.data.result.slice(0, 15);
-      const remaining = res.data.result.slice(15);
-      setLoadedDocs(loaded);
-      setRemainingDocs(remaining);
-      setClickedBlocks(Array(loaded.length).fill(false));
+      setLoadedDocs([]);
+      setRemainingDocs([]);
+      const fetchDocs = async () => {
+        try {
+          const res = await axios.get('/api/docs/callDocsDB');
+          const loaded = res.data.result.slice(0, 15);
+          const remaining = res.data.result.slice(15);
+          setLoadedDocs(loaded);
+          setRemainingDocs(remaining);
+          setClickedBlocks(Array(loaded.length).fill(false));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchDocs();
       return;
     }
 
-    const queryWords = query.split(' ');
-
-    const filteredRemainingDocs = res.data.result.filter(doc => {
-      return queryWords.every(
-        word =>
-          doc.name.toLowerCase().includes(word.toLowerCase()) ||
-          doc.version.toLowerCase().includes(word.toLowerCase()) ||
-          doc.edition.toLowerCase().includes(word.toLowerCase()) ||
-          doc.tag[0].toLowerCase().includes(word.toLowerCase()) ||
-          (doc.multiple && doc.multiple.some(version => version.toLowerCase().includes(word.toLowerCase()))),
-      );
+    const filteredRemainingDocs = remainingDocs.filter(doc => {
+      if (
+        doc.name.toLowerCase().includes(query.toLowerCase()) ||
+        doc.version.toLowerCase().includes(query.toLowerCase()) ||
+        doc.edition.toLowerCase().includes(query.toLowerCase()) ||
+        doc.tag[0].toLowerCase().includes(query.toLowerCase())
+      ) {
+        return doc;
+      }
     });
 
-    const loaded = filteredRemainingDocs.slice(0, 15);
-    const remaining = filteredRemainingDocs.slice(15);
-    setLoadedDocs(loaded);
-    setRemainingDocs(remaining);
-    setClickedBlocks(Array(loaded.length).fill(false));
+    setLoadedDocs(prevLoadedDocs => [...prevLoadedDocs, ...filteredRemainingDocs.slice(0, 15)]);
+    setRemainingDocs(filteredRemainingDocs.slice(15));
   };
 
   const filteredDocs = loadedDocs.filter(doc => {
-    const queryWords = query.split(' ');
-
     if (query === '') {
       return doc;
-    } else {
-      return queryWords.every(
-        word =>
-          doc.name.toLowerCase().includes(word.toLowerCase()) ||
-          doc.version.toLowerCase().includes(word.toLowerCase()) ||
-          doc.edition.toLowerCase().includes(word.toLowerCase()) ||
-          doc.tag[0].toLowerCase().includes(word.toLowerCase()) ||
-          (doc.multiple && doc.multiple.some(version => version.toLowerCase().includes(word.toLowerCase()))),
-      );
+    } else if (
+      doc.name.toLowerCase().includes(query.toLowerCase()) ||
+      doc.version.toLowerCase().includes(query.toLowerCase()) ||
+      doc.edition.toLowerCase().includes(query.toLowerCase()) ||
+      doc.tag[0].toLowerCase().includes(query.toLowerCase())
+    ) {
+      return doc;
     }
   });
 
