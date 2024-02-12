@@ -28,7 +28,7 @@ export default function Home() {
         const remaining = docs.slice(15);
         setLoadedDocs(loaded);
         setRemainingDocs(remaining);
-        setClickedBlocks(Array(loaded.length).fill(false));
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -66,26 +66,17 @@ export default function Home() {
     }
   }, [session, loadedDocs]);
 
-  const handleSearch = query => {
+  const handleSearch = async query => {
     setQuery(query);
 
     if (query === '') {
-      setLoadedDocs([]);
-      setRemainingDocs([]);
-      const fetchDocs = async () => {
-        try {
-          const res = await axios.get('/api/docs/callDocsDB');
-          const loaded = res.data.result.slice(0, 15);
-          const remaining = res.data.result.slice(15);
-          setLoadedDocs(loaded);
-          setRemainingDocs(remaining);
-          setClickedBlocks(Array(loaded.length).fill(false));
-        } catch (error) {
-          console.log(error);
-        }
-      };
-
-      fetchDocs();
+      const res = await axios.get('/api/docs/callDocsDB');
+      const docs = res.data.result;
+      docs.sort((a, b) => a.name.localeCompare(b.name));
+      const loaded = docs.slice(0, 15);
+      const remaining = docs.slice(15);
+      setLoadedDocs(loaded);
+      setRemainingDocs(remaining);
       return;
     }
 
@@ -179,7 +170,7 @@ export default function Home() {
         <meta name="description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} placeholder="이름, 태그 등을 검색해 보세요!" />
 
       {isLoading ? (
         <Loading />
@@ -221,8 +212,8 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <div className="bg-[#202026] rounded-lg p-5">
-                <p className="text-center text-gray-500 text-xl font-bold">독스가 없습니다!</p>
+              <div className="flex justify-center items-center h-[50vh]">
+                <h1 className="text-2xl font-bold">검색 결과가 없습니다.</h1>
               </div>
             )}
           </main>

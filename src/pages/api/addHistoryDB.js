@@ -6,16 +6,16 @@ const options = {
   useNewUrlParser: true,
 };
 
-async function addLogsDB(log, session, type) {
+async function addHistoryDB(log, user, type) {
   const client = await MongoClient.connect(uri, options);
   const db = client.db(process.env.DATABASE_NAME);
-  const collection = db.collection('logs');
+  const collection = db.collection('history');
 
   const result = await collection.insertOne({
     ...log,
-    session,
+    user,
     type,
-    timeAt: new Date(),
+    timeAt: new Date().toUTCString(),
   });
 
   await client.close();
@@ -24,13 +24,12 @@ async function addLogsDB(log, session, type) {
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { type, data, session } = req.body;
+    const { type, data, user } = req.body;
     const log = {
       ...data,
-      ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
     };
 
-    const result = await addLogsDB(log, session, type);
+    const result = await addHistoryDB(log, user, type);
 
     res.status(201).json({ message: 'success', result });
   } else {

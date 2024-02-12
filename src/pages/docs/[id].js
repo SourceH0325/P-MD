@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { MdEdit } from 'react-icons/md';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus, FaStar, FaHistory } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import SearchBar from '@/pages/components/SearchBar';
@@ -9,7 +9,6 @@ import { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import axios from 'axios';
-import { FaStar } from 'react-icons/fa';
 
 export default function Home({ SSDocs }) {
   const router = useRouter();
@@ -41,12 +40,20 @@ export default function Home({ SSDocs }) {
       try {
         const res = await axios.get(`/api/docs/callLinkDocsDB/${id}`);
         const lists = res.data.result;
-        lists.sort((a, b) => a.name.localeCompare(b.name));
+        lists.sort((a, b) => {
+          const tagComparison = a.tagA.localeCompare(b.tagA);
+          if (tagComparison !== 0) {
+            return tagComparison;
+          }
+
+          return a.name.localeCompare(b.name);
+        });
         const loaded = lists.slice(0, 15);
         const remaining = lists.slice(15);
         setLoadedLists(loaded);
         setRemainingLists(remaining);
         setClickedBlocks(Array(loaded.length).fill(false));
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -102,11 +109,21 @@ export default function Home({ SSDocs }) {
       const fetchLists = async () => {
         try {
           const res = await axios.get(`/api/docs/callLinkDocsDB/${id}`);
-          const loaded = res.data.result.slice(0, 15);
-          const remaining = res.data.result.slice(15);
+          const lists = res.data.result;
+          lists.sort((a, b) => {
+            const tagComparison = a.tagA.localeCompare(b.tagA);
+            if (tagComparison !== 0) {
+              return tagComparison;
+            }
+
+            return a.name.localeCompare(b.name);
+          });
+          const loaded = lists.slice(0, 15);
+          const remaining = lists.slice(15);
           setLoadedLists(loaded);
           setRemainingLists(remaining);
           setClickedBlocks(Array(loaded.length).fill(false));
+          setIsLoading(false);
         } catch (error) {
           console.log(error);
         }
@@ -219,7 +236,7 @@ export default function Home({ SSDocs }) {
         <meta property="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
       </Head>
 
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} placeholder="이름, 태그 등을 검색해 보세요!" />
 
       {isLoading ? (
         <Loading />
@@ -245,13 +262,19 @@ export default function Home({ SSDocs }) {
                   <div className="flex items-center">
                     <button
                       className="mr-2 rounded-lg text-lg px-4 py-2 font-bold bg-gray-600 hover:bg-gray-700 transition-all hidden mobile:block"
-                      onClick={() => router.push(`/add_list/${doc._id}`)}
+                      onClick={() => router.push(`/history/${doc._id}`)}
+                    >
+                      <FaHistory />
+                    </button>
+                    <button
+                      className="mr-2 rounded-lg text-lg px-4 py-2 font-bold bg-blue-600 hover:bg-blue-700 transition-all hidden mobile:block"
+                      onClick={() => router.push(`/lists/add_list/${doc._id}`)}
                     >
                       <FaPlus />
                     </button>
                     <button
                       className="rounded-lg text-lg px-4 py-2 font-bold bg-green-600 hover:bg-green-700 transition-all"
-                      onClick={() => router.push(`/edit_docs/${doc._id}`)}
+                      onClick={() => router.push(`/docs/edit_docs/${doc._id}`)}
                     >
                       <MdEdit />
                     </button>
@@ -340,8 +363,8 @@ export default function Home({ SSDocs }) {
                 ))}
               </div>
             ) : (
-              <div className="bg-[#202026] rounded-lg p-5">
-                <p className="text-center text-gray-500 text-xl font-bold">리스트가 없습니다!</p>
+              <div className="flex justify-center items-center h-[50vh]">
+                <h1 className="text-2xl font-bold">검색 결과가 없습니다.</h1>
               </div>
             )}
           </main>

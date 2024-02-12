@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, placeholder }) {
   const [query, setQuery] = useState('');
 
   const handleSearch = () => {
@@ -24,7 +24,7 @@ export default function SearchBar({ onSearch }) {
           <input
             className="px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg"
             type="text"
-            placeholder="이름, 태그 등을 검색해보세요!"
+            placeholder={placeholder}
             value={query}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}

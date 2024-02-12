@@ -6,15 +6,15 @@ const options = {
   useNewUrlParser: true,
 };
 
-async function editDocsDB(id, updatedDoc) {
+async function editDocsDB(id, updatedDocs) {
   const client = await MongoClient.connect(uri, options);
   const db = client.db(process.env.DATABASE_NAME);
   const collection = db.collection('docs');
 
   const filter = { _id: new ObjectId(id) };
-  const updateDoc = { $set: updatedDoc };
+  const updateDocs = { $set: updatedDocs };
 
-  const result = await collection.updateOne(filter, updateDoc);
+  const result = await collection.updateOne(filter, updateDocs);
 
   await client.close();
   return result;
@@ -23,8 +23,8 @@ async function editDocsDB(id, updatedDoc) {
 export default async function handler(req, res) {
   if (req.method === 'PUT') {
     const id = req.query.id;
-    const updatedDoc = req.body;
-    const result = await editDocsDB(id, updatedDoc);
+    const updatedDocs = req.body;
+    const result = await editDocsDB(id, updatedDocs);
     res.status(201).json({ result });
   }
 }

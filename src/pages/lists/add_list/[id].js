@@ -240,12 +240,13 @@ export default function Add_List() {
       .then(res => {
         console.log(res);
         alert('리스트 추가가 완료되었습니다!');
-        return axios.post('/api/addLogsDB', {
+        return axios.post('/api/addHistoryDB', {
           type: 'add_list',
           data: {
+            id,
             list,
           },
-          session: session,
+          user: session.user.name,
         });
       })
       .then(res => {

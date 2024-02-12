@@ -13,7 +13,6 @@ export default function Layout({ children }) {
 
   const { data: session } = useSession();
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [admin, isAdmin] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
 
   const handleMobileMenu = () => {
@@ -27,26 +26,6 @@ export default function Layout({ children }) {
       document.body.style.overflow = 'unset';
     }
   }, [mobileMenu]);
-
-  useEffect(() => {
-    axios
-      .post('/api/calluserDB', {
-        name: session?.user.name,
-        email: session?.user.email,
-      })
-      .then(res => {
-        const result = res.data.result;
-
-        if (result && result.length > 0 && result[0].role === 'admin') {
-          isAdmin(true);
-        } else {
-          isAdmin(false);
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, [session]);
 
   useEffect(() => {
     axios
@@ -111,7 +90,7 @@ export default function Layout({ children }) {
           </button>
           <button
             className="font-bold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block"
-            onClick={() => router.push('/add_docs')}
+            onClick={() => router.push('/docs/add_docs')}
           >
             추가하기
           </button>
@@ -152,15 +131,6 @@ export default function Layout({ children }) {
                     >
                       즐겨찾기
                     </button>
-                    {admin && (
-                      <button
-                        className="block w-full text-left px-4 py-2 text-lg font-bold text-white hover:bg-gray-800/50 transition-all"
-                        role="menuitem"
-                        onClick={() => router.push('/request')}
-                      >
-                        요청
-                      </button>
-                    )}
                     <button
                       className="block w-full text-left px-4 py-2 text-lg font-bold text-white hover:bg-gray-800/50 rounded-b-lg transition-all hover:text-rose-500"
                       role="menuitem"
@@ -235,7 +205,7 @@ export default function Layout({ children }) {
             </button>
             <button
               className="font-bold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]"
-              onClick={() => router.push('/add_docs') && handleMobileMenu()}
+              onClick={() => router.push('/docs/add_docs') && handleMobileMenu()}
             >
               추가하기
             </button>
@@ -261,14 +231,6 @@ export default function Layout({ children }) {
                 >
                   즐겨찾기
                 </button>
-                {admin && (
-                  <button
-                    className="font-bold text-2xl mb-4 text-gray-500 transition-all hover:text-blue-600"
-                    onClick={() => router.push('/request') && handleMobileMenu()}
-                  >
-                    요청
-                  </button>
-                )}
                 <button
                   className="font-bold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1] hover:text-rose-500"
                   onClick={() => signOut('discord')}

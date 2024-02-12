@@ -172,12 +172,12 @@ export default function Add_Docs() {
         .then(response => {
           console.log(response);
           alert('독스 추가가 완료되었습니다!');
-          return axios.post('/api/addLogsDB', {
+          return axios.post('/api/addHistoryDB', {
             type: 'add_docs',
             data: {
-              doc,
+              docs: doc,
             },
-            session: session,
+            user: session.user.name,
           });
         })
         .then(response => {

@@ -148,26 +148,6 @@ export default function Edit_List() {
 
   const [layout, setLayout] = useState(initialLayout);
 
-  useEffect(() => {
-    if (id) {
-      setIsLoading(true);
-      axios
-        .get(`/api/list/callListDB/${id}`)
-        .then(res => {
-          console.log('API Response:', res.data);
-          setLists(res.data.result);
-          settagSetA(res.data.result[0].tagA);
-          settagSetB(res.data.result[0].tagB);
-        })
-        .catch(err => {
-          console.error('Error fetching list:', err);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-  }, [id]);
-
   const [writingA, setWritingA] = useState([]);
   const [writingB, setWritingB] = useState([]);
 
@@ -177,7 +157,6 @@ export default function Edit_List() {
       axios
         .get(`/api/list/callListDB/${id}`)
         .then(res => {
-          console.log('API Response:', res.data);
           setLists(res.data.result);
           settagSetA(res.data.result[0].tagA);
           settagSetB(res.data.result[0].tagB);
@@ -298,12 +277,13 @@ export default function Edit_List() {
       .then(res => {
         console.log(res);
         alert('리스트가 수정되었습니다!');
-        return axios.post('/api/addLogsDB', {
+        return axios.post('/api/addHistoryDB', {
           type: 'edit_list',
           data: {
+            id,
             list,
           },
-          session: session,
+          user: session.user.name,
         });
       })
       .then(res => {
@@ -366,12 +346,12 @@ export default function Edit_List() {
         .then(res => {
           console.log(res);
           alert('리스트가 삭제되었습니다!');
-          return axios.post('/api/addLogsDB', {
+          return axios.post('/api/addHistoryDB', {
             type: 'delete_list',
             data: {
               list,
             },
-            session: session,
+            user: session.user.name,
           });
         })
         .then(res => {

@@ -20,7 +20,6 @@ export default function Home({ SSLists }) {
       axios
         .get(`/api/list/callListDB/${id}`)
         .then(res => {
-          console.log('API Response:', res.data);
           setLists(res.data.result);
           setIsLoading(false);
         })
@@ -52,7 +51,7 @@ export default function Home({ SSLists }) {
 
 function RenderLists({ lists, router, id }) {
   if (!lists || lists.length === 0) {
-    return <p>데이터가 없습니다!</p>;
+    return <Loading />;
   }
 
   const layout = lists[0].result_location?.map(location => ({
@@ -64,7 +63,7 @@ function RenderLists({ lists, router, id }) {
   }));
 
   if (!layout) {
-    return <p>데이터가 없습니다!</p>;
+    return <Loading />;
   }
 
   return (
@@ -104,10 +103,18 @@ function RenderLists({ lists, router, id }) {
           <button
             className="font-bold text-lg bg-green-600 hover:bg-green-700 px-4 py-2 transition-all rounded-lg mr-4"
             onClick={() => {
-              router.push(`/edit_list/${id}`);
+              router.push(`/lists/edit_list/${id}`);
             }}
           >
             편집하기
+          </button>
+          <button
+            className="font-bold text-lg bg-gray-600 hover:bg-gray-700 px-4 py-2 transition-all rounded-lg mr-4"
+            onClick={() => {
+              router.push(`/lists/history/${id}`);
+            }}
+          >
+            히스토리
           </button>
           {lists.map(list => (
             <button

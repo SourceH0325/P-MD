@@ -6,7 +6,7 @@ import axios from 'axios';
 import VerEx from 'verbal-expressions';
 import Loading from '@/pages/components/load/EditDocsLoad';
 import NameInput from '@/pages/components/docs/edit/EditNameInput';
-import AddressInput from '../components/docs/edit/EditAddressInput';
+import AddressInput from '../../components/docs/edit/EditAddressInput';
 import ExplanationInput from '@/pages/components/docs/edit/EditExplanationInput';
 import TagInput from '@/pages/components/docs/edit/EditTagInput';
 import UrlInput from '@/pages/components/docs/edit/EditUrlInput';
@@ -35,6 +35,7 @@ export default function Edit_Docs() {
         .get(`/api/docs/callDocsDB/${id}`)
         .then(res => {
           setDocs(res.data.result);
+          console.log(res.data.result);
           setIsLoading(false);
         })
         .catch(err => {
@@ -192,6 +193,7 @@ export default function Edit_Docs() {
       }
 
       const doc = {
+        id: id,
         name: document.querySelector('#Name').value,
         explanation: document.querySelector('#Explanation').value,
         address: document.querySelector('#Address').value,
@@ -207,12 +209,12 @@ export default function Edit_Docs() {
         .then(res => {
           console.log(res);
           alert('독스 편집이 완료되었습니다!');
-          return axios.post('/api/addLogsDB', {
+          return axios.post('/api/addHistoryDB', {
             type: 'edit_docs',
             data: {
-              doc,
+              docs: doc,
             },
-            session: session,
+            user: session.user.name,
           });
         })
         .then(res => {

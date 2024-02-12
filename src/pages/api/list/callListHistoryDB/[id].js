@@ -6,21 +6,21 @@ const options = {
   useNewUrlParser: true,
 };
 
-async function addDocsDB(docs) {
+async function callListHistoryDB(id) {
   const client = await MongoClient.connect(uri, options);
   const db = client.db(process.env.DATABASE_NAME);
-  const collection = db.collection('docs');
+  const collection = db.collection('history');
 
-  const result = await collection.insertOne(docs);
+  const result = await collection.find({ 'list.linkDocs': id, type: { $ne: 'add_list' } }).toArray();
 
   await client.close();
   return result;
 }
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const docs = req.body;
-    const result = await addDocsDB(docs);
-    res.status(201).json({ result });
+  if (req.method === 'GET') {
+    const id = req.query.id;
+    const result = await callListHistoryDB(id);
+    res.status(201).json({ message: 'success', result });
   }
 }
