@@ -216,9 +216,13 @@ export default function Home({ SSDocs }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolledToBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+      const scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+      const scrollHeight =
+        (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight || window.innerHeight;
+      const reachedBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
 
-      if (isScrolledToBottom && remainingLists.length > 0) {
+      if (reachedBottom && remainingLists.length > 0) {
         loadMoreLists();
       }
     };
