@@ -5,14 +5,9 @@ module.exports = {
     policies: [
       {
         userAgent: '*',
-        disallow: [
-          '/api/',
-          '/request',
-          '/add*',
-          '/edit*',
-        ],
+        disallow: ['/api/', '/request', '/add*', '/edit*'],
         allow: '/',
       },
     ],
   },
-};
+}

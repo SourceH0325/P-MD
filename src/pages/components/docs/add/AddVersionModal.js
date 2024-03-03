@@ -1,6 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
-import Select from 'react-tailwindcss-select';
+import React from 'react'
+import { useState } from 'react'
+import Select from 'react-tailwindcss-select'
 
 const BasicVersion = ({ version, onChange, options }) => {
   return (
@@ -14,7 +14,8 @@ const BasicVersion = ({ version, onChange, options }) => {
       isSearchable={true}
       noOptionsMessage="일치하는 버전이 없습니다!"
       classNames={{
-        searchBox: 'mt-4 px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg',
+        searchBox:
+          'mt-4 px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg',
         searchIcon: 'hidden',
         menu: 'bg-[#17171b] rounded-lg mt-3',
         tagItemText: 'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
@@ -24,15 +25,19 @@ const BasicVersion = ({ version, onChange, options }) => {
         tagItemIconContainer:
           'flex items-center cursor-pointer rounded-r-lg hover:bg-gray-700 hover:text-[#f1f1f1] transition-all',
       }}
-      formatGroupLabel={data => <span className="text-gray-500 font-bold text-lg hidden">{data.label}</span>}
-      formatOptionLabel={data => (
+      formatGroupLabel={(data) => (
+        <span className="text-gray-500 font-bold text-lg hidden">
+          {data.label}
+        </span>
+      )}
+      formatOptionLabel={(data) => (
         <button className="text-left w-full rounded-md px-2.5 py-1 my-1 cursor-pointer hover:bg-gray-700 transition-all">
           {data.label}
         </button>
       )}
     />
-  );
-};
+  )
+}
 
 const MultipleVersion = ({ versions, onChange, options }) => {
   return (
@@ -47,7 +52,8 @@ const MultipleVersion = ({ versions, onChange, options }) => {
       isSearchable={true}
       noOptionsMessage="일치하는 버전이 없습니다!"
       classNames={{
-        searchBox: 'mt-4 px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg',
+        searchBox:
+          'mt-4 px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg',
         searchIcon: 'hidden',
         menu: 'bg-[#17171b] rounded-lg mt-3',
         tagItemText: 'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
@@ -57,15 +63,19 @@ const MultipleVersion = ({ versions, onChange, options }) => {
         tagItemIconContainer:
           'flex items-center px-1 cursor-pointer rounded-r-lg hover:bg-gray-700 hover:text-[#f1f1f1] transition-all',
       }}
-      formatGroupLabel={data => <span className="text-gray-500 font-bold text-lg hidden">{data.label}</span>}
-      formatOptionLabel={data => (
+      formatGroupLabel={(data) => (
+        <span className="text-gray-500 font-bold text-lg hidden">
+          {data.label}
+        </span>
+      )}
+      formatOptionLabel={(data) => (
         <button className="text-left w-full rounded-md px-2.5 py-1 my-1 cursor-pointer hover:bg-gray-700 transition-all">
           {data.label}
         </button>
       )}
     />
-  );
-};
+  )
+}
 
 const RangeVersion = ({ minVersion, maxVersion, onChange, options }) => {
   return (
@@ -75,24 +85,30 @@ const RangeVersion = ({ minVersion, maxVersion, onChange, options }) => {
           placeholder="최소 버전을 설정해 주세요!"
           searchInputPlaceholder="검색"
           value={minVersion}
-          onChange={value => onChange({ minVersion: value, maxVersion })}
+          onChange={(value) => onChange({ minVersion: value, maxVersion })}
           options={options}
           isClearable={true}
           isSearchable={true}
           noOptionsMessage="일치하는 버전이 없습니다!"
           classNames={{
-            searchBox: 'mt-4 px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg',
+            searchBox:
+              'mt-4 px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg',
             searchIcon: 'hidden',
             menu: 'bg-[#17171b] rounded-lg mt-3',
-            tagItemText: 'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
+            tagItemText:
+              'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
             menuButton: () =>
               'bg-[#17171b] flex text-gray-500 rounded-lg transition-all h-auto w-full justify-between items-center',
             tagItem: () => 'bg-gray-600 rounded-lg flex pl-1',
             tagItemIconContainer:
               'flex items-center cursor-pointer rounded-r-lg hover:bg-gray-700 hover:text-[#f1f1f1] transition-all',
           }}
-          formatGroupLabel={data => <span className="text-gray-500 font-bold text-lg hidden">{data.label}</span>}
-          formatOptionLabel={data => (
+          formatGroupLabel={(data) => (
+            <span className="text-gray-500 font-bold text-lg hidden">
+              {data.label}
+            </span>
+          )}
+          formatOptionLabel={(data) => (
             <button className="text-left w-full rounded-md px-2.5 py-1 my-1 cursor-pointer hover:bg-gray-700 transition-all">
               {data.label}
             </button>
@@ -104,24 +120,30 @@ const RangeVersion = ({ minVersion, maxVersion, onChange, options }) => {
           placeholder="최대 버전을 설정해 주세요!"
           searchInputPlaceholder="검색"
           value={maxVersion}
-          onChange={value => onChange({ minVersion, maxVersion: value })}
+          onChange={(value) => onChange({ minVersion, maxVersion: value })}
           options={options}
           isClearable={true}
           isSearchable={true}
           noOptionsMessage="일치하는 버전이 없습니다!"
           classNames={{
-            searchBox: 'mt-4 px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg',
+            searchBox:
+              'mt-4 px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg',
             searchIcon: 'hidden',
             menu: 'bg-[#17171b] rounded-lg mt-3',
-            tagItemText: 'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
+            tagItemText:
+              'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
             menuButton: () =>
               'bg-[#17171b] flex text-gray-500 rounded-lg transition-all h-auto w-full justify-between items-center',
             tagItem: () => 'bg-gray-600 rounded-lg flex pl-1',
             tagItemIconContainer:
               'flex items-center cursor-pointer rounded-r-lg hover:bg-gray-700 hover:text-[#f1f1f1] transition-all',
           }}
-          formatGroupLabel={data => <span className="text-gray-500 font-bold text-lg hidden">{data.label}</span>}
-          formatOptionLabel={data => (
+          formatGroupLabel={(data) => (
+            <span className="text-gray-500 font-bold text-lg hidden">
+              {data.label}
+            </span>
+          )}
+          formatOptionLabel={(data) => (
             <button className="text-left w-full rounded-md px-2.5 py-1 my-1 cursor-pointer hover:bg-gray-700 transition-all">
               {data.label}
             </button>
@@ -129,33 +151,38 @@ const RangeVersion = ({ minVersion, maxVersion, onChange, options }) => {
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-const VersionModal = ({ isOpen, closeModal, setSelectedVersion, versionOptions }) => {
+const VersionModal = ({
+  isOpen,
+  closeModal,
+  setSelectedVersion,
+  versionOptions,
+}) => {
   const [selectedVersion, setSelectedVersionInternal] = useState({
     type: 'single',
-  });
+  })
 
-  const handleTypeChange = type => {
+  const handleTypeChange = (type) => {
     setSelectedVersionInternal({
       type,
-    });
-  };
+    })
+  }
 
-  const handleSingleVersionChange = value => {
+  const handleSingleVersionChange = (value) => {
     setSelectedVersionInternal({
       ...selectedVersion,
       singleVersion: value,
-    });
-  };
+    })
+  }
 
-  const handleMultipleVersionChange = value => {
+  const handleMultipleVersionChange = (value) => {
     setSelectedVersionInternal({
       ...selectedVersion,
       multipleVersions: value,
-    });
-  };
+    })
+  }
 
   const handleRangeVersionChange = ({ minVersion, maxVersion }) => {
     setSelectedVersionInternal({
@@ -164,70 +191,94 @@ const VersionModal = ({ isOpen, closeModal, setSelectedVersion, versionOptions }
       multipleVersions: [],
       minVersion,
       maxVersion,
-    });
-  };
+    })
+  }
 
   const handleApplyVersion = () => {
     if (selectedVersion.type === 'single') {
       if (!selectedVersion.singleVersion) {
-        alert('버전을 선택해주세요!');
-        return;
+        alert('버전을 선택해주세요!')
+        return
       }
     } else if (selectedVersion.type === 'multiple') {
-      if (!selectedVersion.multipleVersions || selectedVersion.multipleVersions.length <= 1) {
-        alert('버전을 2개 이상 선택해주세요!');
-        return;
+      if (
+        !selectedVersion.multipleVersions ||
+        selectedVersion.multipleVersions.length <= 1
+      ) {
+        alert('버전을 2개 이상 선택해주세요!')
+        return
       }
-    
-      const versionsWithX = selectedVersion.multipleVersions.filter(version => version.label.includes('x'));
+
+      const versionsWithX = selectedVersion.multipleVersions.filter((version) =>
+        version.label.includes('x'),
+      )
       for (const versionWithX of versionsWithX) {
-        const [majorWithX, minorWithX] = versionWithX.label.split('.');
+        const [majorWithX, minorWithX] = versionWithX.label.split('.')
         for (const version of selectedVersion.multipleVersions) {
-          const [major, minor] = version.label.split('.');
-          if (majorWithX === major && minorWithX === minor && version.label !== versionWithX.label) {
-            alert('동일한 메이저와 마이너 버전을 가진 버전은 추가할 수 없습니다!');
-            return;
+          const [major, minor] = version.label.split('.')
+          if (
+            majorWithX === major &&
+            minorWithX === minor &&
+            version.label !== versionWithX.label
+          ) {
+            alert(
+              '동일한 메이저와 마이너 버전을 가진 버전은 추가할 수 없습니다!',
+            )
+            return
           }
         }
       }
     } else if (selectedVersion.type === 'range') {
       if (!selectedVersion.minVersion || !selectedVersion.maxVersion) {
-        alert('최소, 최대 버전을 선택해주세요!');
-        return;
-      } else if (selectedVersion.minVersion.value > selectedVersion.maxVersion.value) {
-        alert('최소 버전이 최대 버전보다 높습니다!');
-        return;
-      } else if (selectedVersion.minVersion.value === selectedVersion.maxVersion.value) {
-        alert('최소 버전과 최대 버전이 같습니다!');
-        return;
+        alert('최소, 최대 버전을 선택해주세요!')
+        return
+      } else if (
+        selectedVersion.minVersion.value > selectedVersion.maxVersion.value
+      ) {
+        alert('최소 버전이 최대 버전보다 높습니다!')
+        return
+      } else if (
+        selectedVersion.minVersion.value === selectedVersion.maxVersion.value
+      ) {
+        alert('최소 버전과 최대 버전이 같습니다!')
+        return
       }
 
-      const minVersionParts = selectedVersion.minVersion.label.split('.');
-      const maxVersionParts = selectedVersion.maxVersion.label.split('.');
-      if (minVersionParts[0] === maxVersionParts[0] && minVersionParts[1] === maxVersionParts[1]) {
+      const minVersionParts = selectedVersion.minVersion.label.split('.')
+      const maxVersionParts = selectedVersion.maxVersion.label.split('.')
+      if (
+        minVersionParts[0] === maxVersionParts[0] &&
+        minVersionParts[1] === maxVersionParts[1]
+      ) {
         if (minVersionParts[2] === 'x' || maxVersionParts[2] === 'x') {
-          alert('동일한 메이저와 마이너 버전을 가진 범위는 선택할 수 없습니다!');
-          return;
+          alert('동일한 메이저와 마이너 버전을 가진 범위는 선택할 수 없습니다!')
+          return
         }
       }
     }
 
-    setSelectedVersion(selectedVersion);
-    closeModal();
-  };
+    setSelectedVersion(selectedVersion)
+    closeModal()
+  }
 
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="fixed inset-0 bg-black opacity-60" onClick={closeModal} role="presentation"></div>
+      <div
+        className="fixed inset-0 bg-black opacity-60"
+        onClick={closeModal}
+        role="presentation"
+      ></div>
       <div className="bg-[#202026] p-8 rounded-lg shadow-lg z-50">
         <div className="text-lg font-bold mb-2">버전 선택</div>
         <div className="mb-4">
           <div className="flex space-x-4">
             <button
               className={`px-4 py-2 font-bold text-lg rounded-lg transition-all hover:bg-blue-600 ${
-                selectedVersion.type === 'single' ? 'bg-blue-600 border-none' : 'bg-[#17171b] border-none'
+                selectedVersion.type === 'single'
+                  ? 'bg-blue-600 border-none'
+                  : 'bg-[#17171b] border-none'
               }`}
               onClick={() => handleTypeChange('single')}
             >
@@ -235,7 +286,9 @@ const VersionModal = ({ isOpen, closeModal, setSelectedVersion, versionOptions }
             </button>
             <button
               className={`px-4 py-2 font-bold text-lg rounded-lg transition-all hover:bg-blue-600 ${
-                selectedVersion.type === 'multiple' ? 'bg-blue-600 border-none' : 'bg-[#17171b] border-none'
+                selectedVersion.type === 'multiple'
+                  ? 'bg-blue-600 border-none'
+                  : 'bg-[#17171b] border-none'
               }`}
               onClick={() => handleTypeChange('multiple')}
             >
@@ -243,7 +296,9 @@ const VersionModal = ({ isOpen, closeModal, setSelectedVersion, versionOptions }
             </button>
             <button
               className={`px-4 py-2 font-bold text-lg rounded-lg transition-all hover:bg-blue-600 ${
-                selectedVersion.type === 'range' ? 'bg-blue-600 border-none' : 'bg-[#17171b] border-none'
+                selectedVersion.type === 'range'
+                  ? 'bg-blue-600 border-none'
+                  : 'bg-[#17171b] border-none'
               }`}
               onClick={() => handleTypeChange('range')}
             >
@@ -295,7 +350,7 @@ const VersionModal = ({ isOpen, closeModal, setSelectedVersion, versionOptions }
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default VersionModal;
+export default VersionModal

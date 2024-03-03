@@ -1,44 +1,53 @@
-import React, { useState } from 'react';
-import VersionModal from './AddVersionModal';
-import versions from '@/data/versions.json';
+import React, { useState } from 'react'
+import VersionModal from './AddVersionModal'
+import versions from '@/data/versions.json'
 
-const VersionInput = ({ selectedVersion, setSelectedVersion, edition, setEdition }) => {
-  const [isVersionModalOpen, setVersionModalOpen] = useState(false);
+const VersionInput = ({
+  selectedVersion,
+  setSelectedVersion,
+  edition,
+  setEdition,
+}) => {
+  const [isVersionModalOpen, setVersionModalOpen] = useState(false)
 
-  const version_options = versions.options.map(version => {
+  const version_options = versions.options.map((version) => {
     return {
       label: version.label,
       value: version.value,
-    };
-  });
+    }
+  })
 
   const openVersionModal = () => {
-    setVersionModalOpen(true);
-  };
+    setVersionModalOpen(true)
+  }
 
   const closeVersionModal = () => {
-    setVersionModalOpen(false);
-  };
+    setVersionModalOpen(false)
+  }
 
-  const handleEditionChange = event => {
-    setEdition(event.target.value); // Update the "edition" state when the user selects an edition
-  };
+  const handleEditionChange = (event) => {
+    setEdition(event.target.value) // Update the "edition" state when the user selects an edition
+  }
 
   const getMultipleVersionsLabel = () => {
     if (selectedVersion?.type === 'multiple') {
-      const selectedVersions = selectedVersion.multipleVersions.map(version => version.label);
-      const additionalCount = selectedVersion.multipleVersions.length - 1;
-      return `${selectedVersions[0]} 외 ${additionalCount}개`;
+      const selectedVersions = selectedVersion.multipleVersions.map(
+        (version) => version.label,
+      )
+      const additionalCount = selectedVersion.multipleVersions.length - 1
+      return `${selectedVersions[0]} 외 ${additionalCount}개`
     }
-    return '';
-  };
+    return ''
+  }
 
   return (
     <div className="bg-[#202026] rounded-lg p-5">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">버전과 에디션을 설정해 주세요!</h1>
       </div>
-      <p className="mt-3 text-lg text-gray-500 font-bold">버전과 에디션을 설정합니다.</p>
+      <p className="mt-3 text-lg text-gray-500 font-bold">
+        버전과 에디션을 설정합니다.
+      </p>
       <div className="mt-4 grid grid-rows-auto grid-cols-1 mobile:grid-cols-2 gap-4">
         <button
           className="text-lg font-bold bg-[#17171b] hover:bg-blue-600 transition-all px-4 py-2 rounded-lg"
@@ -103,7 +112,7 @@ const VersionInput = ({ selectedVersion, setSelectedVersion, edition, setEdition
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default VersionInput;
+export default VersionInput

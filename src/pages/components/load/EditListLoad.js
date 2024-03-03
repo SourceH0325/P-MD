@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 export default function EditListLoad() {
   return (
@@ -24,5 +24,5 @@ export default function EditListLoad() {
         </div>
       </div>
     </>
-  );
+  )
 }

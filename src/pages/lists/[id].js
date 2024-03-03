@@ -1,41 +1,55 @@
-import axios from 'axios';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { Responsive, WidthProvider } from 'react-grid-layout';
-import Loading from '@/pages/components/load/ListLoad';
-import 'react-grid-layout/css/styles.css';
+import axios from 'axios'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { Responsive, WidthProvider } from 'react-grid-layout'
+import Loading from '@/pages/components/load/ListLoad'
+import 'react-grid-layout/css/styles.css'
 
-const ResponsiveGridLayout = WidthProvider(Responsive);
+const ResponsiveGridLayout = WidthProvider(Responsive)
 
 export default function Home({ SSLists }) {
-  const router = useRouter();
-  const id = router.query.id;
+  const router = useRouter()
+  const id = router.query.id
 
-  const [lists, setLists] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [lists, setLists] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     if (id) {
       axios
         .get(`/api/list/callListDB/${id}`)
-        .then(res => {
-          setLists(res.data.result);
-          setIsLoading(false);
+        .then((res) => {
+          setLists(res.data.result)
+          setIsLoading(false)
         })
-        .catch(err => {
-          console.error('Error fetching list:', err);
-          setIsLoading(false);
-        });
+        .catch((err) => {
+          console.error('Error fetching list:', err)
+          setIsLoading(false)
+        })
     }
-  }, [id]);
+  }, [id])
 
   return (
     <>
       <Head>
-        <title>{SSLists && SSLists.length > 0 ? `${SSLists[0].name} - 마인독스` : '마인독스'}</title>
-        <meta name="og:title" content={SSLists && SSLists.length > 0 ? `${SSLists[0].name} - 마인독스` : '마인독스'} />
-        <meta name="og:description" content="마인크래프트 서버의 플레이를 도와줍니다." />
+        <title>
+          {SSLists && SSLists.length > 0
+            ? `${SSLists[0].name} - 마인독스`
+            : '마인독스'}
+        </title>
+        <meta
+          name="og:title"
+          content={
+            SSLists && SSLists.length > 0
+              ? `${SSLists[0].name} - 마인독스`
+              : '마인독스'
+          }
+        />
+        <meta
+          name="og:description"
+          content="마인크래프트 서버의 플레이를 도와줍니다."
+        />
       </Head>
 
       {isLoading ? (
@@ -46,24 +60,24 @@ export default function Home({ SSLists }) {
         router.push('/404')
       )}
     </>
-  );
+  )
 }
 
 function RenderLists({ lists, router, id }) {
   if (!lists || lists.length === 0) {
-    return <Loading />;
+    return <Loading />
   }
 
-  const layout = lists[0].result_location?.map(location => ({
+  const layout = lists[0].result_location?.map((location) => ({
     i: location.i,
     x: location.x,
     y: location.y,
     w: location.w,
     h: location.h,
-  }));
+  }))
 
   if (!layout) {
-    return <Loading />;
+    return <Loading />
   }
 
   return (
@@ -73,8 +87,14 @@ function RenderLists({ lists, router, id }) {
         layout={layout}
         isDraggable={false}
         isResizable={false}
-        onLayoutChange={layout => console.log(layout)}
-        layouts={{ lg: layout, md: layout, sm: layout, xs: layout, xxs: layout }}
+        onLayoutChange={(layout) => console.log(layout)}
+        layouts={{
+          lg: layout,
+          md: layout,
+          sm: layout,
+          xs: layout,
+          xxs: layout,
+        }}
         breakpoints={{ lg: 1140, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{ lg: 6, md: 6, sm: 1, xs: 1, xxs: 1 }}
         containerPadding={[0, 10]}
@@ -103,7 +123,7 @@ function RenderLists({ lists, router, id }) {
           <button
             className="font-bold text-lg bg-green-600 hover:bg-green-700 px-4 py-2 transition-all rounded-lg mr-4"
             onClick={() => {
-              router.push(`/lists/edit_list/${id}`);
+              router.push(`/lists/edit_list/${id}`)
             }}
           >
             편집하기
@@ -111,17 +131,17 @@ function RenderLists({ lists, router, id }) {
           <button
             className="font-bold text-lg bg-gray-600 hover:bg-gray-700 px-4 py-2 transition-all rounded-lg mr-4"
             onClick={() => {
-              router.push(`/lists/history/${id}`);
+              router.push(`/lists/history/${id}`)
             }}
           >
             히스토리
           </button>
-          {lists.map(list => (
+          {lists.map((list) => (
             <button
               key={list._id}
               className="font-bold text-lg bg-blue-600 hover:bg-blue-700 px-4 py-2 transition-all rounded-lg"
               onClick={() => {
-                router.push(`/docs/${list.linkDocs}`);
+                router.push(`/docs/${list.linkDocs}`)
               }}
             >
               돌아가기
@@ -130,16 +150,18 @@ function RenderLists({ lists, router, id }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export async function getServerSideProps(context) {
-  const id = context.params.id;
-  const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/list/callListDB/${id}`);
-  const SSLists = res.data.result;
+  const id = context.params.id
+  const res = await axios.get(
+    `${process.env.NEXTAUTH_URL}/api/list/callListDB/${id}`,
+  )
+  const SSLists = res.data.result
   return {
     props: {
       SSLists,
     },
-  };
+  }
 }

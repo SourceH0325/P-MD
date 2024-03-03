@@ -1,5 +1,5 @@
-import React from 'react';
-import { FaStar } from 'react-icons/fa';
+import React from 'react'
+import { FaStar } from 'react-icons/fa'
 
 export default function DefaultLoad() {
   return (
@@ -47,5 +47,5 @@ export default function DefaultLoad() {
         </div>
       </div>
     </>
-  );
+  )
 }

@@ -1,144 +1,144 @@
-import axios from 'axios';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useSession, signIn } from 'next-auth/react';
-import { useState, useEffect, useRef } from 'react';
-import ReactGridLayout from 'react-grid-layout';
-import { v4 as uuidv4 } from 'uuid';
-import 'react-grid-layout/css/styles.css';
-import { BiX } from 'react-icons/bi';
-import NameInput from '@/pages/components/list/add/AddListNameInput';
-import TagInput from '@/pages/components/list/add/AddListTagInput';
+import axios from 'axios'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useSession, signIn } from 'next-auth/react'
+import { useState, useEffect, useRef } from 'react'
+import ReactGridLayout from 'react-grid-layout'
+import { v4 as uuidv4 } from 'uuid'
+import 'react-grid-layout/css/styles.css'
+import { BiX } from 'react-icons/bi'
+import NameInput from '@/pages/components/list/add/AddListNameInput'
+import TagInput from '@/pages/components/list/add/AddListTagInput'
 
 export default function Add_List() {
-  const router = useRouter();
-  const id = router.query.id;
+  const router = useRouter()
+  const id = router.query.id
 
-  let showAlert = true;
+  let showAlert = true
 
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession()
 
   useEffect(() => {
     if (status === 'unauthenticated') {
-      signIn('discord');
+      signIn('discord')
     }
-  }, [status]);
+  }, [status])
 
   useEffect(() => {
     if (window.innerWidth <= 1140) {
       if (showAlert == true) {
-        alert('화면 크기가 너무 작습니다.');
+        alert('화면 크기가 너무 작습니다.')
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        showAlert = false;
-        router.back();
+        showAlert = false
+        router.back()
       }
     } else {
-      showAlert = true;
+      showAlert = true
     }
-  }, []);
+  }, [])
 
-  const onLayoutChange = newLayout => {
-    setLayout(newLayout);
-  };
+  const onLayoutChange = (newLayout) => {
+    setLayout(newLayout)
+  }
 
-  const writing_a = useRef(null);
-  const writing_b = useRef(null);
+  const writing_a = useRef(null)
+  const writing_b = useRef(null)
 
-  const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(false);
-  const [isDraggable, setIsDraggable] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(false)
+  const [isDraggable, setIsDraggable] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(false)
 
   useEffect(() => {
-    setIsDisabled(isDraggable);
-  }, [isDraggable]);
+    setIsDisabled(isDraggable)
+  }, [isDraggable])
 
   const edit_list = () => {
-    setIsDraggable(!isDraggable);
-  };
+    setIsDraggable(!isDraggable)
+  }
 
-  const [isCheck, setIsCheck] = useState(false);
+  const [isCheck, setIsCheck] = useState(false)
 
   const check = () => {
-    setIsCheck(!isCheck);
-  };
+    setIsCheck(!isCheck)
+  }
 
-  const [tagSetA, settagSetA] = useState('');
-  const [tagSetB, settagSetB] = useState('');
+  const [tagSetA, settagSetA] = useState('')
+  const [tagSetB, settagSetB] = useState('')
 
-  const handletagSetA = event => {
-    const value = event.target.value;
-    const trimmedValue = value.trim();
-
-    if (trimmedValue.length <= 5 && !trimmedValue.includes(' ')) {
-      settagSetA(trimmedValue);
-    }
-  };
-
-  const handletagSetB = event => {
-    const value = event.target.value;
-    const trimmedValue = value.trim();
+  const handletagSetA = (event) => {
+    const value = event.target.value
+    const trimmedValue = value.trim()
 
     if (trimmedValue.length <= 5 && !trimmedValue.includes(' ')) {
-      settagSetB(trimmedValue);
+      settagSetA(trimmedValue)
     }
-  };
+  }
+
+  const handletagSetB = (event) => {
+    const value = event.target.value
+    const trimmedValue = value.trim()
+
+    if (trimmedValue.length <= 5 && !trimmedValue.includes(' ')) {
+      settagSetB(trimmedValue)
+    }
+  }
 
   useEffect(() => {
     if (isDraggable) {
       if (writing_a.current?.getAttribute('disabled') === null) {
-        writing_a.current.setAttribute('disabled', true);
+        writing_a.current.setAttribute('disabled', true)
       }
       if (writing_b.current?.getAttribute('disabled') === null) {
-        writing_b.current.setAttribute('disabled', true);
+        writing_b.current.setAttribute('disabled', true)
       }
     } else {
       if (writing_a.current?.getAttribute('disabled') !== null) {
-        writing_a.current.removeAttribute('disabled', false);
+        writing_a.current.removeAttribute('disabled', false)
       }
       if (writing_b.current?.getAttribute('disabled') !== null) {
-        writing_b.current.removeAttribute('disabled', false);
+        writing_b.current.removeAttribute('disabled', false)
       }
     }
-  }, [isDraggable, writing_a, writing_b]);
+  }, [isDraggable, writing_a, writing_b])
 
   useEffect(() => {
-    const placing = document.querySelector('#placing');
+    const placing = document.querySelector('#placing')
     if (placing) {
       if (isCheck) {
-        placing.classList.add('bg-blue-700');
-        placing.classList.remove('bg-blue-600');
+        placing.classList.add('bg-blue-700')
+        placing.classList.remove('bg-blue-600')
       } else {
-        placing.classList.remove('bg-blue-700');
-        placing.classList.add('bg-blue-600');
+        placing.classList.remove('bg-blue-700')
+        placing.classList.add('bg-blue-600')
       }
     }
-  }, [isCheck]);
+  }, [isCheck])
 
   const PreNext = () => {
-    const PreNextP = document.querySelector('#StepP');
-    PreNextP.classList.toggle('hidden');
-    PreNextP.classList.toggle('block');
+    const PreNextP = document.querySelector('#StepP')
+    PreNextP.classList.toggle('hidden')
+    PreNextP.classList.toggle('block')
 
-    const PreNextN = document.querySelector('#StepN');
-    PreNextN.classList.toggle('hidden');
-    PreNextN.classList.toggle('block');
+    const PreNextN = document.querySelector('#StepN')
+    PreNextN.classList.toggle('hidden')
+    PreNextN.classList.toggle('block')
 
-    const ChName = document.querySelector('#PreNext');
+    const ChName = document.querySelector('#PreNext')
     if (ChName.innerHTML === '다음 단계') {
-      ChName.innerHTML = '이전 단계';
+      ChName.innerHTML = '이전 단계'
     } else {
-      ChName.innerHTML = '다음 단계';
+      ChName.innerHTML = '다음 단계'
     }
 
-    const Complete = document.querySelector('#Complete');
+    const Complete = document.querySelector('#Complete')
     if (Complete.classList.contains('hidden')) {
-      Complete.classList.remove('hidden');
-      Complete.classList.add('block');
+      Complete.classList.remove('hidden')
+      Complete.classList.add('block')
     } else {
-      Complete.classList.remove('block');
-      Complete.classList.add('hidden');
+      Complete.classList.remove('block')
+      Complete.classList.add('hidden')
     }
-  };
+  }
 
   const initialLayout = [
     {
@@ -149,9 +149,9 @@ export default function Add_List() {
       h: 4,
       minH: 4,
     },
-  ];
+  ]
 
-  const [layout, setLayout] = useState(initialLayout);
+  const [layout, setLayout] = useState(initialLayout)
 
   const add_list_block = () => {
     const newLayout = layout.concat({
@@ -161,61 +161,61 @@ export default function Add_List() {
       w: 10,
       h: 4,
       minH: 4,
-    });
-    console.log(newLayout);
-    setLayout(newLayout);
-  };
+    })
+    console.log(newLayout)
+    setLayout(newLayout)
+  }
 
   const handleComplete = () => {
     if (layout.length === 0) {
-      alert('리스트를 추가해주세요!');
-      return;
+      alert('리스트를 추가해주세요!')
+      return
     }
 
-    const name = document.querySelector('#Name').value;
-    const tagA = document.querySelector('#TagA').value;
-    const tagB = document.querySelector('#TagB').value;
+    const name = document.querySelector('#Name').value
+    const tagA = document.querySelector('#TagA').value
+    const tagB = document.querySelector('#TagB').value
 
-    const result_content = [];
-    let errMessages = [];
+    const result_content = []
+    let errMessages = []
 
     for (let i = 0; i < layout.length; i++) {
-      const title = document.querySelector(`#writing_a_${layout[i].i}`).value;
-      const content = document.querySelector(`#writing_b_${layout[i].i}`).value;
+      const title = document.querySelector(`#writing_a_${layout[i].i}`).value
+      const content = document.querySelector(`#writing_b_${layout[i].i}`).value
 
       if (title === '' || content === '') {
-        errMessages.push('내용');
-        break;
+        errMessages.push('내용')
+        break
       }
 
       result_content.push({
         title: title,
         content: content,
-      });
+      })
     }
 
-    const result_location = layout.map(item => {
+    const result_location = layout.map((item) => {
       return {
         i: item.i,
         x: item.x,
         y: item.y,
         w: item.w,
         h: item.h,
-      };
-    });
+      }
+    })
 
     if (name === '') {
-      errMessages.push('이름');
+      errMessages.push('이름')
     }
 
     if (tagA === '' || tagB === '') {
-      errMessages.push('태그');
+      errMessages.push('태그')
     }
 
     if (errMessages.length > 0) {
-      alert(`${errMessages.join(', ')}을 추가해주세요!`);
-      setIsSaveButtonDisabled(false);
-      return;
+      alert(`${errMessages.join(', ')}을 추가해주세요!`)
+      setIsSaveButtonDisabled(false)
+      return
     }
 
     const list = {
@@ -225,21 +225,21 @@ export default function Add_List() {
       result_content: result_content,
       result_location: result_location,
       linkDocs: id,
-    };
+    }
 
-    setIsSaveButtonDisabled(true);
+    setIsSaveButtonDisabled(true)
 
     if (status === 'unauthenticated') {
-      alert('로그인이 필요합니다!');
-      setIsSaveButtonDisabled(false);
-      return;
+      alert('로그인이 필요합니다!')
+      setIsSaveButtonDisabled(false)
+      return
     }
 
     axios
       .post('/api/list/addListDB', list)
-      .then(res => {
-        console.log(res);
-        alert('리스트 추가가 완료되었습니다!');
+      .then((res) => {
+        console.log(res)
+        alert('리스트 추가가 완료되었습니다!')
         return axios.post('/api/addHistoryDB', {
           type: 'add_list',
           data: {
@@ -247,26 +247,29 @@ export default function Add_List() {
             list,
           },
           user: session.user.name,
-        });
+        })
       })
-      .then(res => {
-        console.log(res);
-        router.replace(`/docs/${id}`);
+      .then((res) => {
+        console.log(res)
+        router.replace(`/docs/${id}`)
       })
-      .catch(err => {
-        alert('리스트 추가에 실패했습니다');
-        console.log(err);
+      .catch((err) => {
+        alert('리스트 추가에 실패했습니다')
+        console.log(err)
       })
       .finally(() => {
-        setIsSaveButtonDisabled(false);
-      });
-  };
+        setIsSaveButtonDisabled(false)
+      })
+  }
 
   return (
     <>
       <Head>
         <title>리스트 추가하기</title>
-        <meta name="description" content="마인크래프트 서버의 플레이를 도와줍니다." />
+        <meta
+          name="description"
+          content="마인크래프트 서버의 플레이를 도와줍니다."
+        />
       </Head>
 
       <div className="mx-4 mobile:mx-0">
@@ -294,8 +297,8 @@ export default function Add_List() {
                   type="checkbox"
                   className="appearance-none"
                   onClick={() => {
-                    edit_list();
-                    check();
+                    edit_list()
+                    check()
                   }}
                 />
               </label>
@@ -317,8 +320,11 @@ export default function Add_List() {
               rowHeight={30}
               width={1140}
             >
-              {layout.map(item => (
-                <div key={item.i} className="bg-[#202026] rounded-lg p-5 flex flex-col">
+              {layout.map((item) => (
+                <div
+                  key={item.i}
+                  className="bg-[#202026] rounded-lg p-5 flex flex-col"
+                >
                   <input
                     id={`writing_a_${item.i}`}
                     ref={writing_a}
@@ -344,9 +350,11 @@ export default function Add_List() {
                     <button
                       className="text-xl text-gray-500 font-bold"
                       onClick={() => {
-                        const newLayout = layout.filter(layoutItem => layoutItem.i !== item.i);
-                        console.log(newLayout);
-                        setLayout(newLayout);
+                        const newLayout = layout.filter(
+                          (layoutItem) => layoutItem.i !== item.i,
+                        )
+                        console.log(newLayout)
+                        setLayout(newLayout)
                       }}
                     >
                       <BiX className="fill-gray-500 hover:fill-white transition-all" />
@@ -368,7 +376,7 @@ export default function Add_List() {
               <button
                 className="font-bold text-lg bg-gray-600 hover:bg-gray-700 transition-all px-4 py-2 transition-all mr-2 rounded-lg"
                 onClick={() => {
-                  router.replace(`/docs/${id}`);
+                  router.replace(`/docs/${id}`)
                 }}
               >
                 취소
@@ -385,5 +393,5 @@ export default function Add_List() {
         </main>
       </div>
     </>
-  );
+  )
 }

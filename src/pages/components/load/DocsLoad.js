@@ -1,5 +1,5 @@
-import React from 'react';
-import { FaStar } from 'react-icons/fa';
+import React from 'react'
+import { FaStar } from 'react-icons/fa'
 
 export default function DocsLoad() {
   return (
@@ -67,5 +67,5 @@ export default function DocsLoad() {
         </div>
       </div>
     </>
-  );
+  )
 }

@@ -1,52 +1,62 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
 const UrlInput = ({ docs }) => {
-  const [urls, setUrls] = useState([]);
+  const [urls, setUrls] = useState([])
 
   useEffect(() => {
     if (docs.length > 0) {
-      const initialUrls = docs.map(doc => {
-        return doc.url.map(url => {
-          return { name: url.name, link: url.link };
-        });
-      });
+      const initialUrls = docs.map((doc) => {
+        return doc.url.map((url) => {
+          return { name: url.name, link: url.link }
+        })
+      })
 
-      const flattenedUrls = initialUrls.flat();
+      const flattenedUrls = initialUrls.flat()
 
-      setUrls(flattenedUrls);
+      setUrls(flattenedUrls)
     }
-  }, [docs]);
+  }, [docs])
 
   const handleAddUrl = () => {
     if (urls.length >= 5) {
-      alert('링크는 최대 5개까지 추가할 수 있습니다!');
-      return;
+      alert('링크는 최대 5개까지 추가할 수 있습니다!')
+      return
     }
 
-    setUrls(prevUrls => [...prevUrls, { name: '', link: '' }]);
-  };
+    setUrls((prevUrls) => [...prevUrls, { name: '', link: '' }])
+  }
 
   const handleRemoveUrl = () => {
     if (urls.length === 0) {
-      return;
+      return
     }
 
-    setUrls(prevUrls => prevUrls.slice(0, prevUrls.length - 1));
-  };
+    setUrls((prevUrls) => prevUrls.slice(0, prevUrls.length - 1))
+  }
 
   const handleUrlChange = (index, field, value) => {
-    setUrls(prevUrls => prevUrls.map((url, i) => (i === index ? { ...url, [field]: value } : url)));
-  };
+    setUrls((prevUrls) =>
+      prevUrls.map((url, i) =>
+        i === index ? { ...url, [field]: value } : url,
+      ),
+    )
+  }
 
   return (
     <div className="bg-[#202026] rounded-lg p-5">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">링크를 설정해 주세요!</h1>
       </div>
-      <p className="mt-3 text-lg text-gray-500 font-bold">상세 설명에 링크를 설정합니다.</p>
+      <p className="mt-3 text-lg text-gray-500 font-bold">
+        상세 설명에 링크를 설정합니다.
+      </p>
       <div id="UrlList" className="grid gap-0 grid-rows-auto grid-cols-1">
         {urls.map((url, index) => (
-          <div key={index} id="UrlID" className="grid gap-4 grid-rows-auto grid-cols-1 mobile:grid-cols-2">
+          <div
+            key={index}
+            id="UrlID"
+            className="grid gap-4 grid-rows-auto grid-cols-1 mobile:grid-cols-2"
+          >
             <input
               id="UrlName"
               maxLength="5"
@@ -54,7 +64,7 @@ const UrlInput = ({ docs }) => {
               type="text"
               placeholder="예: 마인독스"
               value={url.name}
-              onChange={e => handleUrlChange(index, 'name', e.target.value)}
+              onChange={(e) => handleUrlChange(index, 'name', e.target.value)}
             />
             <input
               id="UrlLink"
@@ -62,7 +72,7 @@ const UrlInput = ({ docs }) => {
               type="text"
               placeholder="예: https://example.com"
               value={url.link}
-              onChange={e => handleUrlChange(index, 'link', e.target.value)}
+              onChange={(e) => handleUrlChange(index, 'link', e.target.value)}
             />
           </div>
         ))}
@@ -82,7 +92,7 @@ const UrlInput = ({ docs }) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default UrlInput;
+export default UrlInput

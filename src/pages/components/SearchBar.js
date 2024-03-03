@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 export default function SearchBar({ onSearch, placeholder }) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('')
 
   const handleSearch = () => {
-    onSearch(query);
-  };
+    onSearch(query)
+  }
 
-  const handleInputChange = event => {
-    setQuery(event.target.value);
-  };
+  const handleInputChange = (event) => {
+    setQuery(event.target.value)
+  }
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      handleSearch();
+      handleSearch()
     }
-  };
+  }
 
   return (
     <>
@@ -38,5 +38,5 @@ export default function SearchBar({ onSearch, placeholder }) {
         />
       </div>
     </>
-  );
+  )
 }

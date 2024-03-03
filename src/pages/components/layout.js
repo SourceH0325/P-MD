@@ -1,31 +1,31 @@
-import Image from 'next/image';
-import Head from 'next/head';
-import Logo from '/public/MINEDOCS_LOGO.svg';
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import { FaTimes, FaBars } from 'react-icons/fa';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import axios from 'axios';
+import Image from 'next/image'
+import Head from 'next/head'
+import Logo from '/public/MINEDOCS_LOGO.svg'
+import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
+import { FaTimes, FaBars } from 'react-icons/fa'
+import { useSession, signIn, signOut } from 'next-auth/react'
+import axios from 'axios'
 
 export default function Layout({ children }) {
-  const router = useRouter();
-  const currentYear = new Date().getFullYear();
+  const router = useRouter()
+  const currentYear = new Date().getFullYear()
 
-  const { data: session } = useSession();
-  const [mobileMenu, setMobileMenu] = useState(false);
-  const [profileImage, setProfileImage] = useState(null);
+  const { data: session } = useSession()
+  const [mobileMenu, setMobileMenu] = useState(false)
+  const [profileImage, setProfileImage] = useState(null)
 
   const handleMobileMenu = () => {
-    setMobileMenu(!mobileMenu);
-  };
+    setMobileMenu(!mobileMenu)
+  }
 
   useEffect(() => {
     if (mobileMenu) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'unset'
     }
-  }, [mobileMenu]);
+  }, [mobileMenu])
 
   useEffect(() => {
     axios
@@ -33,54 +33,65 @@ export default function Layout({ children }) {
         name: session?.user.name,
         email: session?.user.email,
       })
-      .then(res => {
-        const result = res.data.result;
+      .then((res) => {
+        const result = res.data.result
 
         if (result && result.length > 0 && result[0].image) {
-          const profileImage = result[0].image;
-          setProfileImage(profileImage);
+          const profileImage = result[0].image
+          setProfileImage(profileImage)
         }
       })
-      .catch(error => {
-        console.error(error);
-      });
-  }, [session]);
+      .catch((error) => {
+        console.error(error)
+      })
+  }, [session])
 
-  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)
 
   const handleProfileButtonClick = () => {
-    setProfileDropdownOpen(!profileDropdownOpen);
-  };
+    setProfileDropdownOpen(!profileDropdownOpen)
+  }
 
   useEffect(() => {
-    const handleOutsideClick = event => {
-      if (!event.target.closest('.profile-button') && !event.target.closest('.profile-dropdown')) {
-        setProfileDropdownOpen(false);
+    const handleOutsideClick = (event) => {
+      if (
+        !event.target.closest('.profile-button') &&
+        !event.target.closest('.profile-dropdown')
+      ) {
+        setProfileDropdownOpen(false)
       }
-    };
+    }
 
     if (profileDropdownOpen) {
-      document.addEventListener('click', handleOutsideClick);
+      document.addEventListener('click', handleOutsideClick)
     }
 
     return () => {
-      document.removeEventListener('click', handleOutsideClick);
-    };
-  }, [profileDropdownOpen]);
+      document.removeEventListener('click', handleOutsideClick)
+    }
+  }, [profileDropdownOpen])
 
   return (
     <>
       <Head>
-        <meta name="naver-site-verification" content="6eb3f16b30a15f21d8e43546f8291dc3bc516864" />
+        <meta
+          name="naver-site-verification"
+          content="6eb3f16b30a15f21d8e43546f8291dc3bc516864"
+        />
         <meta name="theme-color" content="#2563eb" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="flex justify-between items-center h-20 w-auto mx-4 mobile:mx-0">
         <div className="flex items-center">
-          <div className="flex items-center cursor-pointer select-none" onClick={() => router.push('/')}>
+          <div
+            className="flex items-center cursor-pointer select-none"
+            onClick={() => router.push('/')}
+          >
             <Logo width={40} height={40} />
-            <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">MINEDOCS</h1>
+            <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">
+              MINEDOCS
+            </h1>
           </div>
           <button
             className="font-bold text-lg mr-14 text-gray-500 transition-all hover:text-[#f1f1f1] hidden mobile:block"
@@ -104,7 +115,10 @@ export default function Layout({ children }) {
 
         <div className="flex items-center">
           {!session && (
-            <button className="font-bold text-lg hidden mobile:block" onClick={() => signIn('discord')}>
+            <button
+              className="font-bold text-lg hidden mobile:block"
+              onClick={() => signIn('discord')}
+            >
               로그인
             </button>
           )}
@@ -116,14 +130,25 @@ export default function Layout({ children }) {
                 onClick={handleProfileButtonClick}
               >
                 {profileImage ? (
-                  <Image src={profileImage} alt="Profile" width={40} height={40} className="rounded-full" />
+                  <Image
+                    src={profileImage}
+                    alt="Profile"
+                    width={40}
+                    height={40}
+                    className="rounded-full"
+                  />
                 ) : (
                   <div className="w-10 h-10 rounded-full bg-gray-500" />
                 )}
               </button>
               {profileDropdownOpen && (
                 <div className="bg-gray-700 absolute right-0 mt-1 w-56 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 opacity-100 visible transition-all duration-300 z-50 profile-dropdown">
-                  <div className="" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  <div
+                    className=""
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="options-menu"
+                  >
                     <button
                       className="block w-full text-left px-4 py-2 text-lg font-bold text-white hover:bg-gray-800/50 rounded-t-lg transition-all"
                       role="menuitem"
@@ -154,9 +179,18 @@ export default function Layout({ children }) {
           {session && (
             <>
               <div className="relative inline-block mobile:hidden z-50 mr-3">
-                <button type="button" className="inline-flex items-center px-0 py-2 text-gray-700">
+                <button
+                  type="button"
+                  className="inline-flex items-center px-0 py-2 text-gray-700"
+                >
                   {profileImage ? (
-                    <Image src={profileImage} alt="Profile" width={40} height={40} className="rounded-full" />
+                    <Image
+                      src={profileImage}
+                      alt="Profile"
+                      width={40}
+                      height={40}
+                      className="rounded-full"
+                    />
                   ) : (
                     <div className="w-10 h-10 rounded-full bg-gray-500" />
                   )}
@@ -184,7 +218,9 @@ export default function Layout({ children }) {
               onClick={() => router.push('/') && handleMobileMenu()}
             >
               <Logo width={40} height={40} />
-              <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">MINEDOCS</h1>
+              <h1 className="text-2xl font-bold ml-2 mr-0 mobile:mr-32">
+                MINEDOCS
+              </h1>
             </div>
 
             <div className="flex items-center">
@@ -205,13 +241,18 @@ export default function Layout({ children }) {
             </button>
             <button
               className="font-bold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]"
-              onClick={() => router.push('/docs/add_docs') && handleMobileMenu()}
+              onClick={() =>
+                router.push('/docs/add_docs') && handleMobileMenu()
+              }
             >
               추가하기
             </button>
             <button
               className="font-bold text-2xl mb-4 text-gray-500 transition-all hover:text-[#f1f1f1]"
-              onClick={() => router.push('https://discord.gg/4wTeugQez3') && handleMobileMenu()}
+              onClick={() =>
+                router.push('https://discord.gg/4wTeugQez3') &&
+                handleMobileMenu()
+              }
             >
               디스코드
             </button>
@@ -248,10 +289,14 @@ export default function Layout({ children }) {
       <footer className="py-8">
         <div className="container mx-auto flex flex-wrap justify-center">
           <div className="w-full lg:w-1/3 px-4">
-            <p className="text-gray-600 text-lg font-bold text-center">&#169; {currentYear} MINEDOCS</p>
+            <p className="text-gray-600 text-lg font-bold text-center">
+              &#169; {currentYear} MINEDOCS
+            </p>
           </div>
           <div className="w-full lg:w-1/3 px-4">
-            <p className="text-gray-600 font-bold text-center">support@minedocs.xyz</p>
+            <p className="text-gray-600 font-bold text-center">
+              support@minedocs.xyz
+            </p>
           </div>
           <div className="w-full lg:w-1/3 px-4">
             <div className="flex justify-center space-x-4">
@@ -270,10 +315,11 @@ export default function Layout({ children }) {
             </div>
           </div>
           <p className="text-gray-600 text-sm font-bold text-center mt-4">
-            마인크래프트는 Mojang AB의 상표이며, 이 사이트는 Mojang과 관련이 없습니다.
+            마인크래프트는 Mojang AB의 상표이며, 이 사이트는 Mojang과 관련이
+            없습니다.
           </p>
         </div>
       </footer>
     </>
-  );
+  )
 }

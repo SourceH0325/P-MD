@@ -1,42 +1,42 @@
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
-import { useState, useEffect } from 'react';
-import SearchBar from '@/pages/components/SearchBar';
-import Loading from '@/pages/components/load/DefaultLoad';
-import axios from 'axios';
-import { FaStar } from 'react-icons/fa';
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
+import { useState, useEffect } from 'react'
+import SearchBar from '@/pages/components/SearchBar'
+import Loading from '@/pages/components/load/DefaultLoad'
+import axios from 'axios'
+import { FaStar } from 'react-icons/fa'
 
 export default function Home() {
-  const router = useRouter();
+  const router = useRouter()
 
-  const { data: session } = useSession();
+  const { data: session } = useSession()
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [query, setQuery] = useState('');
-  const [clickedBlocks, setClickedBlocks] = useState([]);
-  const [loadedDocs, setLoadedDocs] = useState([]);
-  const [remainingDocs, setRemainingDocs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
+  const [query, setQuery] = useState('')
+  const [clickedBlocks, setClickedBlocks] = useState([])
+  const [loadedDocs, setLoadedDocs] = useState([])
+  const [remainingDocs, setRemainingDocs] = useState([])
 
   useEffect(() => {
     const fetchDocs = async () => {
       try {
-        const res = await axios.get('/api/docs/callDocsDB');
-        const docs = res.data.result;
-        docs.sort((a, b) => a.name.localeCompare(b.name));
-        const loaded = docs.slice(0, 15);
-        const remaining = docs.slice(15);
-        setLoadedDocs(loaded);
-        setRemainingDocs(remaining);
-        setIsLoading(false);
+        const res = await axios.get('/api/docs/callDocsDB')
+        const docs = res.data.result
+        docs.sort((a, b) => a.name.localeCompare(b.name))
+        const loaded = docs.slice(0, 15)
+        const remaining = docs.slice(15)
+        setLoadedDocs(loaded)
+        setRemainingDocs(remaining)
+        setIsLoading(false)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
+    }
 
-    setIsLoading(false);
-    fetchDocs();
-  }, []);
+    setIsLoading(false)
+    fetchDocs()
+  }, [])
 
   useEffect(() => {
     if (session) {
@@ -45,73 +45,78 @@ export default function Home() {
           const res = await axios.post('/api/calluserDB', {
             name: session.user.name,
             email: session.user.email,
-          });
-          const bookmarkedDocs = res.data.result[0].bookmark.docs;
-          setClickedBlocks(prevClickedBlocks => {
-            const newClickedBlocks = [...prevClickedBlocks];
-            bookmarkedDocs.forEach(bookmarkedDoc => {
-              const index = loadedDocs.findIndex(doc => doc._id === bookmarkedDoc);
+          })
+          const bookmarkedDocs = res.data.result[0].bookmark.docs
+          setClickedBlocks((prevClickedBlocks) => {
+            const newClickedBlocks = [...prevClickedBlocks]
+            bookmarkedDocs.forEach((bookmarkedDoc) => {
+              const index = loadedDocs.findIndex(
+                (doc) => doc._id === bookmarkedDoc,
+              )
               if (index !== -1) {
-                newClickedBlocks[index] = true;
+                newClickedBlocks[index] = true
               }
-            });
-            return newClickedBlocks;
-          });
+            })
+            return newClickedBlocks
+          })
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
-      };
+      }
 
-      fetchBookmarkedDocs();
+      fetchBookmarkedDocs()
     }
-  }, [session, loadedDocs]);
+  }, [session, loadedDocs])
 
-  const handleSearch = async query => {
-    setQuery(query);
+  const handleSearch = async (query) => {
+    setQuery(query)
 
     if (query === '') {
-      const res = await axios.get('/api/docs/callDocsDB');
-      const docs = res.data.result;
-      docs.sort((a, b) => a.name.localeCompare(b.name));
-      const loaded = docs.slice(0, 15);
-      const remaining = docs.slice(15);
-      setLoadedDocs(loaded);
-      setRemainingDocs(remaining);
-      return;
+      const res = await axios.get('/api/docs/callDocsDB')
+      const docs = res.data.result
+      docs.sort((a, b) => a.name.localeCompare(b.name))
+      const loaded = docs.slice(0, 15)
+      const remaining = docs.slice(15)
+      setLoadedDocs(loaded)
+      setRemainingDocs(remaining)
+      return
     }
 
-    const filteredRemainingDocs = remainingDocs.filter(doc => {
+    const filteredRemainingDocs = remainingDocs.filter((doc) => {
       if (
         doc.name.toLowerCase().includes(query.toLowerCase()) ||
         doc.version.toLowerCase().includes(query.toLowerCase()) ||
         doc.edition.toLowerCase().includes(query.toLowerCase()) ||
         doc.tag[0].toLowerCase().includes(query.toLowerCase())
       ) {
-        return doc;
+        return doc
       }
-    });
+    })
 
-    setLoadedDocs(prevLoadedDocs => [...prevLoadedDocs, ...filteredRemainingDocs.slice(0, 15)]);
-    setRemainingDocs(filteredRemainingDocs.slice(15));
-  };
+    setLoadedDocs((prevLoadedDocs) => [
+      ...prevLoadedDocs,
+      ...filteredRemainingDocs.slice(0, 15),
+    ])
+    setRemainingDocs(filteredRemainingDocs.slice(15))
+  }
 
-  const filteredDocs = loadedDocs.filter(doc => {
+  const filteredDocs = loadedDocs.filter((doc) => {
     if (query === '') {
-      return doc;
+      return doc
     } else if (
       doc.name.toLowerCase().includes(query.toLowerCase()) ||
       doc.version.toLowerCase().includes(query.toLowerCase()) ||
       doc.edition.toLowerCase().includes(query.toLowerCase()) ||
       doc.tag[0].toLowerCase().includes(query.toLowerCase())
     ) {
-      return doc;
+      return doc
     }
-  });
+  })
 
-  const handleClick = index => {
+  const handleClick = (index) => {
     if (session) {
-      const docID = loadedDocs[index]._id;
-      const clicked = clickedBlocks[index];
+      const docID = loadedDocs[index]._id
+      const clicked = clickedBlocks[index]
 
       const handleBookmarkDoc = async () => {
         try {
@@ -120,57 +125,67 @@ export default function Home() {
               name: session.user.name,
               email: session.user.email,
               docID: docID,
-            });
+            })
           } else {
             await axios.post('/api/docs/addDocsBookmarkDB', {
               name: session.user.name,
               email: session.user.email,
               docID: docID,
-            });
+            })
           }
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
-      };
+      }
 
-      handleBookmarkDoc();
+      handleBookmarkDoc()
     }
 
-    setClickedBlocks(prevClickedBlocks => {
-      const newClickedBlocks = [...prevClickedBlocks];
-      newClickedBlocks[index] = !newClickedBlocks[index];
-      return newClickedBlocks;
-    });
-  };
+    setClickedBlocks((prevClickedBlocks) => {
+      const newClickedBlocks = [...prevClickedBlocks]
+      newClickedBlocks[index] = !newClickedBlocks[index]
+      return newClickedBlocks
+    })
+  }
 
   const loadMoreDocs = () => {
-    setLoadedDocs(prevLoadedDocs => [...prevLoadedDocs, ...remainingDocs.slice(0, 15)]);
-    setRemainingDocs(prevRemainingDocs => prevRemainingDocs.slice(15));
-  };
+    setLoadedDocs((prevLoadedDocs) => [
+      ...prevLoadedDocs,
+      ...remainingDocs.slice(0, 15),
+    ])
+    setRemainingDocs((prevRemainingDocs) => prevRemainingDocs.slice(15))
+  }
 
   useEffect(() => {
     const handleScroll = () => {
       const isScrolledToBottom =
-        window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight;
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight
 
       if (isScrolledToBottom && remainingDocs.length > 0) {
-        loadMoreDocs();
+        loadMoreDocs()
       }
-    };
+    }
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remainingDocs]);
+  }, [remainingDocs])
 
   return (
     <>
       <Head>
         <title>마인독스</title>
-        <meta name="description" content="마인크래프트 서버의 플레이를 도와줍니다." />
+        <meta
+          name="description"
+          content="마인크래프트 서버의 플레이를 도와줍니다."
+        />
       </Head>
 
-      <SearchBar onSearch={handleSearch} placeholder="이름, 태그 등을 검색해 보세요!" />
+      <SearchBar
+        onSearch={handleSearch}
+        placeholder="이름, 태그 등을 검색해 보세요!"
+      />
 
       {isLoading ? (
         <Loading />
@@ -194,7 +209,10 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex justify-between mt-2">
-                      <button className="text-2xl pt-1.5" onClick={() => handleClick(index)}>
+                      <button
+                        className="text-2xl pt-1.5"
+                        onClick={() => handleClick(index)}
+                      >
                         {clickedBlocks[index] ? (
                           <FaStar className="fill-[#f1f1f1] hover:fill-gray-600 transition-all" />
                         ) : (
@@ -220,5 +238,5 @@ export default function Home() {
         </div>
       )}
     </>
-  );
+  )
 }

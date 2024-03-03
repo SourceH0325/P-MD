@@ -1,7 +1,7 @@
-import NextAuth from 'next-auth';
-import DiscordProvider from 'next-auth/providers/discord';
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-import clientPromise from '../database/mongodb';
+import NextAuth from 'next-auth'
+import DiscordProvider from 'next-auth/providers/discord'
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
+import clientPromise from '../database/mongodb'
 
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
@@ -14,13 +14,13 @@ export default NextAuth({
   ],
   callbacks: {
     async signIn({ user, account, profile }) {
-      const client = await clientPromise;
-      const db = client.db(process.env.DATABASE_NAME);
-      const collection = db.collection('users');
+      const client = await clientPromise
+      const db = client.db(process.env.DATABASE_NAME)
+      const collection = db.collection('users')
 
       const result = await collection.findOne({
         providerAccountId: account.providerAccountId,
-      });
+      })
       if (!result) {
         const data = {
           email: user.email,
@@ -35,9 +35,9 @@ export default NextAuth({
             docs: [],
             lists: [],
           },
-        };
-        await collection.insertOne(data);
-        return true;
+        }
+        await collection.insertOne(data)
+        return true
       } else {
         await collection.updateOne(
           { providerAccountId: account.providerAccountId },
@@ -49,9 +49,9 @@ export default NextAuth({
               updatedAt: new Date(),
             },
           },
-        );
-        return true;
+        )
+        return true
       }
     },
   },
-});
+})

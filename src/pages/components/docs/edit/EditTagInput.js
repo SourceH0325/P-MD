@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Select from 'react-tailwindcss-select';
+import React, { useState } from 'react'
+import Select from 'react-tailwindcss-select'
 
 const TagInput = ({ tag, setTag, onTagChange }) => {
   const tag_options = [
@@ -24,19 +24,21 @@ const TagInput = ({ tag, setTag, onTagChange }) => {
         { value: 'RPG', label: 'RPG' },
       ],
     },
-  ];
+  ]
 
-  const handleChange_tag = value => {
-    setTag(value);
-    onTagChange(value); // Notify the parent component about the tag selection
-  };
+  const handleChange_tag = (value) => {
+    setTag(value)
+    onTagChange(value) // Notify the parent component about the tag selection
+  }
 
   return (
     <div className="bg-[#202026] rounded-lg p-5">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold">태그를 설정해 주세요!</h1>
       </div>
-      <p className="mt-3 text-lg text-gray-500 font-bold">이름 밑에 뜰 태그를 설정합니다.</p>
+      <p className="mt-3 text-lg text-gray-500 font-bold">
+        이름 밑에 뜰 태그를 설정합니다.
+      </p>
       <div className="mt-4">
         <Select
           placeholder="태그를 설정해 주세요!"
@@ -49,18 +51,24 @@ const TagInput = ({ tag, setTag, onTagChange }) => {
           isSearchable={true}
           noOptionsMessage="일치하는 태그가 없습니다!"
           classNames={{
-            searchBox: 'mt-4 px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg',
+            searchBox:
+              'mt-4 px-2.5 pb-1 w-full h-10 bg-[#202026] text-left text-white rounded-lg',
             searchIcon: 'hidden',
             menu: 'bg-[#17171b] rounded-lg mt-3',
-            tagItemText: 'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
+            tagItemText:
+              'inline-block bg-[#4B5563] rounded-lg px-2 py-1 my-1 mr-1',
             menuButton: () =>
               'bg-[#17171b] flex text-gray-500 rounded-lg transition-all h-auto w-full justify-between items-center',
             tagItem: () => 'bg-gray-600 rounded-lg flex pl-1',
             tagItemIconContainer:
               'flex items-center px-1 cursor-pointer rounded-r-lg hover:bg-gray-700 hover:text-[#f1f1f1] transition-all',
           }}
-          formatGroupLabel={data => <span className="text-gray-500 font-bold text-lg hidden">{data.label}</span>}
-          formatOptionLabel={data => (
+          formatGroupLabel={(data) => (
+            <span className="text-gray-500 font-bold text-lg hidden">
+              {data.label}
+            </span>
+          )}
+          formatOptionLabel={(data) => (
             <button className="text-left w-full rounded-md px-2.5 py-1 my-1 cursor-pointer hover:bg-gray-700 transition-all">
               {data.label}
             </button>
@@ -68,7 +76,7 @@ const TagInput = ({ tag, setTag, onTagChange }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TagInput;
+export default TagInput
