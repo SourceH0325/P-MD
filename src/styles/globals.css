@@ -68,6 +68,10 @@ hr {
   display: none;
 }
 
+.view .react-grid-item.cssTransforms {
+  transition-property: none !important;
+}
+
 .react-grid-item.react-grid-placeholder {
   background-color: rgb(37 99 235) !important;
   border-radius: 0.5rem !important;

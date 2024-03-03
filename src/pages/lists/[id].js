@@ -83,7 +83,7 @@ function RenderLists({ lists, router, id }) {
   return (
     <div className="mx-4 mobile:mx-0">
       <ResponsiveGridLayout
-        className="layout"
+        className="layout view"
         layout={layout}
         isDraggable={false}
         isResizable={false}
